@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		190728BBE4CCDB2772B5B2FA /* Pods_uEAT_Manager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4789DE02EF3366FF783A8FD4 /* Pods_uEAT_Manager.framework */; };
 		6A1FECF0235DA2D900198533 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A1FECEF235DA2D900198533 /* AppDelegate.swift */; };
 		6A1FECF2235DA2D900198533 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A1FECF1235DA2D900198533 /* SceneDelegate.swift */; };
 		6A1FECF4235DA2D900198533 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A1FECF3235DA2D900198533 /* ViewController.swift */; };
@@ -15,6 +16,9 @@
 		6A1FECFC235DA2DB00198533 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6A1FECFA235DA2DB00198533 /* LaunchScreen.storyboard */; };
 		6A1FED07235DA2DC00198533 /* uEAT_ManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A1FED06235DA2DC00198533 /* uEAT_ManagerTests.swift */; };
 		6A1FED12235DA2DC00198533 /* uEAT_ManagerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A1FED11235DA2DC00198533 /* uEAT_ManagerUITests.swift */; };
+		6A8F0FD22383C378003E87BE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6A8F0FD12383C378003E87BE /* GoogleService-Info.plist */; };
+		C4E772CA0668E3E8135C5431 /* Pods_uEAT_Manager_uEAT_ManagerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C38AA121B042926C4733A20 /* Pods_uEAT_Manager_uEAT_ManagerUITests.framework */; };
+		EEC87903AE9F2C09D6773A75 /* Pods_uEAT_ManagerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F479E9B8470635B04F15C67 /* Pods_uEAT_ManagerTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +39,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		16123025A67D88CD877D1072 /* Pods-uEAT Manager.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-uEAT Manager.release.xcconfig"; path = "Target Support Files/Pods-uEAT Manager/Pods-uEAT Manager.release.xcconfig"; sourceTree = "<group>"; };
+		1C38AA121B042926C4733A20 /* Pods_uEAT_Manager_uEAT_ManagerUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_uEAT_Manager_uEAT_ManagerUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3FEF1EE9C791E3D9ADC6AEEA /* Pods-uEAT Manager-uEAT ManagerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-uEAT Manager-uEAT ManagerUITests.debug.xcconfig"; path = "Target Support Files/Pods-uEAT Manager-uEAT ManagerUITests/Pods-uEAT Manager-uEAT ManagerUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		4789DE02EF3366FF783A8FD4 /* Pods_uEAT_Manager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_uEAT_Manager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		59AF29B07758F662C5057473 /* Pods-uEAT Manager-uEAT ManagerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-uEAT Manager-uEAT ManagerUITests.release.xcconfig"; path = "Target Support Files/Pods-uEAT Manager-uEAT ManagerUITests/Pods-uEAT Manager-uEAT ManagerUITests.release.xcconfig"; sourceTree = "<group>"; };
 		6A1FECEC235DA2D900198533 /* uEAT Manager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "uEAT Manager.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A1FECEF235DA2D900198533 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6A1FECF1235DA2D900198533 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -49,6 +58,11 @@
 		6A1FED0D235DA2DC00198533 /* uEAT ManagerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "uEAT ManagerUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A1FED11235DA2DC00198533 /* uEAT_ManagerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = uEAT_ManagerUITests.swift; sourceTree = "<group>"; };
 		6A1FED13235DA2DC00198533 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6A8F0FD12383C378003E87BE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		6F479E9B8470635B04F15C67 /* Pods_uEAT_ManagerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_uEAT_ManagerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		830E73038B60C68A6731F738 /* Pods-uEAT Manager.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-uEAT Manager.debug.xcconfig"; path = "Target Support Files/Pods-uEAT Manager/Pods-uEAT Manager.debug.xcconfig"; sourceTree = "<group>"; };
+		BBF6474B8FFCBB5884249984 /* Pods-uEAT ManagerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-uEAT ManagerTests.debug.xcconfig"; path = "Target Support Files/Pods-uEAT ManagerTests/Pods-uEAT ManagerTests.debug.xcconfig"; sourceTree = "<group>"; };
+		C0597FBCBBB13BB68EDC659B /* Pods-uEAT ManagerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-uEAT ManagerTests.release.xcconfig"; path = "Target Support Files/Pods-uEAT ManagerTests/Pods-uEAT ManagerTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				190728BBE4CCDB2772B5B2FA /* Pods_uEAT_Manager.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +78,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EEC87903AE9F2C09D6773A75 /* Pods_uEAT_ManagerTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,6 +86,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C4E772CA0668E3E8135C5431 /* Pods_uEAT_Manager_uEAT_ManagerUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +100,8 @@
 				6A1FED05235DA2DC00198533 /* uEAT ManagerTests */,
 				6A1FED10235DA2DC00198533 /* uEAT ManagerUITests */,
 				6A1FECED235DA2D900198533 /* Products */,
+				AD404832DC8932A237E5367E /* Pods */,
+				BA5DAE42C11EAD5841FAA869 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -99,13 +118,13 @@
 		6A1FECEE235DA2D900198533 /* uEAT Manager */ = {
 			isa = PBXGroup;
 			children = (
+				6A8F0FD42383C5C3003E87BE /* Info plist */,
 				6A1FECEF235DA2D900198533 /* AppDelegate.swift */,
 				6A1FECF1235DA2D900198533 /* SceneDelegate.swift */,
 				6A1FECF3235DA2D900198533 /* ViewController.swift */,
 				6A1FECF5235DA2D900198533 /* Main.storyboard */,
 				6A1FECF8235DA2DB00198533 /* Assets.xcassets */,
 				6A1FECFA235DA2DB00198533 /* LaunchScreen.storyboard */,
-				6A1FECFD235DA2DB00198533 /* Info.plist */,
 			);
 			path = "uEAT Manager";
 			sourceTree = "<group>";
@@ -128,6 +147,38 @@
 			path = "uEAT ManagerUITests";
 			sourceTree = "<group>";
 		};
+		6A8F0FD42383C5C3003E87BE /* Info plist */ = {
+			isa = PBXGroup;
+			children = (
+				6A8F0FD12383C378003E87BE /* GoogleService-Info.plist */,
+				6A1FECFD235DA2DB00198533 /* Info.plist */,
+			);
+			path = "Info plist";
+			sourceTree = "<group>";
+		};
+		AD404832DC8932A237E5367E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				830E73038B60C68A6731F738 /* Pods-uEAT Manager.debug.xcconfig */,
+				16123025A67D88CD877D1072 /* Pods-uEAT Manager.release.xcconfig */,
+				3FEF1EE9C791E3D9ADC6AEEA /* Pods-uEAT Manager-uEAT ManagerUITests.debug.xcconfig */,
+				59AF29B07758F662C5057473 /* Pods-uEAT Manager-uEAT ManagerUITests.release.xcconfig */,
+				BBF6474B8FFCBB5884249984 /* Pods-uEAT ManagerTests.debug.xcconfig */,
+				C0597FBCBBB13BB68EDC659B /* Pods-uEAT ManagerTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		BA5DAE42C11EAD5841FAA869 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4789DE02EF3366FF783A8FD4 /* Pods_uEAT_Manager.framework */,
+				1C38AA121B042926C4733A20 /* Pods_uEAT_Manager_uEAT_ManagerUITests.framework */,
+				6F479E9B8470635B04F15C67 /* Pods_uEAT_ManagerTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -135,9 +186,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6A1FED16235DA2DC00198533 /* Build configuration list for PBXNativeTarget "uEAT Manager" */;
 			buildPhases = (
+				CA29A0A1B396AB0626F228FC /* [CP] Check Pods Manifest.lock */,
 				6A1FECE8235DA2D900198533 /* Sources */,
 				6A1FECE9235DA2D900198533 /* Frameworks */,
 				6A1FECEA235DA2D900198533 /* Resources */,
+				8CE8CADEA10DDB409C30A1C4 /* [CP] Embed Pods Frameworks */,
+				5A862935380BE047278D34A4 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -152,6 +206,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6A1FED19235DA2DC00198533 /* Build configuration list for PBXNativeTarget "uEAT ManagerTests" */;
 			buildPhases = (
+				59464A0189CC2EF2CC9B7917 /* [CP] Check Pods Manifest.lock */,
 				6A1FECFE235DA2DC00198533 /* Sources */,
 				6A1FECFF235DA2DC00198533 /* Frameworks */,
 				6A1FED00235DA2DC00198533 /* Resources */,
@@ -170,9 +225,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6A1FED1C235DA2DC00198533 /* Build configuration list for PBXNativeTarget "uEAT ManagerUITests" */;
 			buildPhases = (
+				BEDF86989528141592D7F913 /* [CP] Check Pods Manifest.lock */,
 				6A1FED09235DA2DC00198533 /* Sources */,
 				6A1FED0A235DA2DC00198533 /* Frameworks */,
 				6A1FED0B235DA2DC00198533 /* Resources */,
+				71170B9A271C09CF8FAFBD7C /* [CP] Embed Pods Frameworks */,
+				562A2A80CBC12F8E94C01E0C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -235,6 +293,7 @@
 				6A1FECFC235DA2DB00198533 /* LaunchScreen.storyboard in Resources */,
 				6A1FECF9235DA2DB00198533 /* Assets.xcassets in Resources */,
 				6A1FECF7235DA2D900198533 /* Main.storyboard in Resources */,
+				6A8F0FD22383C378003E87BE /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -253,6 +312,143 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		562A2A80CBC12F8E94C01E0C /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-uEAT Manager-uEAT ManagerUITests/Pods-uEAT Manager-uEAT ManagerUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-uEAT Manager-uEAT ManagerUITests/Pods-uEAT Manager-uEAT ManagerUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-uEAT Manager-uEAT ManagerUITests/Pods-uEAT Manager-uEAT ManagerUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		59464A0189CC2EF2CC9B7917 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-uEAT ManagerTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5A862935380BE047278D34A4 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-uEAT Manager/Pods-uEAT Manager-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-uEAT Manager/Pods-uEAT Manager-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-uEAT Manager/Pods-uEAT Manager-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		71170B9A271C09CF8FAFBD7C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-uEAT Manager-uEAT ManagerUITests/Pods-uEAT Manager-uEAT ManagerUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-uEAT Manager-uEAT ManagerUITests/Pods-uEAT Manager-uEAT ManagerUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-uEAT Manager-uEAT ManagerUITests/Pods-uEAT Manager-uEAT ManagerUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8CE8CADEA10DDB409C30A1C4 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-uEAT Manager/Pods-uEAT Manager-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-uEAT Manager/Pods-uEAT Manager-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-uEAT Manager/Pods-uEAT Manager-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BEDF86989528141592D7F913 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-uEAT Manager-uEAT ManagerUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CA29A0A1B396AB0626F228FC /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-uEAT Manager-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		6A1FECE8235DA2D900198533 /* Sources */ = {
@@ -432,6 +628,7 @@
 		};
 		6A1FED17235DA2DC00198533 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 830E73038B60C68A6731F738 /* Pods-uEAT Manager.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -441,7 +638,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "uEAT.Manager.CC.LLC.uEAT-Manager";
+				PRODUCT_BUNDLE_IDENTIFIER = uEAT.Manager.CC.LLC.uEATManager;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -450,6 +647,7 @@
 		};
 		6A1FED18235DA2DC00198533 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 16123025A67D88CD877D1072 /* Pods-uEAT Manager.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -459,7 +657,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "uEAT.Manager.CC.LLC.uEAT-Manager";
+				PRODUCT_BUNDLE_IDENTIFIER = uEAT.Manager.CC.LLC.uEATManager;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -468,6 +666,7 @@
 		};
 		6A1FED1A235DA2DC00198533 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BBF6474B8FFCBB5884249984 /* Pods-uEAT ManagerTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -490,6 +689,7 @@
 		};
 		6A1FED1B235DA2DC00198533 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C0597FBCBBB13BB68EDC659B /* Pods-uEAT ManagerTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -512,6 +712,7 @@
 		};
 		6A1FED1D235DA2DC00198533 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3FEF1EE9C791E3D9ADC6AEEA /* Pods-uEAT Manager-uEAT ManagerUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -532,6 +733,7 @@
 		};
 		6A1FED1E235DA2DC00198533 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 59AF29B07758F662C5057473 /* Pods-uEAT Manager-uEAT ManagerUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

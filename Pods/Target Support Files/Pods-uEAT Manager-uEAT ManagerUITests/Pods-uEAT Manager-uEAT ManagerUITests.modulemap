@@ -1,0 +1,6 @@
+framework module Pods_uEAT_Manager_uEAT_ManagerUITests {
+  umbrella header "Pods-uEAT Manager-uEAT ManagerUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

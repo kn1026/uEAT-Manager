@@ -1,0 +1,3 @@
+${PODS_ROOT}/Target Support Files/Pods-uEAT Manager-uEAT ManagerUITests/Pods-uEAT Manager-uEAT ManagerUITests-resources.sh
+${PODS_CONFIGURATION_BUILD_DIR}/FirebaseFirestore/gRPCCertificates-Firestore.bundle
+${PODS_ROOT}/GooglePlaces/Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle
