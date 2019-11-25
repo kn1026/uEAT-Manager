@@ -3,4 +3,86 @@
    uuid = "BB11EA7A-998E-4E16-A430-3B65876595D3"
    type = "0"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2E50A4A0-C50C-4761-8E31-4B30B5808A3A"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "uEAT Manager/Start process VC/SignIn/SignInVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "64"
+            endingLineNumber = "64"
+            landmarkName = "NextBtnPressed(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "2E50A4A0-C50C-4761-8E31-4B30B5808A3A - 674bc9c24db41542"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "uEAT_Manager.SignInVC.NextBtnPressed(Any) -&gt; ()"
+                  moduleName = "uEAT Manager"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/khoinguyen/Desktop/uEAT-Manager/uEAT%20Manager/Start%20process%20VC/SignIn/SignInVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "63"
+                  endingLineNumber = "63"
+                  offsetFromSymbolStart = "1172">
+               </Location>
+               <Location
+                  uuid = "2E50A4A0-C50C-4761-8E31-4B30B5808A3A - bf1b1b1e5c0ab91d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;__C.FIRQuerySnapshot&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in uEAT_Manager.SignInVC.NextBtnPressed(Any) -&gt; ()"
+                  moduleName = "uEAT Manager"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/khoinguyen/Desktop/uEAT-Manager/uEAT%20Manager/Start%20process%20VC/SignIn/SignInVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "65"
+                  endingLineNumber = "65"
+                  offsetFromSymbolStart = "140">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D8039F4B-19CE-4CD4-B890-99853E29F0A5"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "uEAT Manager/Start process VC/MenuVC/CreateMenuVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "54"
+            endingLineNumber = "54"
+            landmarkName = "tableView(_:cellForRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "91143BB8-9B47-4A5C-BC17-B9E79D43E83E"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "uEAT Manager/Start process VC/MenuVC/CreateMenuVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "71"
+            endingLineNumber = "71"
+            landmarkName = "tableView(_:cellForRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

@@ -108,7 +108,11 @@ PODS:
     - GoogleUtilities/Network (~> 5.2)
     - "GoogleUtilities/NSData+zlib (~> 5.2)"
     - nanopb (~> 0.3)
+  - GoogleMaps (3.6.0):
+    - GoogleMaps/Maps (= 3.6.0)
   - GoogleMaps/Base (3.6.0)
+  - GoogleMaps/Maps (3.6.0):
+    - GoogleMaps/Base
   - GooglePlaces (3.6.0):
     - GoogleMaps/Base (= 3.6.0)
   - GoogleUtilities/AppDelegateSwizzler (5.8.0):
@@ -157,6 +161,7 @@ PODS:
   - ReactiveSwift (4.0.0):
     - Result (~> 4.0)
   - Result (4.1.0)
+  - SCLAlertView (0.8)
   - SinchVerification-Swift (2.0.6)
   - SquareInAppPaymentsSDK (1.3.0)
   - Stripe (18.2.0)
@@ -188,8 +193,10 @@ DEPENDENCIES:
   - Firebase/Storage
   - FireStore
   - GeoFire
+  - GoogleMaps
   - GooglePlaces
   - MGSwipeTableCell
+  - SCLAlertView
   - SinchVerification-Swift
   - SquareInAppPaymentsSDK
   - Stripe
@@ -232,6 +239,7 @@ SPEC REPOS:
     - Protobuf
     - ReactiveSwift
     - Result
+    - SCLAlertView
     - SinchVerification-Swift
     - SquareInAppPaymentsSDK
     - Stripe
@@ -274,6 +282,7 @@ SPEC CHECKSUMS:
   Protobuf: a4dc852ad69c027ca2166ed287b856697814375b
   ReactiveSwift: a2bb9ace428a109e9c0209615645d9d286c8c433
   Result: bd966fac789cc6c1563440b348ab2598cc24d5c7
+  SCLAlertView: 6a77bb2edfc65e04dbe57725546cb4107a506b85
   SinchVerification-Swift: 6188011479120d3e6ff13fa646189b10194e308e
   SquareInAppPaymentsSDK: 0cc9fd96e99710a3158362dabb2577416cf8e379
   Stripe: a468d5f39703807e840fdfed39572ffad0aaf053
@@ -282,6 +291,6 @@ SPEC CHECKSUMS:
   ZSWTaggedString: 1a6aab3143188634c1e5dfe9383ce754c1fb5fe2
   ZSWTappableLabel: cff84c0a55e30f2141f7dac24e5903302a7e35ec
 
-PODFILE CHECKSUM: a75b9c98eb7c076fb1a4c2fed303bbc130f9cc5d
+PODFILE CHECKSUM: 425768890fb176764e241ed377779976c1daab1a
 
 COCOAPODS: 1.8.4

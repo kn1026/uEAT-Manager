@@ -13,6 +13,7 @@ target 'uEAT Manager' do
     pod ‘Firebase/Database’
     pod ‘Firebase/Storage’
     pod 'Firebase/Messaging'
+    pod 'GoogleMaps'
     pod 'GooglePlaces'
     #pod 'SwiftOCR'
     pod 'Alamofire'
@@ -29,6 +30,7 @@ target 'uEAT Manager' do
     pod 'FireStore'
     pod 'Firebase/Core'
     pod 'Firebase/Firestore'
+    pod 'SCLAlertView'
 
   use_frameworks!
 
