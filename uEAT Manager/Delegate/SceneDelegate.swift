@@ -47,6 +47,47 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
     }
+    
+    func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {
+        
+        if let incommingUrl = userActivity.webpageURL {
+            
+            if let components = URLComponents(url: incommingUrl, resolvingAgainstBaseURL: false) {
+                
+                
+                if let queryItems = components.queryItems {
+                    
+                    for queryItem in queryItems {
+                        
+                        if queryItem.name == "code", queryItem.value != nil {
+                            
+                            authCode = queryItem.value!
+                            
+                            if authCode != "" {
+                                
+                                NotificationCenter.default.post(name: (NSNotification.Name(rawValue: "CodeProcess")), object: nil)
+                                
+                                
+                                
+                            }
+                            
+                            
+                        }
+                       
+                    }
+                    
+                }
+                
+            }
+            
+            
+            
+            
+            
+        }
+        
+    }
+    
 
 
 }

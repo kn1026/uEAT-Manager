@@ -18,6 +18,7 @@ let Stripe_key = "pk_live_1AA3PY5adk3jGDL1Eo5Db3PZ"
 var applicationKey = "fd466555-559c-447e-95a0-4cc5ffbf303c"
 let stripe_test_key = "pk_test_9edrI9MoXrXoYp591KT93gxW"
 let dpwd = "ooewiuroiweyuruwehrgwehfgdsjhf"
+let client_id = "ca_DWkdLOAvNorIOTz9TNDMsOjGOVq94jbJ"
 
 var testEmailed = ""
 var stripeID = ""
@@ -26,36 +27,14 @@ let Shadow_Gray: CGFloat = 120.0 / 255.0
 typealias DownloadComplete = () -> ()
 
 
-
+var authCode = ""
 var ratio_width = 414
 var ratio_height = 896
 
 
 let BColor = UIColor(red: 226, green: 221, blue: 0, alpha: 1)
 
-/*
-
-let diskConfig = DiskConfig(name: "Floppy")
-let memoryConfig = MemoryConfig(expiry: .never, countLimit: 10, totalCostLimit: 10)
-let storage = try! Storage(
-  diskConfig: diskConfig,
-  memoryConfig: memoryConfig,
-  transformer: TransformerFactory.forCodable(ofType: User.self)
-)
-
-
-let disksConfig = DiskConfig(name: "Mix")
-
-let dataStorage = try! Storage(
-  diskConfig: disksConfig,
-  memoryConfig: MemoryConfig(),
-  transformer: TransformerFactory.forData()
-)
-
-
-let imageStorage = dataStorage.transformImage()
-
-*/
+var transitem: ItemModel!
 
 func resizeImage(image: UIImage, targetSize: CGSize) -> UIImage {
     let size = image.size

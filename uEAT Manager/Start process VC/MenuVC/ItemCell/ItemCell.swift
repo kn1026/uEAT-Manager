@@ -7,8 +7,16 @@
 //
 
 import UIKit
+import MGSwipeTableCell
 
-class ItemCell: UITableViewCell {
+class ItemCell: MGSwipeTableCell {
+    
+    @IBOutlet var img: UIImageView!
+    @IBOutlet var name: UILabel!
+    @IBOutlet var price: UILabel!
+    
+    
+    var info: ItemModel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -20,5 +28,20 @@ class ItemCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+    
+    func configureCell(_ Information: ItemModel) {
+        self.info = Information
+        
+        
+        
+        self.name.text = info.name
+        self.price.text = "$ \(info.price!)"
+        
+        img.image = info.img
+        
+        
+    }
+    
 
 }

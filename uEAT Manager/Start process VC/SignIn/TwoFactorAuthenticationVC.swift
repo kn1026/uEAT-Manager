@@ -350,9 +350,7 @@ class TwoFactorAuthenticationVC: UIViewController, UITextFieldDelegate {
         
         }
         
-        
-        
-        
+    
         
         DataService.instance.mainFireStoreRef.collection("Restaurant").whereField("Email", isEqualTo: email).whereField("Email", isEqualTo: email).whereField("Status", isEqualTo: "Ready").getDocuments { (snap, err) in
         

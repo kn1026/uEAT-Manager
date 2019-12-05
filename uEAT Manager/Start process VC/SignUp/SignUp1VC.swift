@@ -110,7 +110,7 @@ class SignUp1VC: UIViewController, GMSMapViewDelegate, UINavigationControllerDel
             swiftLoader()
            
             
-            DataService.instance.mainFireStoreRef.collection("Restaurant").whereField("businessName", isEqualTo: BusinessTxtField.text!).whereField("Lat", isEqualTo: RestaurantLocation.latitude).whereField("Lon", isEqualTo: RestaurantLocation.longitude).whereField("Status", isEqualTo: "Pending").getDocuments { (snap, err) in
+            DataService.instance.mainFireStoreRef.collection("Restaurant").whereField("businessName", isEqualTo: BusinessTxtField.text!).whereField("Lat", isEqualTo: RestaurantLocation.latitude).whereField("Lon", isEqualTo: RestaurantLocation.longitude).getDocuments { (snap, err) in
             
                 if err != nil {
                 

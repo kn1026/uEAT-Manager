@@ -253,6 +253,7 @@ class SignUp3VC: UIViewController, UITextFieldDelegate, ZSWTappableLabelTapDeleg
         
         
         for indexCount in dotCount {
+            
             testEmailArr[indexCount] = ","
             let testEmail = String(testEmailArr)
             testEmails = testEmail
