@@ -395,12 +395,14 @@ class TwoFactorAuthenticationVC: UIViewController, UITextFieldDelegate {
                             SwiftLoader.hide()
                             self.view.endEditing(true)
                             let appearance = SCLAlertView.SCLAppearance(
+                                
                                 kTitleFont: UIFont(name: "HelveticaNeue", size: 20)!,
                                 kTextFont: UIFont(name: "HelveticaNeue", size: 14)!,
                                 kButtonFont: UIFont(name: "HelveticaNeue-Bold", size: 14)!,
                                 showCloseButton: false,
                                 dynamicAnimatorActive: true,
                                 buttonsLayout: .horizontal
+                                
                             )
                             
                             let alert = SCLAlertView(appearance: appearance)

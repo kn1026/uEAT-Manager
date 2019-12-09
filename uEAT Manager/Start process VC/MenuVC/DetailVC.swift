@@ -76,6 +76,14 @@ class DetailVC: UIViewController, UITextFieldDelegate, UINavigationControllerDel
             totalLbl.text = "$\(transitem.price!)"
             img = transitem.img
             uploadProfileImg.image = transitem.img
+            
+            if transitem.img == nil {
+                
+                if presented != nil {
+                    uploadProfileImg.image = presented
+                }
+                
+            }
         
             if transitem.type == "Vegan"{
                 
@@ -202,7 +210,7 @@ class DetailVC: UIViewController, UITextFieldDelegate, UINavigationControllerDel
             let pri = Float(price)
             
             
-            let dict = ["name": name, "description": description, "price": pri as Any, "img": img as Any, "category": category, "type": type] as [String : Any]
+            let dict = ["name": name, "description": description, "price": pri as Any, "img": img as Any, "category": category, "type": type, "status": "Online", "quanlity": "None"] as [String : Any]
             let item = ItemModel(postKey: "1234", Item_model: dict)
             transitem = item
             NotificationCenter.default.post(name: (NSNotification.Name(rawValue: "setItem")), object: nil)

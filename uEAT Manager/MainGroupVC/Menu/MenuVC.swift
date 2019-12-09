@@ -1,58 +1,68 @@
 //
-//  CreateMenuVC.swift
+//  MenuVC.swift
 //  uEAT Manager
 //
-//  Created by Khoi Nguyen on 11/24/19.
+//  Created by Khoi Nguyen on 12/6/19.
 //  Copyright © 2019 Khoi Nguyen. All rights reserved.
-//  moveToDetailTemVC
+//
 
 import UIKit
-import MGSwipeTableCell
 import Firebase
-import SCLAlertView
-import Alamofire
+import MGSwipeTableCell
 
-class CreateMenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource, MGSwipeTableCellDelegate {
-    
+class MenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource, MGSwipeTableCellDelegate {
+
+    @IBOutlet weak var updateBtnPressed: UIButton!
     @IBOutlet weak var tableView: UITableView!
+    
     
     var section = ["Non-Vegan", "Vegan", "Add-Ons"]
     var menu = [[ItemModel]]()
     var vegan = [ItemModel]()
     var Nonvegan = [ItemModel]()
     var AddOn = [ItemModel]()
-    var restaurant_id = ""
+    
+    var Newvegan = [ItemModel]()
+    var NewNonvegan = [ItemModel]()
+    var NewAddOn = [ItemModel]()
     
     var counted = 0
     var sum = 0
-
+    var restaurant_id = ""
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
         tableView.delegate = self
         tableView.dataSource = self
         
-
-        menu.append(Nonvegan)
-        menu.append(vegan)
-        menu.append(AddOn)
-        
-        
-        tableView.reloadData()
-        
+        // Do any additional setup after loading the view.
         self.getRestaurant_ID(email: (Auth.auth().currentUser?.email)!)
-        
-        
+                    
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+        
         transitem = nil
+        presented = nil
         
-       
+        checkUpdate()
         
+        
+    }
+    
+    func checkUpdate() {
+        
+        if Newvegan.isEmpty != true || NewNonvegan.isEmpty != true || NewNonvegan.isEmpty != true {
+            
+            updateBtnPressed.isHidden = false
+            
+        } else {
+             updateBtnPressed.isHidden = true
+        }
         
     }
     
@@ -65,8 +75,7 @@ class CreateMenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource
             if err != nil {
             
                 SwiftLoader.hide()
-                self.showErrorAlert("Opss !", msg: "Can't validate your account")
-                print(err?.localizedDescription as Any)
+                self.showErrorAlert("Opss !", msg: "Can't validate your menu")
                 return
             
             }
@@ -75,7 +84,6 @@ class CreateMenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource
             if snap?.isEmpty == true {
                 
                 SwiftLoader.hide()
-                             
                 self.showErrorAlert("Opss !", msg: "Your account isn't ready yet, please wait until getting an email from us or you can contact our support")
                           
             } else {
@@ -85,6 +93,8 @@ class CreateMenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource
                     
                     let id = item.documentID
                     self.restaurant_id = id
+                    self.loadMenu(id: id)
+            
                     
                 }
                 
@@ -99,6 +109,59 @@ class CreateMenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         
 
     }
+    
+    func loadMenu(id: String) {
+        
+        DataService.instance.mainFireStoreRef.collection("Menu").whereField("restaurant_id", isEqualTo: id).getDocuments { (snap, err) in
+            
+            if err != nil {
+                
+                self.showErrorAlert("Opss !", msg: err!.localizedDescription)
+                return
+                
+            }
+            
+            var count = 0
+            
+            for item in snap!.documents {
+                
+
+                count += 1
+                let dict = ItemModel(postKey: item.documentID, Item_model: item.data())
+                
+
+                if let type = item["type"] as? String {
+                    
+                    if type == "Vegan" {
+                        
+                        self.vegan.append(dict)
+                        
+                    } else if type == "Non-Vegan" {
+                        
+                        self.Nonvegan.append(dict)
+                        
+                    } else {
+                        
+                        self.AddOn.append(dict)
+                        
+                    }
+                }
+                
+   
+            }
+            self.menu.append(self.Nonvegan)
+            self.menu.append(self.vegan)
+            
+            self.menu.append(self.AddOn)
+            
+            
+            self.tableView.reloadData()
+            
+   
+        }
+        
+    }
+    
     
     func process_email(email: String) -> String {
         
@@ -126,7 +189,18 @@ class CreateMenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     }
     
     
+    // func show error alert
     
+    func showErrorAlert(_ title: String, msg: String) {
+                                                                                                                                           
+        let alert = UIAlertController(title: title, message: msg, preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alert.addAction(action)
+        
+                                                                                       
+        present(alert, animated: true, completion: nil)
+        
+    }
     
     func numberOfSections(in tableView: UITableView) -> Int {
         
@@ -153,7 +227,7 @@ class CreateMenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource
             
             if let cell = tableView.dequeueReusableCell(withIdentifier: "addNewItemCell") as? addNewItemCell {
                
-               cell.addItemBtn.addTarget(self, action: #selector(CreateMenuVC.addItemBtnPressed), for: .touchUpInside)
+               cell.addItemBtn.addTarget(self, action: #selector(MenuVC.addItemBtnPressed), for: .touchUpInside)
                
                
                return cell
@@ -172,8 +246,28 @@ class CreateMenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource
             let item = menu[indexPath.section][indexPath.row - 1]
                        
                        
-            if let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell") as? ItemCell {
-                           
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell2") as? ItemCell2 {
+                
+                
+                if item.status != "Online" {
+                    cell.backgroundColor = UIColor.placeholderText
+                } else {
+                    cell.backgroundColor = UIColor.clear
+                    
+                    
+                    if item.status != "None" {
+                        //
+                        cell.Quanlity.isHidden = false
+                    } else {
+                        cell.Quanlity.isHidden = true
+                        //cell.backgroundColor = UIColor.clear
+                    }
+                }
+                
+                
+                
+                
+                
                 
                 cell.delegate = self
                 cell.configureCell(item)
@@ -202,7 +296,7 @@ class CreateMenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        return 90.0
+        return 140.0
         
     }
     
@@ -211,9 +305,32 @@ class CreateMenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         
         
         let item = menu[indexPath.section][indexPath.row - 1]
-        transitem = item
         
-        self.performSegue(withIdentifier: "moveToDetailTemVC", sender: nil)
+        
+        if let url = item.url {
+            
+            
+            imageStorage.async.object(forKey: url) { result in
+                if case .value(let image) = result {
+                    
+                    DispatchQueue.main.async { // Make sure you're on the main thread here
+                        
+                        
+                        transitem = item
+                        presented = image
+                        self.performSegue(withIdentifier: "moveToDetail2VC", sender: nil)
+                        
+                        //try? imageStorage.setObject(image, forKey: url)
+                        
+                    }
+                    
+                }
+                
+            }
+            
+            
+        }
+
       
         
         
@@ -234,9 +351,9 @@ class CreateMenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     
     @objc func addItemBtnPressed() {
         
-        NotificationCenter.default.addObserver(self, selector: #selector(CreateMenuVC.setItem), name: (NSNotification.Name(rawValue: "setItem")), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(MenuVC.setItem), name: (NSNotification.Name(rawValue: "setItem")), object: nil)
            
-        self.performSegue(withIdentifier: "moveToDetailTemVC", sender: nil)
+        self.performSegue(withIdentifier: "moveToDetail2VC", sender: nil)
     
            
     }
@@ -246,6 +363,7 @@ class CreateMenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         NotificationCenter.default.removeObserver(self, name: (NSNotification.Name(rawValue: "setItem")), object: nil)
         processItem(item: transitem)
         transitem = nil
+        presented = nil
 
     }
     
@@ -254,18 +372,19 @@ class CreateMenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         
         if let type = item.type {
             
-            if type == "Vegan"{
+            if type == "Vegan" {
                 
+                Newvegan.insert(item, at: 0)
                 vegan.insert(item, at: 0)
-                
-                
-                
+                        
             } else if type == "Non-Vegan" {
                 
+                NewNonvegan.insert(item, at: 0)
                 Nonvegan.insert(item, at: 0)
                 
             } else {
                 
+                NewAddOn.insert(item, at: 0)
                 AddOn.insert(item, at: 0)
                 
             }
@@ -275,7 +394,7 @@ class CreateMenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource
             menu.append(vegan)
             menu.append(AddOn)
             
-             
+            
            self.tableView.reloadData()
             
         }
@@ -296,14 +415,15 @@ class CreateMenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource
            
            swipeSettings.transition = MGSwipeTransition.border;
            expansionSettings.buttonIndex = 0
-           let padding = 70
+           let padding = 25
            if direction == MGSwipeDirection.rightToLeft {
                expansionSettings.fillOnTrigger = false;
                expansionSettings.threshold = 1.1
                
 
                let RemoveResize = resizeImage(image: UIImage(named: "remove")!, targetSize: CGSize(width: 25.0, height: 25.0))
-               
+               let availableResize = resizeImage(image: UIImage(named: "Security")!, targetSize: CGSize(width: 25.0, height: 25.0))
+               let qualityResize = resizeImage(image: UIImage(named: "Payment")!, targetSize: CGSize(width: 25.0, height: 25.0))
                  
                let remove = MGSwipeButton(title: "", icon: RemoveResize, backgroundColor: color, padding: padding,  callback: { (cell) -> Bool in
                 
@@ -315,9 +435,39 @@ class CreateMenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource
                    
                    
                });
+            
+
+            
+              
+            let available = MGSwipeButton(title: "", icon: availableResize, backgroundColor: color, padding: padding,  callback: { (cell) -> Bool in
+             
+             
+                
+               // self.deleteAtIndexPath(self.tableView.indexPath(for: cell)!)
+                
+                self.availableAt(self.tableView.indexPath(for: cell)!)
+                
+                
+                
+                return false; //don't autohide to improve delete animation
+                
+                
+            });
+            
+              
+            let quality = MGSwipeButton(title: "", icon: qualityResize, backgroundColor: color, padding: padding,  callback: { (cell) -> Bool in
+             
+             
+                self.availableAt(self.tableView.indexPath(for: cell)!)
+                //self.deleteAtIndexPath(self.tableView.indexPath(for: cell)!)
+                
+                return false; //don't autohide to improve delete animation
+                
+                
+            });
                
                
-               return [remove]
+               return [remove, available, quality]
             
            } else {
                
@@ -327,23 +477,40 @@ class CreateMenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource
               
            
        }
+    
+        
+    func availableAt(_ path: IndexPath) {
+        
+        print((path as NSIndexPath).section, (path as NSIndexPath).row - 1)
+        
+        
+        
+    }
        
        
        func deleteAtIndexPath(_ path: IndexPath) {
         
            let item = menu[(path as NSIndexPath).section][(path as NSIndexPath).row - 1]
-        
-            print((path as NSIndexPath).row)
+
            
            if let type = item.type {
                     
                 if type == "Vegan"{
                     
+                    
+                    if Newvegan.isEmpty != true {
+                        Newvegan.remove(at: (path as NSIndexPath).row - 1)
+                    }
+                    
                     self.vegan.remove(at: (path as NSIndexPath).row - 1)
-                    
-                    
+           
                 } else if type == "Non-Vegan" {
                     
+                    
+                   
+                    if NewNonvegan.isEmpty != true {
+                        NewNonvegan.remove(at: (path as NSIndexPath).row - 1)
+                    }
                     
                     self.Nonvegan.remove(at: (path as NSIndexPath).row - 1)
                     
@@ -351,6 +518,11 @@ class CreateMenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource
                 } else {
                     
 
+                    
+                    if NewAddOn.isEmpty != true {
+                        NewAddOn.remove(at: (path as NSIndexPath).row - 1)
+                    }
+                    
                     self.AddOn.remove(at: (path as NSIndexPath).row - 1)
                     
                 }
@@ -361,192 +533,14 @@ class CreateMenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource
               
            self.menu[(path as NSIndexPath).section].remove(at: (path as NSIndexPath).row - 1)
         
+           checkUpdate()
+        
            self.tableView.reloadData()
            
        }
     
     
-    
-    @IBAction func back1BtnPressed(_ sender: Any) {
-        
-        self.dismiss(animated: true, completion: nil)
-        
-    }
-    
-    @IBAction func back2BtnPressed(_ sender: Any) {
-        
-        self.dismiss(animated: true, completion: nil)
-        
-    }
-    
-    func processStripe() {
-        
-        
-        let appearance = SCLAlertView.SCLAppearance(
-            kTitleFont: UIFont(name: "HelveticaNeue", size: 20)!,
-            kTextFont: UIFont(name: "HelveticaNeue", size: 14)!,
-            kButtonFont: UIFont(name: "HelveticaNeue-Bold", size: 14)!,
-            showCloseButton: false,
-            dynamicAnimatorActive: true,
-            buttonsLayout: .horizontal
-        )
-        
-        let alert = SCLAlertView(appearance: appearance)
-        _ = alert.addButton("Got it") {
-            
-            
-            NotificationCenter.default.addObserver(self, selector: #selector(CreateMenuVC.autoProcessCodeFromDelegate), name: (NSNotification.Name(rawValue: "CodeProcess")), object: nil)
-            
-            //Progess
-            let url = "https://connect.stripe.com/express/oauth/authorize?response_type=code&client_id=\(client_id)&scope=read_write"
-            
-            
-            guard let urls = URL(string: url) else {
-                return //be safe
-            }
-            
-            if #available(iOS 10.0, *) {
-                
-                UIApplication.shared.open(urls)
-                
-            } else {
-                
-                UIApplication.shared.openURL(urls)
-                
-            }
-            
-            
-        }
-        
-        let icon = UIImage(named:"logo")
-        
-        _ = alert.showCustom("Congratulations!", subTitle: "You will have to finish your payment information to start selling", color: UIColor.black, icon: icon!)
-          
-          
-        
-    }
-    
-    @objc func autoProcessCodeFromDelegate() {
-        
-        if authCode != "" {
-            NotificationCenter.default.removeObserver(self, name: (NSNotification.Name(rawValue: "CodeProcess")), object: nil)
-            self.processCode(authorization_code: authCode)
-        }
-        
-    }
-    
-    
-    func processCode(authorization_code: String) {
-        
-        if  authorization_code != "" {
-            
-            swiftLoader()
-            
-            let url = MainAPIClient.shared.baseURLString
-            let urls = URL(string: url!)?.appendingPathComponent("redirect")
-            
-            Alamofire.request(urls!, method: .post, parameters: [
-                
-                "authorization_code": authorization_code
-                
-                ])
-                
-                .validate(statusCode: 200..<500)
-                .responseJSON { responseJSON in
-                    
-                    switch responseJSON.result {
-                        
-                    case .success(let json):
-                        
-                        
-                        if let dict = json as? [String: AnyObject] {
-                            
-                            if let account = dict["stripe_user_id"] as? String {
-                                
-                                
-                                self.createLoginLinks(account: account)
-                                
-                                
-                                
-                            }
-                            
-                            
-                        }
-                        
-                    case .failure( _):
-                        
-                        
-                        SwiftLoader.hide()
-                        self.showErrorAlert("Oops !!!", msg: "There are some unknown error during setting up your payout account. Please try again and contact us for more help")
-                        
-                    }
-                    
-                    
-            }
-            
-            
-        } else {
-            
-            
-            
-            self.showErrorAlert("Oops !!!", msg: "Please provide your code")
-            
-        }
-        
-        
-    }
-    
-    func createLoginLinks(account: String){
-         
-         let url = MainAPIClient.shared.baseURLString
-         let urls = URL(string: url!)?.appendingPathComponent("login_links")
-         
-         Alamofire.request(urls!, method: .post, parameters: [
-             
-             "account": account
-             
-             ])
-             
-             .validate(statusCode: 200..<500)
-             .responseJSON { responseJSON in
-                 
-                 switch responseJSON.result {
-                     
-                 case .success(let json):
-                     
-                     
-                     if let dict = json as? [String: AnyObject] {
-                         
-                         if let url = dict["url"] as? String {
-                             
-                            DataService.instance.mainRealTimeDataBaseRef.child("Stripe_Owner_Connect_Account").child(Auth.auth().currentUser!.uid).setValue(["Stripe_Owner_Connect_Account": account,"Login_link": url, "Timestamp": ServerValue.timestamp()])
-                            
-                            
-                              
-                            SwiftLoader.hide()
-                              
-    
-                             
-                             
-                         }
-                         
-                         
-                     }
-                     
-                 case .failure( _):
-                     
-                     
-                     SwiftLoader.hide()
-                     self.showErrorAlert("Oops !!!", msg: "There are some unknown error during setting up your payout account. Please try again and contact us for more help")
-                     
-                 }
-                 
-                 
-         }
-         
-     }
-    
-    @IBAction func CreateBtnPressed(_ sender: Any) {
+    @IBAction func UpdateBtnPressed(_ sender: Any) {
         
         
         var count = 0
@@ -556,14 +550,14 @@ class CreateMenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         
         while count < 3 {
             
-            start = menu[count].count + start
+            start = NewAddOn.count + Newvegan.count + NewNonvegan.count
             count += 1
             
         }
         
         sum = start
         
-        if start >= 5 {
+        if start >= 1 {
             
             uploadVegan {
                 self.uploadNonVegan{
@@ -585,12 +579,13 @@ class CreateMenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         
     }
     
+    
     func uploadVegan(completed: @escaping DownloadComplete) {
         
         
         swiftLoader()
         
-        for i in vegan {
+        for i in Newvegan {
             if let img = i.img {
                 processItem(img: img, item: i, restaurant_id: restaurant_id, type: i.type)
             }
@@ -603,7 +598,7 @@ class CreateMenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     func uploadNonVegan(completed: @escaping DownloadComplete) {
         
          
-        for i in Nonvegan {
+        for i in NewNonvegan {
             if let img = i.img {
                 processItem(img: img, item: i, restaurant_id: restaurant_id, type: i.type)
             }
@@ -616,7 +611,7 @@ class CreateMenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     func uploadAddOn(completed: @escaping DownloadComplete) {
         
         
-        for i in AddOn {
+        for i in NewAddOn {
             if let img = i.img {
                processItem(img: img, item: i, restaurant_id: restaurant_id, type: i.type)
             }
@@ -676,7 +671,7 @@ class CreateMenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource
                             if self.counted == self.sum {
                                 
                                 SwiftLoader.hide()
-                                self.processStripe()
+                                
                                 
                             }
                         
@@ -694,26 +689,7 @@ class CreateMenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         
     }
     
-  
-    
-    
-    
-    
-    // func show error alert
-    
-    func showErrorAlert(_ title: String, msg: String) {
-                                                                                                                                           
-        let alert = UIAlertController(title: title, message: msg, preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK", style: .default, handler: nil)
-        alert.addAction(action)
-        
-                                                                                       
-        present(alert, animated: true, completion: nil)
-        
-    }
-    
     func swiftLoader() {
-        
         
         var config : SwiftLoader.Config = SwiftLoader.Config()
         config.size = 170
@@ -722,15 +698,19 @@ class CreateMenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         config.spinnerColor = UIColor.white
         config.titleTextColor = UIColor.white
         
+        
         config.spinnerLineWidth = 3.0
         config.foregroundColor = UIColor.black
         config.foregroundAlpha = 0.7
         
+        
         SwiftLoader.setConfig(config: config)
+        
         
         SwiftLoader.show(title: "", animated: true)
         
-                                                                                            
+                                                                                                                                      
+        
     }
     
 }

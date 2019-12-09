@@ -139,16 +139,13 @@ class SignUp2VC: UIViewController, UICollectionViewDataSource, UICollectionViewD
                }
            
                for item in snap!.documents {
-                   
                
                    let i = item.data()
                    
                    let cuisine = Cuisine_model(postKey: item.documentID, Cuisine_model: i)
                    
                    self.cuisineList.append(cuisine)
-                   
-                   
-                   
+                      
                    self.collectionView.reloadData()
                    
                    

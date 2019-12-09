@@ -1,8 +1,8 @@
 //
-//  ItemCell.swift
+//  ItemCell2.swift
 //  uEAT Manager
 //
-//  Created by Khoi Nguyen on 11/24/19.
+//  Created by Khoi Nguyen on 12/9/19.
 //  Copyright © 2019 Khoi Nguyen. All rights reserved.
 //
 
@@ -10,8 +10,11 @@ import UIKit
 import MGSwipeTableCell
 import Alamofire
 
-class ItemCell: MGSwipeTableCell {
+
+class ItemCell2: MGSwipeTableCell {
     
+    @IBOutlet weak var Quanlity: UIStackView!
+
     @IBOutlet var img: UIImageView!
     @IBOutlet var name: UILabel!
     @IBOutlet var price: UILabel!
@@ -93,6 +96,5 @@ class ItemCell: MGSwipeTableCell {
         
         
     }
-    
 
 }

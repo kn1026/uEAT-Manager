@@ -10,6 +10,14 @@
 		190728BBE4CCDB2772B5B2FA /* Pods_uEAT_Manager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4789DE02EF3366FF783A8FD4 /* Pods_uEAT_Manager.framework */; };
 		6A197C0123986AA00013EDCC /* ItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A197C0023986AA00013EDCC /* ItemModel.swift */; };
 		6A197C042398D9AB0013EDCC /* MainApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A197C032398D9AB0013EDCC /* MainApiClient.swift */; };
+		6A197C08239AB9190013EDCC /* HomePageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A197C07239AB9190013EDCC /* HomePageVC.swift */; };
+		6A197C10239ADF070013EDCC /* NotificationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A197C0F239ADF070013EDCC /* NotificationVC.swift */; };
+		6A197C12239ADF380013EDCC /* MenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A197C11239ADF380013EDCC /* MenuVC.swift */; };
+		6A197C14239ADF5E0013EDCC /* orderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A197C13239ADF5E0013EDCC /* orderVC.swift */; };
+		6A197C16239ADF840013EDCC /* MessageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A197C15239ADF840013EDCC /* MessageVC.swift */; };
+		6A197C18239ADFAA0013EDCC /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A197C17239ADFAA0013EDCC /* ProfileVC.swift */; };
+		6A197C1B239E029C0013EDCC /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A197C1A239E029C0013EDCC /* ProfileCell.swift */; };
+		6A197C1D239E39560013EDCC /* ItemCell2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A197C1C239E39560013EDCC /* ItemCell2.swift */; };
 		6A1FECF0235DA2D900198533 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A1FECEF235DA2D900198533 /* AppDelegate.swift */; };
 		6A1FECF2235DA2D900198533 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A1FECF1235DA2D900198533 /* SceneDelegate.swift */; };
 		6A1FECF4235DA2D900198533 /* startVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A1FECF3235DA2D900198533 /* startVC.swift */; };
@@ -78,6 +86,14 @@
 		6A197C0023986AA00013EDCC /* ItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemModel.swift; sourceTree = "<group>"; };
 		6A197C032398D9AB0013EDCC /* MainApiClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainApiClient.swift; sourceTree = "<group>"; };
 		6A197C052398FDB00013EDCC /* uEAT Manager.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "uEAT Manager.entitlements"; sourceTree = "<group>"; };
+		6A197C07239AB9190013EDCC /* HomePageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageVC.swift; sourceTree = "<group>"; };
+		6A197C0F239ADF070013EDCC /* NotificationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationVC.swift; sourceTree = "<group>"; };
+		6A197C11239ADF380013EDCC /* MenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuVC.swift; sourceTree = "<group>"; };
+		6A197C13239ADF5E0013EDCC /* orderVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = orderVC.swift; sourceTree = "<group>"; };
+		6A197C15239ADF840013EDCC /* MessageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageVC.swift; sourceTree = "<group>"; };
+		6A197C17239ADFAA0013EDCC /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
+		6A197C1A239E029C0013EDCC /* ProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
+		6A197C1C239E39560013EDCC /* ItemCell2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCell2.swift; sourceTree = "<group>"; };
 		6A1FECEC235DA2D900198533 /* uEAT Manager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "uEAT Manager.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A1FECEF235DA2D900198533 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6A1FECF1235DA2D900198533 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -172,6 +188,69 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
+		6A197C06239AB8D80013EDCC /* MainGroupVC */ = {
+			isa = PBXGroup;
+			children = (
+				6A197C0E239ADD620013EDCC /* Profile */,
+				6A197C0D239ADD4B0013EDCC /* Notification */,
+				6A197C0C239ADD3E0013EDCC /* Messages */,
+				6A197C0B239ADD300013EDCC /* Orders */,
+				6A197C0A239ADCF20013EDCC /* Menu */,
+				6A197C07239AB9190013EDCC /* HomePageVC.swift */,
+			);
+			path = MainGroupVC;
+			sourceTree = "<group>";
+		};
+		6A197C0A239ADCF20013EDCC /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				6A197C11239ADF380013EDCC /* MenuVC.swift */,
+			);
+			path = Menu;
+			sourceTree = "<group>";
+		};
+		6A197C0B239ADD300013EDCC /* Orders */ = {
+			isa = PBXGroup;
+			children = (
+				6A197C13239ADF5E0013EDCC /* orderVC.swift */,
+			);
+			path = Orders;
+			sourceTree = "<group>";
+		};
+		6A197C0C239ADD3E0013EDCC /* Messages */ = {
+			isa = PBXGroup;
+			children = (
+				6A197C15239ADF840013EDCC /* MessageVC.swift */,
+			);
+			path = Messages;
+			sourceTree = "<group>";
+		};
+		6A197C0D239ADD4B0013EDCC /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				6A197C0F239ADF070013EDCC /* NotificationVC.swift */,
+			);
+			path = Notification;
+			sourceTree = "<group>";
+		};
+		6A197C0E239ADD620013EDCC /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				6A197C19239E02690013EDCC /* ProfileCell */,
+				6A197C17239ADFAA0013EDCC /* ProfileVC.swift */,
+			);
+			name = Profile;
+			path = "Pròile";
+			sourceTree = "<group>";
+		};
+		6A197C19239E02690013EDCC /* ProfileCell */ = {
+			isa = PBXGroup;
+			children = (
+				6A197C1A239E029C0013EDCC /* ProfileCell.swift */,
+			);
+			path = ProfileCell;
+			sourceTree = "<group>";
+		};
 		6A1FECE3235DA2D900198533 = {
 			isa = PBXGroup;
 			children = (
@@ -197,6 +276,7 @@
 		6A1FECEE235DA2D900198533 /* uEAT Manager */ = {
 			isa = PBXGroup;
 			children = (
+				6A197C06239AB8D80013EDCC /* MainGroupVC */,
 				6A197C052398FDB00013EDCC /* uEAT Manager.entitlements */,
 				6A197C022398D99F0013EDCC /* Utils */,
 				6A8F100E23890F3A003E87BE /* DataService */,
@@ -383,6 +463,7 @@
 			isa = PBXGroup;
 			children = (
 				6A8F101D238B6D24003E87BE /* ItemCell.swift */,
+				6A197C1C239E39560013EDCC /* ItemCell2.swift */,
 			);
 			path = ItemCell;
 			sourceTree = "<group>";
@@ -687,14 +768,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6A197C16239ADF840013EDCC /* MessageVC.swift in Sources */,
 				6A8F0FFA23863009003E87BE /* SwiftLoader.swift in Sources */,
 				6A8F0FE023862FC9003E87BE /* borderAvatarView.swift in Sources */,
 				6A8F0FE823862FDB003E87BE /* CustomLabel.swift in Sources */,
 				6A8F1015238B4792003E87BE /* TwoFactorAuthenticationVC.swift in Sources */,
+				6A197C08239AB9190013EDCC /* HomePageVC.swift in Sources */,
+				6A197C12239ADF380013EDCC /* MenuVC.swift in Sources */,
 				6A8F0FF223862FEE003E87BE /* modTxtField.swift in Sources */,
+				6A197C10239ADF070013EDCC /* NotificationVC.swift in Sources */,
+				6A197C14239ADF5E0013EDCC /* orderVC.swift in Sources */,
 				6A8F101023890F50003E87BE /* DataService.swift in Sources */,
 				6A197C042398D9AB0013EDCC /* MainApiClient.swift in Sources */,
 				6A1FECF4235DA2D900198533 /* startVC.swift in Sources */,
+				6A197C1D239E39560013EDCC /* ItemCell2.swift in Sources */,
 				6A8F0FF023862FEA003E87BE /* ModifiedSearchBar.swift in Sources */,
 				6A8F0FE423862FD3003E87BE /* Color.swift in Sources */,
 				6A8F0FEA23862FDF003E87BE /* defaultCardView.swift in Sources */,
@@ -703,6 +790,7 @@
 				6A8F0FF423862FF2003E87BE /* ProfileView.swift in Sources */,
 				6A8F0FF823862FF9003E87BE /* windowInfo.swift in Sources */,
 				6A1FECF0235DA2D900198533 /* AppDelegate.swift in Sources */,
+				6A197C18239ADFAA0013EDCC /* ProfileVC.swift in Sources */,
 				6A8F1020238BB677003E87BE /* DetailVC.swift in Sources */,
 				6A8F101E238B6D24003E87BE /* ItemCell.swift in Sources */,
 				6A1FECF2235DA2D900198533 /* SceneDelegate.swift in Sources */,
@@ -710,6 +798,7 @@
 				6A8F0FE223862FCD003E87BE /* circleView.swift in Sources */,
 				6A8F0FEE23862FE6003E87BE /* modifiedChooseCarView.swift in Sources */,
 				6A8F0FEC23862FE3003E87BE /* fancyBtn.swift in Sources */,
+				6A197C1B239E029C0013EDCC /* ProfileCell.swift in Sources */,
 				6A8F1013238A25D7003E87BE /* SignInVC.swift in Sources */,
 				6A8F101B238B6C40003E87BE /* addNewItemCell.swift in Sources */,
 				6A8F0FF623862FF5003E87BE /* RoundedLabel.swift in Sources */,

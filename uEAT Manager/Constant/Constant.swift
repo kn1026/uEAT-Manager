@@ -12,6 +12,7 @@ import UIKit
 import CoreLocation
 
 
+
 let googleMap_Key = "AIzaSyAAYuBDXTubo_qcayPX6og_MrWq9-iM_KE"
 let googlePlace_key = "AIzaSyAAYuBDXTubo_qcayPX6og_MrWq9-iM_KE"
 let Stripe_key = "pk_live_1AA3PY5adk3jGDL1Eo5Db3PZ"
@@ -31,6 +32,7 @@ var authCode = ""
 var ratio_width = 414
 var ratio_height = 896
 
+var presented: UIImage!
 
 let BColor = UIColor(red: 226, green: 221, blue: 0, alpha: 1)
 
@@ -188,3 +190,14 @@ func applyShadowOnView(_ view:UIView) {
     view.layer.shadowRadius = 3
 
 }
+
+let disksConfig = DiskConfig(name: "Mix")
+
+let dataStorage = try! Storage(
+  diskConfig: disksConfig,
+  memoryConfig: MemoryConfig(),
+  transformer: TransformerFactory.forData()
+)
+
+
+let imageStorage = dataStorage.transformImage()

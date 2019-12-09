@@ -14,6 +14,9 @@ class ItemModel {
     
     
     fileprivate var _name: String!
+    fileprivate var _status: String!
+    fileprivate var _quanlity: String!
+    fileprivate var _url: String!
     fileprivate var _type: String!
     fileprivate var _description: String!
     fileprivate var _category: String!
@@ -21,6 +24,29 @@ class ItemModel {
     fileprivate var _price: Float!
     fileprivate var _img: UIImage!
     fileprivate var _timeStamp: Any!
+    
+    
+    
+    
+    var status: String! {
+        get {
+            if _status == nil {
+                _status = ""
+            }
+            return _status
+        }
+        
+    }
+    
+    var quanlity: String! {
+        get {
+            if _quanlity == nil {
+                _quanlity = ""
+            }
+            return _quanlity
+        }
+        
+    }
     
     
     var price: Float! {
@@ -39,6 +65,16 @@ class ItemModel {
                 _name = ""
             }
             return _name
+        }
+        
+    }
+    
+    var url: String! {
+        get {
+            if _url == nil {
+                _url = ""
+            }
+            return _url
         }
         
     }
@@ -137,7 +173,23 @@ class ItemModel {
   
             
         }
-     
+        
+        if let url = Item_model["url"] as? String {
+            self._url = url
+            
+        }
+        
+        if let status = Item_model["status"] as? String {
+            self._status = status
+            
+        }
+        
+        if let quanlity = Item_model["quanlity"] as? String {
+            self._quanlity = quanlity
+            
+        }
+        
+
        
         
     }
