@@ -18,13 +18,36 @@ class ItemCell2: MGSwipeTableCell {
     @IBOutlet var img: UIImageView!
     @IBOutlet var name: UILabel!
     @IBOutlet var price: UILabel!
+    @IBOutlet var count: UILabel!
     
+    
+    @IBOutlet weak var plusBtnPressed: UIButton!
+    @IBOutlet weak var minusBtnPressed: UIButton!
     
     var info: ItemModel!
+    
+    var PlusAction : (() -> ())?
+    var MinusAction : (() -> ())?
 
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+        self.plusBtnPressed.addTarget(self, action: #selector(PlusTapped(_:)), for: .touchUpInside)
+        self.minusBtnPressed.addTarget(self, action: #selector(MinusTapped(_:)), for: .touchUpInside)
+        
+    }
+    
+    @IBAction func PlusTapped(_ sender: UIButton){
+      // if the closure is defined (not nil)
+      // then execute the code inside the subscribeButtonAction closure
+      PlusAction?()
+    }
+    
+    @IBAction func MinusTapped(_ sender: UIButton){
+      // if the closure is defined (not nil)
+      // then execute the code inside the subscribeButtonAction closure
+      MinusAction?()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -92,9 +115,34 @@ class ItemCell2: MGSwipeTableCell {
             }
             
         }
+        
+        if self.info.quanlity == "0" {
+            
+            DataService.instance.mainFireStoreRef.collection("Menu").whereField("name", isEqualTo:  self.info.name as Any).whereField("description", isEqualTo:  self.info.description as Any).whereField("category", isEqualTo:  self.info.category as Any).getDocuments { (snap, err) in
+            
+                    if err != nil {
+                        
+                        return
+                        
+                    }
+
+                    for item in snap!.documents {
+                        
+                        if let count = item["count"] {
+                            self.count.text = "\(count)"
+                        }
+                        
+                }
+                
+            }
+            
+            
+        }
 
         
         
     }
+    
+    
 
 }

@@ -16,7 +16,7 @@ import SafariServices
 
 class ProfileVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate {
 
-    var feature = ["Open hours", "Payment", "Security", "Voucher", "Contact Info", "Help & Support", "Log out"]
+    var feature = ["Open hours", "Payment", "Security", "Vouchers", "Contact Info", "Help & Support", "Log out"]
     @IBOutlet weak var tableView: UITableView!
     
     
@@ -125,7 +125,7 @@ class ProfileVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         
         if item == "Notifications" {
             
-            self.performSegue(withIdentifier: "MoveToNotificationVC", sender: nil)
+           // self.performSegue(withIdentifier: "MoveToNotificationVC", sender: nil)
             
         } else if item == "Payment" {
             
@@ -136,6 +136,34 @@ class ProfileVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         } else if item == "Security" {
             
             self.performSegue(withIdentifier: "moveToSecurityVC", sender: nil)
+            
+        }
+        else if item == "Vouchers" {
+            
+            self.performSegue(withIdentifier: "moveToVoucherVC", sender: nil)
+            
+        }
+        else if item == "Contact Info" {
+            
+            self.performSegue(withIdentifier: "moveToContactVC", sender: nil)
+            
+        }
+        else if item == "Help & Support" {
+            
+            self.performSegue(withIdentifier: "moveToHelpVC", sender: nil)
+            
+        }
+        else if item == "Open hours" {
+            
+            self.performSegue(withIdentifier: "moveTohoursVC", sender: nil)
+            
+        }
+        else {
+            
+            
+            try? Auth.auth().signOut()
+            self.performSegue(withIdentifier: "moveToSignIn3VC", sender: nil)
+            
             
         }
     }
@@ -166,8 +194,7 @@ class ProfileVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
                   
               }
           }
-          
-          
+              
           
       })
       

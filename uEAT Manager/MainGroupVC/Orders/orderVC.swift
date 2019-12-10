@@ -11,6 +11,9 @@ import UIKit
 class orderVC: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var PendingBtn: UIButton!
+    @IBOutlet weak var AcceptedBtn: UIButton!
+    @IBOutlet weak var CompletedBtn: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,6 +22,23 @@ class orderVC: UIViewController {
     }
     
 
+    @IBAction func AcceptedBtnPressed(_ sender: Any) {
+        
+        
+        
+        
+    }
+    
 
-
+    @IBAction func CompletedBtnPressed(_ sender: Any) {
+        
+        
+        
+    }
+    
+    
+    
+    @IBAction func PendingBtnPressed(_ sender: Any) {
+    }
+    
 }

@@ -38,12 +38,14 @@ class MenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource, MGSw
         tableView.dataSource = self
         
         // Do any additional setup after loading the view.
+        
         self.getRestaurant_ID(email: (Auth.auth().currentUser?.email)!)
-                    
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
         
         
         transitem = nil
@@ -251,11 +253,11 @@ class MenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource, MGSw
                 
                 if item.status != "Online" {
                     cell.backgroundColor = UIColor.placeholderText
+                    cell.Quanlity.isHidden = true
                 } else {
                     cell.backgroundColor = UIColor.clear
                     
-                    
-                    if item.status != "None" {
+                    if item.quanlity != "None" {
                         //
                         cell.Quanlity.isHidden = false
                     } else {
@@ -263,13 +265,27 @@ class MenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource, MGSw
                         //cell.backgroundColor = UIColor.clear
                     }
                 }
+                 
+                
+               cell.delegate = self
+                
+               cell.PlusAction = { [unowned self] in
+                    
+                 
+                    self.handleCount(self.tableView.indexPath(for: cell)!, type: "Plus")
                 
                 
+               }
                 
+                cell.MinusAction = { [unowned self] in
+                  
+                    self.handleCount(self.tableView.indexPath(for: cell)!, type: "Minus")
+                 
+               }
                 
+                        
+               
                 
-                
-                cell.delegate = self
                 cell.configureCell(item)
 
                 return cell
@@ -286,6 +302,7 @@ class MenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource, MGSw
         
         
     }
+    
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         
@@ -335,6 +352,55 @@ class MenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource, MGSw
         
         
     }
+    
+    func handleCount(_ path: IndexPath, type: String) {
+        
+        
+        let item = menu[(path as NSIndexPath).section][(path as NSIndexPath).row - 1]
+        
+        
+        DataService.instance.mainFireStoreRef.collection("Menu").whereField("name", isEqualTo:  item.name as Any).whereField("description", isEqualTo:  item.description as Any).whereField("category", isEqualTo:  item.category as Any).getDocuments { (snap, err) in
+        
+                if err != nil {
+                    
+                    return
+                    
+                }
+
+                for item in snap!.documents {
+                    
+                    if let count = item["count"] as? Int {
+                        var cum = 0
+                        if type == "Plus" {
+                            cum = count + 1
+                        } else if type == "Minus" {
+                            cum = count - 1
+                        } else {
+                            cum = count + 0
+                        }
+                        
+                        if cum < 0 {
+                            self.showErrorAlert("Opss !!!", msg: "Can't perform action")
+                        } else {
+                            let id = item.documentID
+                            DataService.instance.mainFireStoreRef.collection("Menu").document(id).updateData(["count": cum])
+                            
+                        }
+                    } else {
+                        let id = item.documentID
+                        DataService.instance.mainFireStoreRef.collection("Menu").document(id).updateData(["count": 1])
+                        
+                    }
+                    
+                    self.tableView.reloadData()
+                    
+            }
+            
+        }
+        
+    }
+    
+
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let returnedView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 55))
@@ -427,9 +493,27 @@ class MenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource, MGSw
                  
                let remove = MGSwipeButton(title: "", icon: RemoveResize, backgroundColor: color, padding: padding,  callback: { (cell) -> Bool in
                 
-                
-                   
-                   self.deleteAtIndexPath(self.tableView.indexPath(for: cell)!)
+                    
+                    let sheet = UIAlertController(title: "Are you sure to remove this item", message: "", preferredStyle: .actionSheet)
+                    
+                    
+                    
+                    let delete = UIAlertAction(title: "Delete", style: .default) { (alert) in
+                        
+                        self.deleteAtIndexPath(self.tableView.indexPath(for: cell)!)
+                        
+                    }
+                    
+                    let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (alert) in
+                        
+                    }
+                    
+
+                    sheet.addAction(delete)
+                    sheet.addAction(cancel)
+                    self.present(sheet, animated: true, completion: nil)
+
+                    
                    
                    return false; //don't autohide to improve delete animation
                    
@@ -441,9 +525,6 @@ class MenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource, MGSw
               
             let available = MGSwipeButton(title: "", icon: availableResize, backgroundColor: color, padding: padding,  callback: { (cell) -> Bool in
              
-             
-                
-               // self.deleteAtIndexPath(self.tableView.indexPath(for: cell)!)
                 
                 self.availableAt(self.tableView.indexPath(for: cell)!)
                 
@@ -458,15 +539,14 @@ class MenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource, MGSw
             let quality = MGSwipeButton(title: "", icon: qualityResize, backgroundColor: color, padding: padding,  callback: { (cell) -> Bool in
              
              
-                self.availableAt(self.tableView.indexPath(for: cell)!)
+                self.QuanlityAt(self.tableView.indexPath(for: cell)!)
                 //self.deleteAtIndexPath(self.tableView.indexPath(for: cell)!)
                 
                 return false; //don't autohide to improve delete animation
                 
                 
             });
-               
-               
+
                return [remove, available, quality]
             
            } else {
@@ -476,12 +556,194 @@ class MenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource, MGSw
            }
               
            
-       }
+    }
+    
+    func generateNotification(title: String, description: String, type: String) {
+        
+        let Notification = ["title": title as Any, "description": description as Any, "restaurant_id": restaurant_id, "timeStamp": FieldValue.serverTimestamp(), "type": type] as [String : Any]
+        let db = DataService.instance.mainFireStoreRef.collection("Restaurant_notification")
+        
+          db.addDocument(data: Notification) { err in
+          
+              if let err = err {
+                  
+                  
+                  self.showErrorAlert("Opss !", msg: err.localizedDescription)
+                  
+              } else {
+                
+                print("Updated")
+            }
+            
+            
+        }
+        
+        
+    }
     
         
     func availableAt(_ path: IndexPath) {
         
-        print((path as NSIndexPath).section, (path as NSIndexPath).row - 1)
+        swiftLoader()
+        
+        let item = menu[(path as NSIndexPath).section][(path as NSIndexPath).row - 1]
+        
+        var update = ""
+        
+        var i: ItemModel!
+        
+        if item.status != "Online" || item.status == "" {
+            
+            update = "Online"
+            let dict = ["name": item.name as Any, "description": item.description as Any, "price": item.price as Any, "url": item.url as Any, "category": item.category as Any, "type": item.type as Any, "status": "Online", "quanlity": item.quanlity as Any] as [String : Any]
+            i = ItemModel(postKey: "Updated", Item_model: dict)
+            
+            
+        } else {
+            
+            update = "Offline"
+            let dict = ["name": item.name as Any, "description": item.description as Any, "price": item.price as Any, "url": item.url as Any, "category": item.category as Any, "type": item.type as Any, "status": "Offline", "quanlity": item.quanlity as Any] as [String : Any]
+            i = ItemModel(postKey: "Updated", Item_model: dict)
+        
+        }
+        
+        if let type = item.type {
+                 
+             if type == "Vegan"{
+                 
+                 self.vegan.remove(at: (path as NSIndexPath).row - 1)
+                 self.vegan.insert(i, at: (path as NSIndexPath).row - 1)
+        
+             } else if type == "Non-Vegan" {
+                                   
+                 self.Nonvegan.remove(at: (path as NSIndexPath).row - 1)
+                 self.Nonvegan.insert(i, at: (path as NSIndexPath).row - 1)
+                 
+             } else {
+                 
+                 self.AddOn.remove(at: (path as NSIndexPath).row - 1)
+                 self.AddOn.insert(i, at: (path as NSIndexPath).row - 1)
+             }
+         
+         
+        }
+        
+        
+        
+       
+        
+        DataService.instance.mainFireStoreRef.collection("Menu").whereField("restaurant_id", isEqualTo: self.restaurant_id).whereField("name", isEqualTo: item.name as Any).whereField("description", isEqualTo: item.description as Any).whereField("category", isEqualTo: item.category as Any).getDocuments { (snap, err) in
+        
+                if err != nil {
+                    
+                    SwiftLoader.hide()
+                    self.showErrorAlert("Opss !", msg: err!.localizedDescription)
+                    return
+                    
+                }
+                
+
+                for item in snap!.documents {
+                    
+                    let id = item.documentID
+                    DataService.instance.mainFireStoreRef.collection("Menu").document(id).updateData(["status": update])
+                    self.menu.removeAll()
+                    self.menu.append(self.Nonvegan)
+                    self.menu.append(self.vegan)
+                    self.menu.append(self.AddOn)
+                    
+                    self.checkUpdate()
+                    SwiftLoader.hide()
+                    self.tableView.reloadData()
+                    
+            }
+            
+        }
+        
+        
+        
+        
+    }
+    
+    
+    func QuanlityAt(_ path: IndexPath) {
+        
+        let item = menu[(path as NSIndexPath).section][(path as NSIndexPath).row - 1]
+        
+        var update = ""
+        
+        swiftLoader()
+        
+        var i: ItemModel!
+        
+        if item.quanlity == "None" || item.quanlity == "" {
+            
+            let dict = ["name": item.name as Any, "description": item.description as Any, "price": item.price as Any, "url": item.url as Any, "category": item.category as Any, "type": item.type as Any, "status": item.status as Any, "quanlity": "0"] as [String : Any]
+            
+            update = "0"
+            i = ItemModel(postKey: "Updated", Item_model: dict)
+            
+            
+        } else {
+            
+            let dict = ["name": item.name as Any, "description": item.description as Any, "price": item.price as Any, "url": item.url as Any, "category": item.category as Any, "type": item.type as Any, "status": item.status as Any, "quanlity": "None"] as [String : Any]
+            
+            update = "None"
+            i = ItemModel(postKey: "Updated", Item_model: dict)
+        
+        }
+        
+        if let type = item.type {
+                 
+             if type == "Vegan"{
+                 
+                 self.vegan.remove(at: (path as NSIndexPath).row - 1)
+                 self.vegan.insert(i, at: (path as NSIndexPath).row - 1)
+        
+             } else if type == "Non-Vegan" {
+                 
+                                 
+                 self.Nonvegan.remove(at: (path as NSIndexPath).row - 1)
+                 self.Nonvegan.insert(i, at: (path as NSIndexPath).row - 1)
+                 
+             } else {
+                 
+
+        
+                 self.AddOn.remove(at: (path as NSIndexPath).row - 1)
+                 self.AddOn.insert(i, at: (path as NSIndexPath).row - 1)
+             }
+         
+         
+         }
+        
+        DataService.instance.mainFireStoreRef.collection("Menu").whereField("restaurant_id", isEqualTo: self.restaurant_id).whereField("name", isEqualTo: item.name as Any).whereField("description", isEqualTo: item.description as Any).whereField("category", isEqualTo: item.category as Any).getDocuments { (snap, err) in
+        
+                if err != nil {
+                    
+                    SwiftLoader.hide()
+                    self.showErrorAlert("Opss !", msg: err!.localizedDescription)
+                    return
+                    
+                }
+                
+
+                for item in snap!.documents {
+                    
+                    let id = item.documentID
+                    DataService.instance.mainFireStoreRef.collection("Menu").document(id).updateData(["quanlity": update])
+                    self.menu.removeAll()
+                    self.menu.append(self.Nonvegan)
+                    self.menu.append(self.vegan)
+                    self.menu.append(self.AddOn)
+                    
+                    self.checkUpdate()
+                    SwiftLoader.hide()
+                    self.tableView.reloadData()
+                    
+            }
+            
+        }
         
         
         
@@ -532,9 +794,8 @@ class MenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource, MGSw
         
               
            self.menu[(path as NSIndexPath).section].remove(at: (path as NSIndexPath).row - 1)
-        
+           self.generateNotification(title: "Removed item \(item.name!)", description: "Remove \(item.name!)", type: "Remove")
            checkUpdate()
-        
            self.tableView.reloadData()
            
        }
@@ -652,7 +913,7 @@ class MenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource, MGSw
                       let downloadUrl = downUrl as NSString
                       let downloadedUrl = downloadUrl as String
                     
-                      let dict = ["name": item.name as Any, "description": item.description as Any, "price": item.price as Any, "url": downloadedUrl as Any, "category": item.category as Any, "type": type, "restaurant_id": restaurant_id, "timeStamp": ServerValue.timestamp()] as [String : Any]
+                      let dict = ["name": item.name as Any, "description": item.description as Any, "price": item.price as Any, "url": downloadedUrl as Any, "category": item.category as Any, "type": type, "restaurant_id": restaurant_id, "timeStamp": FieldValue.serverTimestamp()] as [String : Any]
                       let db = DataService.instance.mainFireStoreRef.collection("Menu")
                     
                       db.addDocument(data: dict) { err in
@@ -670,6 +931,7 @@ class MenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource, MGSw
                             
                             if self.counted == self.sum {
                                 
+                                self.generateNotification(title: "Updated menu", description: "Updated \(self.counted) items", type: "Add")
                                 SwiftLoader.hide()
                                 
                                 

@@ -316,7 +316,7 @@ class SignUp3VC: UIViewController, UITextFieldDelegate, ZSWTappableLabelTapDeleg
                                     let downloadedUrl = downloadUrl as String
                                     
                                     let data = ["Phone": Phone, "Lat": self.RestaurantLocation
-                                        .latitude, "Lon": self.RestaurantLocation.longitude, "businessAddress": self.businessAddress, "businessName": self.businessName, "Email": email, "Status" : "Pending", "LogoUrl": downloadedUrl, "Timestamp": ServerValue.timestamp(), "Cuisine": self.itemList] as [String : Any]
+                                        .latitude, "Lon": self.RestaurantLocation.longitude, "businessAddress": self.businessAddress, "businessName": self.businessName, "Email": email, "Status" : "Pending", "LogoUrl": downloadedUrl, "Timestamp": FieldValue.serverTimestamp(), "Cuisine": self.itemList] as [String : Any]
                                     
                                 
                                            
@@ -336,7 +336,7 @@ class SignUp3VC: UIViewController, UITextFieldDelegate, ZSWTappableLabelTapDeleg
                                             let id = ref!.documentID
                                             
                                             let data = ["Restaurant_id": id] as [String : Any]
-                                            let check_List = ["Two-factor-authentication": false, "Menu": false, "Timestamp": ServerValue.timestamp(), "Restaurant_id": id] as [String : Any]
+                                            let check_List = ["Two-factor-authentication": false, "Menu": false, "Timestamp": FieldValue.serverTimestamp(), "Restaurant_id": id] as [String : Any]
                                             
                                             DataService.instance.mainFireStoreRef.collection("Restaurant").document(id).updateData(data)
                                             DataService.instance.mainFireStoreRef.collection("Restaurant_check_list").document(id).setData(check_List)

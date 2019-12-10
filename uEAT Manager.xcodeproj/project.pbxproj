@@ -18,6 +18,16 @@
 		6A197C18239ADFAA0013EDCC /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A197C17239ADFAA0013EDCC /* ProfileVC.swift */; };
 		6A197C1B239E029C0013EDCC /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A197C1A239E029C0013EDCC /* ProfileCell.swift */; };
 		6A197C1D239E39560013EDCC /* ItemCell2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A197C1C239E39560013EDCC /* ItemCell2.swift */; };
+		6A197C20239EAAB30013EDCC /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A197C1F239EAAB30013EDCC /* NotificationCell.swift */; };
+		6A197C23239EAE490013EDCC /* NotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A197C22239EAE490013EDCC /* NotificationModel.swift */; };
+		6A197C26239ED0460013EDCC /* SecurityVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A197C25239ED0460013EDCC /* SecurityVC.swift */; };
+		6A197C28239ED1AF0013EDCC /* UpdatePhoneVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A197C27239ED1AF0013EDCC /* UpdatePhoneVC.swift */; };
+		6A197C2B239ED6DC0013EDCC /* VoucherVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A197C2A239ED6DC0013EDCC /* VoucherVC.swift */; };
+		6A197C2D239EDBB40013EDCC /* CreateVoucherVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A197C2C239EDBB40013EDCC /* CreateVoucherVC.swift */; };
+		6A197C2F239EEAF90013EDCC /* VoucherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A197C2E239EEAF90013EDCC /* VoucherModel.swift */; };
+		6A197C32239EF6050013EDCC /* VoucherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A197C31239EF6050013EDCC /* VoucherCell.swift */; };
+		6A197C35239F0C940013EDCC /* ContactVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A197C34239F0C940013EDCC /* ContactVC.swift */; };
+		6A197C37239F20690013EDCC /* EditVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A197C36239F20690013EDCC /* EditVC.swift */; };
 		6A1FECF0235DA2D900198533 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A1FECEF235DA2D900198533 /* AppDelegate.swift */; };
 		6A1FECF2235DA2D900198533 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A1FECF1235DA2D900198533 /* SceneDelegate.swift */; };
 		6A1FECF4235DA2D900198533 /* startVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A1FECF3235DA2D900198533 /* startVC.swift */; };
@@ -94,6 +104,16 @@
 		6A197C17239ADFAA0013EDCC /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		6A197C1A239E029C0013EDCC /* ProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
 		6A197C1C239E39560013EDCC /* ItemCell2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCell2.swift; sourceTree = "<group>"; };
+		6A197C1F239EAAB30013EDCC /* NotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
+		6A197C22239EAE490013EDCC /* NotificationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationModel.swift; sourceTree = "<group>"; };
+		6A197C25239ED0460013EDCC /* SecurityVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecurityVC.swift; sourceTree = "<group>"; };
+		6A197C27239ED1AF0013EDCC /* UpdatePhoneVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePhoneVC.swift; sourceTree = "<group>"; };
+		6A197C2A239ED6DC0013EDCC /* VoucherVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoucherVC.swift; sourceTree = "<group>"; };
+		6A197C2C239EDBB40013EDCC /* CreateVoucherVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateVoucherVC.swift; sourceTree = "<group>"; };
+		6A197C2E239EEAF90013EDCC /* VoucherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoucherModel.swift; sourceTree = "<group>"; };
+		6A197C31239EF6050013EDCC /* VoucherCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoucherCell.swift; sourceTree = "<group>"; };
+		6A197C34239F0C940013EDCC /* ContactVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactVC.swift; sourceTree = "<group>"; };
+		6A197C36239F20690013EDCC /* EditVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditVC.swift; sourceTree = "<group>"; };
 		6A1FECEC235DA2D900198533 /* uEAT Manager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "uEAT Manager.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A1FECEF235DA2D900198533 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6A1FECF1235DA2D900198533 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -228,6 +248,8 @@
 		6A197C0D239ADD4B0013EDCC /* Notification */ = {
 			isa = PBXGroup;
 			children = (
+				6A197C21239EAE390013EDCC /* NotificationModel */,
+				6A197C1E239EAA710013EDCC /* NotificationCell */,
 				6A197C0F239ADF070013EDCC /* NotificationVC.swift */,
 			);
 			path = Notification;
@@ -236,6 +258,9 @@
 		6A197C0E239ADD620013EDCC /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				6A197C33239F0C760013EDCC /* ContactVC */,
+				6A197C29239ED6C80013EDCC /* VoucherVC */,
+				6A197C24239ED0280013EDCC /* Security */,
 				6A197C19239E02690013EDCC /* ProfileCell */,
 				6A197C17239ADFAA0013EDCC /* ProfileVC.swift */,
 			);
@@ -249,6 +274,59 @@
 				6A197C1A239E029C0013EDCC /* ProfileCell.swift */,
 			);
 			path = ProfileCell;
+			sourceTree = "<group>";
+		};
+		6A197C1E239EAA710013EDCC /* NotificationCell */ = {
+			isa = PBXGroup;
+			children = (
+				6A197C1F239EAAB30013EDCC /* NotificationCell.swift */,
+			);
+			path = NotificationCell;
+			sourceTree = "<group>";
+		};
+		6A197C21239EAE390013EDCC /* NotificationModel */ = {
+			isa = PBXGroup;
+			children = (
+				6A197C22239EAE490013EDCC /* NotificationModel.swift */,
+			);
+			path = NotificationModel;
+			sourceTree = "<group>";
+		};
+		6A197C24239ED0280013EDCC /* Security */ = {
+			isa = PBXGroup;
+			children = (
+				6A197C25239ED0460013EDCC /* SecurityVC.swift */,
+				6A197C27239ED1AF0013EDCC /* UpdatePhoneVC.swift */,
+			);
+			path = Security;
+			sourceTree = "<group>";
+		};
+		6A197C29239ED6C80013EDCC /* VoucherVC */ = {
+			isa = PBXGroup;
+			children = (
+				6A197C30239EF5ED0013EDCC /* VoucherCell */,
+				6A197C2A239ED6DC0013EDCC /* VoucherVC.swift */,
+				6A197C2C239EDBB40013EDCC /* CreateVoucherVC.swift */,
+				6A197C2E239EEAF90013EDCC /* VoucherModel.swift */,
+			);
+			path = VoucherVC;
+			sourceTree = "<group>";
+		};
+		6A197C30239EF5ED0013EDCC /* VoucherCell */ = {
+			isa = PBXGroup;
+			children = (
+				6A197C31239EF6050013EDCC /* VoucherCell.swift */,
+			);
+			path = VoucherCell;
+			sourceTree = "<group>";
+		};
+		6A197C33239F0C760013EDCC /* ContactVC */ = {
+			isa = PBXGroup;
+			children = (
+				6A197C34239F0C940013EDCC /* ContactVC.swift */,
+				6A197C36239F20690013EDCC /* EditVC.swift */,
+			);
+			path = ContactVC;
 			sourceTree = "<group>";
 		};
 		6A1FECE3235DA2D900198533 = {
@@ -768,12 +846,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6A197C2D239EDBB40013EDCC /* CreateVoucherVC.swift in Sources */,
 				6A197C16239ADF840013EDCC /* MessageVC.swift in Sources */,
 				6A8F0FFA23863009003E87BE /* SwiftLoader.swift in Sources */,
 				6A8F0FE023862FC9003E87BE /* borderAvatarView.swift in Sources */,
+				6A197C2B239ED6DC0013EDCC /* VoucherVC.swift in Sources */,
 				6A8F0FE823862FDB003E87BE /* CustomLabel.swift in Sources */,
+				6A197C32239EF6050013EDCC /* VoucherCell.swift in Sources */,
 				6A8F1015238B4792003E87BE /* TwoFactorAuthenticationVC.swift in Sources */,
 				6A197C08239AB9190013EDCC /* HomePageVC.swift in Sources */,
+				6A197C35239F0C940013EDCC /* ContactVC.swift in Sources */,
 				6A197C12239ADF380013EDCC /* MenuVC.swift in Sources */,
 				6A8F0FF223862FEE003E87BE /* modTxtField.swift in Sources */,
 				6A197C10239ADF070013EDCC /* NotificationVC.swift in Sources */,
@@ -786,22 +868,28 @@
 				6A8F0FE423862FD3003E87BE /* Color.swift in Sources */,
 				6A8F0FEA23862FDF003E87BE /* defaultCardView.swift in Sources */,
 				6A197C0123986AA00013EDCC /* ItemModel.swift in Sources */,
+				6A197C37239F20690013EDCC /* EditVC.swift in Sources */,
 				6A8F0FFC2386301A003E87BE /* Constant.swift in Sources */,
+				6A197C28239ED1AF0013EDCC /* UpdatePhoneVC.swift in Sources */,
 				6A8F0FF423862FF2003E87BE /* ProfileView.swift in Sources */,
 				6A8F0FF823862FF9003E87BE /* windowInfo.swift in Sources */,
 				6A1FECF0235DA2D900198533 /* AppDelegate.swift in Sources */,
 				6A197C18239ADFAA0013EDCC /* ProfileVC.swift in Sources */,
+				6A197C2F239EEAF90013EDCC /* VoucherModel.swift in Sources */,
 				6A8F1020238BB677003E87BE /* DetailVC.swift in Sources */,
 				6A8F101E238B6D24003E87BE /* ItemCell.swift in Sources */,
 				6A1FECF2235DA2D900198533 /* SceneDelegate.swift in Sources */,
 				6A8F0FE623862FD7003E87BE /* CommentTxtView.swift in Sources */,
 				6A8F0FE223862FCD003E87BE /* circleView.swift in Sources */,
+				6A197C23239EAE490013EDCC /* NotificationModel.swift in Sources */,
 				6A8F0FEE23862FE6003E87BE /* modifiedChooseCarView.swift in Sources */,
 				6A8F0FEC23862FE3003E87BE /* fancyBtn.swift in Sources */,
 				6A197C1B239E029C0013EDCC /* ProfileCell.swift in Sources */,
+				6A197C26239ED0460013EDCC /* SecurityVC.swift in Sources */,
 				6A8F1013238A25D7003E87BE /* SignInVC.swift in Sources */,
 				6A8F101B238B6C40003E87BE /* addNewItemCell.swift in Sources */,
 				6A8F0FF623862FF5003E87BE /* RoundedLabel.swift in Sources */,
+				6A197C20239EAAB30013EDCC /* NotificationCell.swift in Sources */,
 				6A8F10002387897F003E87BE /* SignUp1VC.swift in Sources */,
 				6A8F10052387CBCC003E87BE /* SignUp3VC.swift in Sources */,
 				6A8F1018238B6699003E87BE /* CreateMenuVC.swift in Sources */,
