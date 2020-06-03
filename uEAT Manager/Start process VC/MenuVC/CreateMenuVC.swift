@@ -40,8 +40,14 @@ class CreateMenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         
         
         tableView.reloadData()
+          
+        guard Auth.auth().currentUser?.email != nil else {
+            
+            return
+            
+        }
         
-        self.getRestaurant_ID(email: (Auth.auth().currentUser?.email)!)
+       self.getRestaurant_ID(email: (Auth.auth().currentUser?.email)!)
         
         
     }
@@ -445,7 +451,7 @@ class CreateMenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource
             let url = MainAPIClient.shared.baseURLString
             let urls = URL(string: url!)?.appendingPathComponent("redirect")
             
-            Alamofire.request(urls!, method: .post, parameters: [
+            AF.request(urls!, method: .post, parameters: [
                 
                 "authorization_code": authorization_code
                 
@@ -501,7 +507,7 @@ class CreateMenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource
          let url = MainAPIClient.shared.baseURLString
          let urls = URL(string: url!)?.appendingPathComponent("login_links")
          
-         Alamofire.request(urls!, method: .post, parameters: [
+         AF.request(urls!, method: .post, parameters: [
              
              "account": account
              

@@ -29,21 +29,15 @@ class cuisineCell: UICollectionViewCell {
         if let url = info.url {
             
             
-            Alamofire.request(url).responseImage { response in
+            AF.request(url).responseImage { response in
                 
-                if let image = response.result.value {
-                    
-                    
-                    self.imageView.image = image
-                    
-                    /*
-                    let wrapper = ImageWrapper(image: image)
-                    self.requestDriverImg.image = image
-                    try? InformationStorage?.setObject(wrapper, forKey: DriverData.Face_ID)
-                    */
-                    
+                switch response.result {
+                case let .success(value):
+                    self.imageView.image = value
+                case let .failure(error):
+                    print(error)
                 }
-                
+                          
                 
             }
             

@@ -92,16 +92,16 @@ class ItemCell2: MGSwipeTableCell {
                     } else {
                         
                         
-                        Alamofire.request(self.info.url).responseImage { response in
+                        AF.request(self.info.url).responseImage { response in
                             
-                            if let image = response.result.value {
-                                
-                                
-                                self.img.image = image
-                                try? imageStorage.setObject(image, forKey: self.info.url)
-                                
-                                
+                            switch response.result {
+                            case let .success(value):
+                                self.img.image = value
+                                try? imageStorage.setObject(value, forKey: self.info.url)
+                            case let .failure(error):
+                                print(error)
                             }
+                            
                             
                             
                         }

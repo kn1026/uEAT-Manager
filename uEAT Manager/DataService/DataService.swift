@@ -34,6 +34,10 @@ class DataService {
         return mainRealTimeDataBaseRef.child("Phone")
     }
     
+    var checkPasswordsetupRef: DatabaseReference {
+        return mainRealTimeDataBaseRef.child("Restaurant_email")
+    }
+    
     var checkEmailUserRef: DatabaseReference {
         return mainRealTimeDataBaseRef.child("Email")
     }

@@ -34,7 +34,7 @@ class MainAPIClient: NSObject, STPCustomerEphemeralKeyProvider {
     
     func createCustomerKey(withAPIVersion apiVersion: String, completion: @escaping STPJSONResponseCompletionBlock) {
         let url = self.baseURL.appendingPathComponent("Empheral_keys")
-        Alamofire.request(url, method: .post, parameters: [
+        AF.request(url, method: .post, parameters: [
         
             "api_verson": apiVersion
         

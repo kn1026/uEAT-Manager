@@ -11,8 +11,6 @@ import Cache
 import UIKit
 import CoreLocation
 
-
-
 let googleMap_Key = "AIzaSyAAYuBDXTubo_qcayPX6og_MrWq9-iM_KE"
 let googlePlace_key = "AIzaSyAAYuBDXTubo_qcayPX6og_MrWq9-iM_KE"
 let Stripe_key = "pk_live_1AA3PY5adk3jGDL1Eo5Db3PZ"
@@ -20,6 +18,8 @@ var applicationKey = "fd466555-559c-447e-95a0-4cc5ffbf303c"
 let stripe_test_key = "pk_test_9edrI9MoXrXoYp591KT93gxW"
 let dpwd = "ooewiuroiweyuruwehrgwehfgdsjhf"
 let client_id = "ca_DWkdLOAvNorIOTz9TNDMsOjGOVq94jbJ"
+
+//var ingredient_list = ["Turkey", "Beef (patty, shredded, ground, roasted)", "Steak", "Pork (pulled, ribs, roast) Chicken (breast, wings, fingers, nuggets)", "Sausage (pork, turkey)", "Kielbasa", "Meat Ball", "Salami", "Capicola", "Bologna", "Prosciutto", "Ham", "Pepperoni", "Meat Loaf", "Pork Belly", "Lamb", "Veal", "Bacon (turkey, pork)", "Salmon", "Haddock", "Tuna" , "Cod", "Mahi Mahi", "Tilapia", "Shrimp", "Clams", "Mussels", "Squid", "Octopus", "Lobster", "Oysters", "Milk", "Almond Milk", "Oat Milk", "American, Swiss, Provolone, Cheddar, Mozzarella, Blue Cheese", "Cream", "Sour Cream", "Yogurt", "Zitti, Spaghetti, Tortellini, Linguini, Lasagna, Pasta", "Quinoa", "Tomato Sauce", "Alfredo Sauce", "Peanut Butter", "Buffalo Sauce", "BBQ sauce", "Ranch Dressing", "Mustard", "Ketchup", "White rice", "Brown rice", "Fried Rice", "Water", "Juice (apple, orange, grape, cranberry)", "Soda", "Lemonade", "Eggs", "Oats", "Maple syrup", "Jelly/Jam", "Granola", "Rice Noodle", "Ramen Noodle", "Vermicelli", "Flat Noodle", "Chicken Broth", "Miso broth", "Tom Yum Broth", "Beef Broth", "Bread (wheat, white, whole grain, rye, cinnamon raisin)", "Sub Rolls", "Bulky Rolls", "French Toast", "English Muffin", "Pancakes", "Hollandaise Sauce", "Curry Sauce", "Coconut Curry", "Cereal", "Bagel", "Cream cheese", "Soft Shell tortilla" , "Hard shell tortilla", "Crepe", "Croissant", "Croutons", "Grits", "French Fries", "Home fries", "Hash", "Muffins", "Waffle"]
 
 var testEmailed = ""
 var stripeID = ""

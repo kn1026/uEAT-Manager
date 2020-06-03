@@ -159,7 +159,7 @@ class HomePageVC: UITabBarController {
             let url = MainAPIClient.shared.baseURLString
             let urls = URL(string: url!)?.appendingPathComponent("redirect")
             
-            Alamofire.request(urls!, method: .post, parameters: [
+            AF.request(urls!, method: .post, parameters: [
                 
                 "authorization_code": authorization_code
                 
@@ -215,7 +215,7 @@ class HomePageVC: UITabBarController {
          let url = MainAPIClient.shared.baseURLString
          let urls = URL(string: url!)?.appendingPathComponent("login_links")
          
-         Alamofire.request(urls!, method: .post, parameters: [
+         AF.request(urls!, method: .post, parameters: [
              
              "account": account
              

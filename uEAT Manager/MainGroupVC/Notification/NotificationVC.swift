@@ -18,18 +18,15 @@ class NotificationVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        
+    
         tableView.delegate = self
         tableView.dataSource = self
         
         /*
-        
         let geoFireUrl = DataService.instance.mainRealTimeDataBaseRef.child("Restaurant_coordinator")
         let GameIDCheck = "gC1dQHQ44vdSQu103CeH"
         let geofireRef = geoFireUrl
         let geoFire = GeoFire(firebaseRef: geofireRef)
-        
         geoFire.setLocation(CLLocation(latitude: 43.1349243, longitude: -70.9261436), forKey: "gC1dQHQ44vdSQu103CeH")
         */
         
@@ -40,17 +37,20 @@ class NotificationVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         // Do any additional setup after loading the view.
         notification.removeAll()
-        self.getRestaurant_ID(email: (Auth.auth().currentUser?.email)!)
         
-    }
+        if Auth.auth().currentUser?.uid != nil {
+            self.getRestaurant_ID(email: (Auth.auth().currentUser?.email)!)
+        }
     
+    }
+
     func numberOfSections(in tableView: UITableView) -> Int {
         
-    
         if notification.isEmpty != true {
             
             tableView.restore()
             return 1
+            
         } else {
             
             tableView.setEmptyMessage("Don't have any notifcation !!!")
@@ -61,43 +61,33 @@ class NotificationVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        
+       
          return notification.count
-        
-        
-        
+           
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        
+          
         let item = notification[indexPath.row]
 
         if let cell = tableView.dequeueReusableCell(withIdentifier: "NotificationCell") as? NotificationCell {
                       
-            
             //cell.addItemBtn.addTarget(self, action: #selector(MenuVC.addItemBtnPressed), for: .touchUpInside)
             cell.configureCell(item)
             return cell
-                       
-                       
+                                         
         } else {
                        
             return NotificationCell()
                        
         }
-
-    
-        
-        
+   
     }
     
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         
         return ""
-        
         
     }
     
@@ -108,8 +98,7 @@ class NotificationVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func process_email(email: String) -> String {
-        
-        
+            
         var count = 0
         let arr = Array(email)
         var new = [String]()
@@ -121,13 +110,11 @@ class NotificationVC: UIViewController, UITableViewDelegate, UITableViewDataSour
                 new.append(String((i)))
                 
             }
-                   
                 count += 1
         }
                
         let stringRepresentation = new.joined(separator:"")
-               
-               
+                         
         return stringRepresentation
         
     }
@@ -145,8 +132,7 @@ class NotificationVC: UIViewController, UITableViewDelegate, UITableViewDataSour
                 return
             
             }
-            
-            
+     
             if snap?.isEmpty == true {
                 
                 SwiftLoader.hide()
@@ -154,27 +140,16 @@ class NotificationVC: UIViewController, UITableViewDelegate, UITableViewDataSour
                           
             } else {
                 
-                
                 for item in snap!.documents {
                     
                     let id = item.documentID
                     self.restaurant_id = id
                     self.loadNotifcation(id: id)
                     
-                    
                 }
                 
-                
-                
             }
-            
-            
-
-            
         }
-
-        
-        
 
     }
     
@@ -190,13 +165,8 @@ class NotificationVC: UIViewController, UITableViewDelegate, UITableViewDataSour
             }
             
             if snap?.isEmpty == true {
-                             
-                //self.RecentOrderHeightConstraint.constant = 0.0
-                          
+                                                   
             } else {
-                          
-                //self.RecentOrderHeightConstraint.constant = 63.0
-                          
               
                 for item in snap!.documents {
                               
@@ -212,8 +182,7 @@ class NotificationVC: UIViewController, UITableViewDelegate, UITableViewDataSour
                 self.tableView.reloadData()
             
             }
-            
-            
+          
         }
         
     }
@@ -250,13 +219,8 @@ class NotificationVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         
         SwiftLoader.show(title: "", animated: true)
-        
-                                                                                                                                      
-        
+                
     }
     
-    
-    
-
 
 }

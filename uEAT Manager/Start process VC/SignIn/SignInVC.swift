@@ -14,6 +14,7 @@ class SignInVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var emailTxtField: UITextField!
     @IBOutlet weak var passwordTxtField: UITextField!
     var email = ""
+    var emailFinal: String?
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -59,7 +60,8 @@ class SignInVC: UIViewController, UITextFieldDelegate {
     
     @IBAction func NextBtnPressed(_ sender: Any) {
         
-        if let email = emailTxtField.text, email != "", let password = passwordTxtField.text, password != "" {
+        //let password = passwordTxtField.text, password != ""
+        if let email = emailTxtField.text, email != "", let password = passwordTxtField.text, password == "" {
             
             swiftLoader()
             
@@ -86,21 +88,107 @@ class SignInVC: UIViewController, UITextFieldDelegate {
                 } else {
                     
                     
-                    Auth.auth().signIn(withEmail: "Manager-\(email)", password: password) { (data, err) in
+                    // check if password is set
+                    
+                    var finalEmail = ""
+                    
+                    finalEmail = email
+                    
+                    self.emailFinal = finalEmail
+                     
+                    
+                     var  dotCount = [Int]()
+                     var count = 0
+                     var testEmails = ""
+                     
+                     
+                     var testEmailArr = Array(finalEmail)
+                     for _ in 0..<(testEmailArr.count) {
+                         if testEmailArr[count] == "." {
+                             
+                             dotCount.append(count)
+                             
+                         }
+                         count += 1
+                     }
+                     
+                     
+                     
+                     for indexCount in dotCount {
+                         testEmailArr[indexCount] = ","
+                         let testEmail = String(testEmailArr)
+                         testEmails = testEmail
+                         testEmailed = testEmail
+                         
+                     }
+                    
+                    
+                    DataService.instance.checkPasswordsetupRef.child("Manager-\(testEmails)").observeSingleEvent(of: .value, with: { (snapData) in
+                    
+                    
+                    if snapData.exists() {
                         
-                        if err != nil {
-                            
-                            SwiftLoader.hide()
-                            self.showErrorAlert("Opss!!!", msg: err!.localizedDescription)
-                            return
-                            
-                        }
                         
                         SwiftLoader.hide()
-                        self.performSegue(withIdentifier: "moveToPhoneVC", sender: nil)
+                        self.passwordTxtField.isHidden = false
+                        return
                         
-                    }
+                    } else {
+                        
+                        
+                        SwiftLoader.hide()
                     
+                        
+                        self.showInputDialog(title: "Password setup",
+                                        subtitle: "Please enter your password below.",
+                                        actionTitle: "Add",
+                                        cancelTitle: "Cancel",
+                                        inputPlaceholder: "Password",
+                                        inputKeyboardType: .default)
+                        { (input:String?) in
+                            if let pwd = input, pwd != "" {
+                                
+                                self.swiftLoader()
+                                
+                                Auth.auth().createUser(withEmail:  "Manager-\(email)", password: pwd, completion: { (user, error) in
+                                    
+                                    if error != nil {
+                                        
+                                        SwiftLoader.hide()
+                                        
+                                        self.showErrorAlert("Opss!!!", msg: error!.localizedDescription)
+                                        
+                                        return
+                                    }
+                                    
+                                    
+                                    try! Auth.auth().signOut()
+                                    DataService.instance.checkPasswordsetupRef.child("Manager-\(testEmailed)").setValue(["Timestamp": ServerValue.timestamp()])
+                                    
+                                    SwiftLoader.hide()
+                                    self.showErrorAlert("Congratulation !", msg: "Your password has been set, please login now")
+                                    
+                                    self.passwordTxtField.isHidden = false
+                                    
+                                   
+                                    
+                                    
+                                })
+                                
+                            } else {
+                                
+                                
+                                
+                                
+                            }
+                        }
+                        
+                        }
+                        
+                        
+                    })
+                    
+
                     
                 }
                 
@@ -108,12 +196,31 @@ class SignInVC: UIViewController, UITextFieldDelegate {
                 
             }
             
-            print("Manager-\(email)", password)
             
             
-        } else  {
             
-            self.showErrorAlert("Opss !!!", msg: "Please enter your email and password")
+        } else if let email = emailTxtField.text, email != "", let password = passwordTxtField.text, password != "" {
+            
+            Auth.auth().signIn(withEmail: "Manager-\(email)", password: password) { (data, err) in
+                
+                if err != nil {
+                    
+                    SwiftLoader.hide()
+                    self.showErrorAlert("Opss !", msg: err!.localizedDescription)
+                    return
+                    
+                }
+                
+                SwiftLoader.hide()
+                self.performSegue(withIdentifier: "moveToPhoneVC", sender: nil)
+                
+            }
+            
+        }
+        
+        else  {
+            
+            self.showErrorAlert("Opss !", msg: "Please enter your email and password")
             
         }
         
@@ -173,4 +280,32 @@ class SignInVC: UIViewController, UITextFieldDelegate {
         
     }
     
+}
+
+extension UIViewController {
+    func showInputDialog(title:String? = nil,
+                         subtitle:String? = nil,
+                         actionTitle:String? = "Add",
+                         cancelTitle:String? = "Cancel",
+                         inputPlaceholder:String? = nil,
+                         inputKeyboardType:UIKeyboardType = UIKeyboardType.default,
+                         cancelHandler: ((UIAlertAction) -> Swift.Void)? = nil,
+                         actionHandler: ((_ text: String?) -> Void)? = nil) {
+
+        let alert = UIAlertController(title: title, message: subtitle, preferredStyle: .alert)
+        alert.addTextField { (textField:UITextField) in
+            textField.placeholder = inputPlaceholder
+            textField.keyboardType = inputKeyboardType
+        }
+        alert.addAction(UIAlertAction(title: actionTitle, style: .default, handler: { (action:UIAlertAction) in
+            guard let textField =  alert.textFields?.first else {
+                actionHandler?(nil)
+                return
+            }
+            actionHandler?(textField.text)
+        }))
+        alert.addAction(UIAlertAction(title: cancelTitle, style: .cancel, handler: cancelHandler))
+
+        self.present(alert, animated: true, completion: nil)
+    }
 }
