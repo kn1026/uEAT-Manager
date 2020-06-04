@@ -13,8 +13,6 @@ PODS:
   - Crashlytics (3.14.0):
     - Fabric (~> 1.10.2)
   - Fabric (1.10.2)
-  - Firebase (5.15.0):
-    - Firebase/Core (= 5.15.0)
   - Firebase/Auth (5.15.0):
     - Firebase/CoreOnly
     - FirebaseAuth (= 5.2.0)
@@ -183,7 +181,6 @@ DEPENDENCIES:
   - CardIO
   - Crashlytics
   - Fabric
-  - Firebase
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Database
@@ -287,6 +284,6 @@ SPEC CHECKSUMS:
   ZSWTaggedString: 1a6aab3143188634c1e5dfe9383ce754c1fb5fe2
   ZSWTappableLabel: cff84c0a55e30f2141f7dac24e5903302a7e35ec
 
-PODFILE CHECKSUM: 0270a9c5b1084e7228c96b05c6e4d26671d2685d
+PODFILE CHECKSUM: 80b8a065091c9b7d560575dac57d2160a6cfa57c
 
 COCOAPODS: 1.8.4

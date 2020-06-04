@@ -580,8 +580,8 @@
 				6A1FECE8235DA2D900198533 /* Sources */,
 				6A1FECE9235DA2D900198533 /* Frameworks */,
 				6A1FECEA235DA2D900198533 /* Resources */,
-				8CE8CADEA10DDB409C30A1C4 /* [CP] Embed Pods Frameworks */,
-				5A862935380BE047278D34A4 /* [CP] Copy Pods Resources */,
+				E9DED58442C26903161AF535 /* [CP] Embed Pods Frameworks */,
+				FE9552EA7686691D6F43612F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -619,8 +619,8 @@
 				6A1FED09235DA2DC00198533 /* Sources */,
 				6A1FED0A235DA2DC00198533 /* Frameworks */,
 				6A1FED0B235DA2DC00198533 /* Resources */,
-				71170B9A271C09CF8FAFBD7C /* [CP] Embed Pods Frameworks */,
-				562A2A80CBC12F8E94C01E0C /* [CP] Copy Pods Resources */,
+				9DF6EF7531DA2E33B127AED3 /* [CP] Embed Pods Frameworks */,
+				7AA026DD6EB673A815DFCE70 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -705,23 +705,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		562A2A80CBC12F8E94C01E0C /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-uEAT Manager-uEAT ManagerUITests/Pods-uEAT Manager-uEAT ManagerUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-uEAT Manager-uEAT ManagerUITests/Pods-uEAT Manager-uEAT ManagerUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-uEAT Manager-uEAT ManagerUITests/Pods-uEAT Manager-uEAT ManagerUITests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		59464A0189CC2EF2CC9B7917 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -744,24 +727,24 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		5A862935380BE047278D34A4 /* [CP] Copy Pods Resources */ = {
+		7AA026DD6EB673A815DFCE70 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-uEAT Manager/Pods-uEAT Manager-resources-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-uEAT Manager-uEAT ManagerUITests/Pods-uEAT Manager-uEAT ManagerUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-uEAT Manager/Pods-uEAT Manager-resources-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-uEAT Manager-uEAT ManagerUITests/Pods-uEAT Manager-uEAT ManagerUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-uEAT Manager/Pods-uEAT Manager-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-uEAT Manager-uEAT ManagerUITests/Pods-uEAT Manager-uEAT ManagerUITests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		71170B9A271C09CF8FAFBD7C /* [CP] Embed Pods Frameworks */ = {
+		9DF6EF7531DA2E33B127AED3 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -776,23 +759,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-uEAT Manager-uEAT ManagerUITests/Pods-uEAT Manager-uEAT ManagerUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		8CE8CADEA10DDB409C30A1C4 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-uEAT Manager/Pods-uEAT Manager-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-uEAT Manager/Pods-uEAT Manager-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-uEAT Manager/Pods-uEAT Manager-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		BEDF86989528141592D7F913 /* [CP] Check Pods Manifest.lock */ = {
@@ -837,6 +803,40 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E9DED58442C26903161AF535 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-uEAT Manager/Pods-uEAT Manager-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-uEAT Manager/Pods-uEAT Manager-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-uEAT Manager/Pods-uEAT Manager-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FE9552EA7686691D6F43612F /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-uEAT Manager/Pods-uEAT Manager-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-uEAT Manager/Pods-uEAT Manager-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-uEAT Manager/Pods-uEAT Manager-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
