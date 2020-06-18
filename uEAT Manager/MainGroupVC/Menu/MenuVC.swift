@@ -366,10 +366,12 @@ class MenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource, MGSw
                     return
                     
                 }
+            
+                var i: ItemModel!
 
-                for item in snap!.documents {
+                for items in snap!.documents {
                     
-                    if let count = item["count"] as? Int {
+                    if let count = items["count"] as? Int {
                         var cum = 0
                         if type == "Plus" {
                             cum = count + 1
@@ -379,15 +381,53 @@ class MenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource, MGSw
                             cum = count + 0
                         }
                         
-                        if cum < 0 {
-                            self.showErrorAlert("Opss !!!", msg: "Can't perform action")
+                        if cum <= 0 {
+                            
+                            self.swiftLoader()
+                            
+                            let id = items.documentID
+                            DataService.instance.mainFireStoreRef.collection("Menu").document(id).updateData(["status": "Offline"])
+                            
+                            let dict = ["name": item.name as Any, "description": item.description as Any, "price": item.price as Any, "url": item.url as Any, "category": item.category as Any, "type": item.type as Any, "status": "Offline", "quanlity": item.quanlity as Any] as [String : Any]
+                            i = ItemModel(postKey: "Updated", Item_model: dict)
+                            
+                            if let type = item.type {
+                                     
+                                 if type == "Vegan"{
+                                     
+                                     self.vegan.remove(at: (path as NSIndexPath).row - 1)
+                                     self.vegan.insert(i, at: (path as NSIndexPath).row - 1)
+                            
+                                 } else if type == "Non-Vegan" {
+                                                       
+                                     self.Nonvegan.remove(at: (path as NSIndexPath).row - 1)
+                                     self.Nonvegan.insert(i, at: (path as NSIndexPath).row - 1)
+                                     
+                                 } else {
+                                     
+                                     self.AddOn.remove(at: (path as NSIndexPath).row - 1)
+                                     self.AddOn.insert(i, at: (path as NSIndexPath).row - 1)
+                                 }
+                             
+                             
+                            }
+                            
+                            self.menu.removeAll()
+                            self.menu.append(self.Nonvegan)
+                            self.menu.append(self.vegan)
+                            self.menu.append(self.AddOn)
+                            
+                            self.checkUpdate()
+                            SwiftLoader.hide()
+                            self.tableView.reloadData()
+                            
                         } else {
-                            let id = item.documentID
+                            let id = items.documentID
                             DataService.instance.mainFireStoreRef.collection("Menu").document(id).updateData(["count": cum])
                             
                         }
                     } else {
-                        let id = item.documentID
+                        let id = items.documentID
                         DataService.instance.mainFireStoreRef.collection("Menu").document(id).updateData(["count": 1])
                         
                     }

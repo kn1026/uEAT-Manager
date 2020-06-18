@@ -131,6 +131,7 @@ class SignInVC: UIViewController, UITextFieldDelegate {
                         
                         SwiftLoader.hide()
                         self.passwordTxtField.isHidden = false
+                        self.passwordTxtField.becomeFirstResponder()
                         return
                         
                     } else {
@@ -169,6 +170,7 @@ class SignInVC: UIViewController, UITextFieldDelegate {
                                     self.showErrorAlert("Congratulation !", msg: "Your password has been set, please login now")
                                     
                                     self.passwordTxtField.isHidden = false
+                                    self.passwordTxtField.becomeFirstResponder()
                                     
                                    
                                     

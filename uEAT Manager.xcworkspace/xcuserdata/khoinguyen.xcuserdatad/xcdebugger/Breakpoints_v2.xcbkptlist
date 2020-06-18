@@ -542,8 +542,8 @@
             filePath = "uEAT Manager/MainGroupVC/Menu/MenuVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "785"
-            endingLineNumber = "785"
+            startingLineNumber = "825"
+            endingLineNumber = "825"
             landmarkName = "deleteAtIndexPath(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -558,8 +558,8 @@
             filePath = "uEAT Manager/MainGroupVC/Menu/MenuVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "774"
-            endingLineNumber = "774"
+            startingLineNumber = "814"
+            endingLineNumber = "814"
             landmarkName = "deleteAtIndexPath(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -574,8 +574,8 @@
             filePath = "uEAT Manager/MainGroupVC/Menu/MenuVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "764"
-            endingLineNumber = "764"
+            startingLineNumber = "804"
+            endingLineNumber = "804"
             landmarkName = "deleteAtIndexPath(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -590,8 +590,8 @@
             filePath = "uEAT Manager/MainGroupVC/Menu/MenuVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "763"
-            endingLineNumber = "763"
+            startingLineNumber = "803"
+            endingLineNumber = "803"
             landmarkName = "deleteAtIndexPath(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -606,8 +606,8 @@
             filePath = "uEAT Manager/MainGroupVC/Menu/MenuVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "773"
-            endingLineNumber = "773"
+            startingLineNumber = "813"
+            endingLineNumber = "813"
             landmarkName = "deleteAtIndexPath(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -622,8 +622,8 @@
             filePath = "uEAT Manager/MainGroupVC/Menu/MenuVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "784"
-            endingLineNumber = "784"
+            startingLineNumber = "824"
+            endingLineNumber = "824"
             landmarkName = "deleteAtIndexPath(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -734,8 +734,8 @@
             filePath = "uEAT Manager/MainGroupVC/Menu/MenuVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "391"
-            endingLineNumber = "391"
+            startingLineNumber = "431"
+            endingLineNumber = "431"
             landmarkName = "handleCount(_:type:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -750,8 +750,8 @@
             filePath = "uEAT Manager/MainGroupVC/Menu/MenuVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "390"
-            endingLineNumber = "390"
+            startingLineNumber = "430"
+            endingLineNumber = "430"
             landmarkName = "handleCount(_:type:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -766,8 +766,8 @@
             filePath = "uEAT Manager/MainGroupVC/Menu/MenuVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "385"
-            endingLineNumber = "385"
+            startingLineNumber = "425"
+            endingLineNumber = "425"
             landmarkName = "handleCount(_:type:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -782,8 +782,8 @@
             filePath = "uEAT Manager/MainGroupVC/Menu/MenuVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "386"
-            endingLineNumber = "386"
+            startingLineNumber = "426"
+            endingLineNumber = "426"
             landmarkName = "handleCount(_:type:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -798,8 +798,8 @@
             filePath = "uEAT Manager/MainGroupVC/Menu/MenuVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "372"
-            endingLineNumber = "372"
+            startingLineNumber = "374"
+            endingLineNumber = "374"
             landmarkName = "handleCount(_:type:)"
             landmarkType = "7">
          </BreakpointContent>
