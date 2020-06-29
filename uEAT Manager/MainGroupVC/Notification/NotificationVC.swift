@@ -15,6 +15,7 @@ class NotificationVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var tableView: UITableView!
     var restaurant_id = ""
     var notification = [NotificationModel]()
+    private var pullControl = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +30,23 @@ class NotificationVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         let geoFire = GeoFire(firebaseRef: geofireRef)
         geoFire.setLocation(CLLocation(latitude: 43.1349243, longitude: -70.9261436), forKey: "gC1dQHQ44vdSQu103CeH")
         */
+        
+        pullControl.tintColor = UIColor.black
+        pullControl.addTarget(self, action: #selector(refreshListData(_:)), for: .valueChanged)
+        if #available(iOS 10.0, *) {
+            tableView.refreshControl = pullControl
+        } else {
+            tableView.addSubview(pullControl)
+        }
+        
+    }
+    
+    
+    @objc private func refreshListData(_ sender: Any) {
+       // self.pullControl.endRefreshing() // You can stop after API Call
+        // Call API
+        
+        self.getRestaurant_ID(email: (Auth.auth().currentUser?.email)!)
         
     }
     
@@ -53,7 +71,7 @@ class NotificationVC: UIViewController, UITableViewDelegate, UITableViewDataSour
             
         } else {
             
-            tableView.setEmptyMessage("Don't have any notifcation !!!")
+            tableView.setEmptyMessage("Loading notifcations !!!")
             return 1
             
         }
@@ -178,6 +196,9 @@ class NotificationVC: UIViewController, UITableViewDelegate, UITableViewDataSour
                               
                               
                     }
+                if self.pullControl.isRefreshing == true {
+                               self.pullControl.endRefreshing()
+                           }
                 
                 self.tableView.reloadData()
             

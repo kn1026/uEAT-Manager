@@ -15,7 +15,10 @@ import CoreLocation
 import SafariServices
 
 class ProfileVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate {
+    
+    var res_key = ""
 
+    @IBOutlet weak var isOpened: UISwitch!
     var feature = ["Open hours", "Payment", "Security", "Vouchers", "Contact Info", "Help & Support", "Log out"]
     @IBOutlet weak var tableView: UITableView!
     
@@ -27,6 +30,98 @@ class ProfileVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         tableView.delegate = self
         tableView.dataSource = self
         
+        
+    }
+    
+    
+    
+    func loadIsOpen() {
+        
+        //Open
+        
+        let emails = process_email(email: (Auth.auth().currentUser?.email)!)
+        
+        DataService.instance.mainFireStoreRef.collection("Restaurant").whereField("Email", isEqualTo: emails).getDocuments { (snap, err) in
+            
+            if err != nil {
+            
+                SwiftLoader.hide()
+                self.showErrorAlert("Opss !", msg: "Can't validate your menu")
+                return
+            
+            }
+            
+            
+            if snap?.isEmpty == true {
+                
+                SwiftLoader.hide()
+                self.showErrorAlert("Opss !", msg: "Your account isn't ready yet, please wait until getting an email from us or you can contact our support")
+                          
+            } else {
+                
+                
+                for item in snap!.documents {
+                    
+                    self.res_key = item.documentID
+                    
+                    
+                    if let openStatus = item.data()["Open"] as? Bool {
+                        
+                        if openStatus ==  true {
+                            
+                            self.isOpened.setOn(true, animated: true)
+                            
+                        } else {
+                            
+                            self.isOpened.setOn(false, animated: true)
+                            
+                        }
+                    } else {
+                        
+                        self.isOpened.setOn(false, animated: true)
+                        
+                    }
+                    
+                    
+                    
+                    
+                }
+                
+                
+                
+            }
+            
+            
+            
+        }
+        
+        
+        
+    }
+    
+    
+    func process_email(email: String) -> String {
+        
+        
+        var count = 0
+        let arr = Array(email)
+        var new = [String]()
+               
+        for i in arr {
+            
+            if count > 7 {
+                
+                new.append(String((i)))
+                
+            }
+                   
+                count += 1
+        }
+               
+        let stringRepresentation = new.joined(separator:"")
+               
+               
+        return stringRepresentation
         
     }
     
@@ -72,6 +167,7 @@ class ProfileVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         
         
         tableView.reloadData()
+        loadIsOpen()
         
     }
     
@@ -160,8 +256,9 @@ class ProfileVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         }
         else {
             
-            
+            try? imageStorage.removeAll()
             try? Auth.auth().signOut()
+            DataService.instance.mainRealTimeDataBaseRef.removeAllObservers()
             self.performSegue(withIdentifier: "moveToSignIn3VC", sender: nil)
             
             
@@ -200,6 +297,29 @@ class ProfileVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
       
     }
 
-
-
+    
+    @IBAction func OpenBtnPressed(_ sender: Any) {
+        
+        if isOpened.isOn == true {
+            
+            if self.res_key != "" {
+                
+                DataService.instance.mainFireStoreRef.collection("Restaurant").document(self.res_key).updateData(["Open": true])
+                
+            }
+            
+            
+        } else {
+            
+            if self.res_key != "" {
+                
+                DataService.instance.mainFireStoreRef.collection("Restaurant").document(self.res_key).updateData(["Open": false])
+                
+            }
+            
+        }
+        
+        
+    }
+    
 }

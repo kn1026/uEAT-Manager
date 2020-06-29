@@ -201,3 +201,7 @@ let dataStorage = try! Storage(
 
 
 let imageStorage = dataStorage.transformImage()
+
+var keysend = ""
+var frNotiUID = ""
+var frNotiType = ""

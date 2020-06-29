@@ -109,9 +109,7 @@ class ItemCell2: MGSwipeTableCell {
                     }
                     
                 }
-                
-                
-                
+                    
             }
             
         }

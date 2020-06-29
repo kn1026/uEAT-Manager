@@ -30,6 +30,7 @@ class MenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource, MGSw
     var sum = 0
     var restaurant_id = ""
     
+    private var pullControl = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,9 +40,18 @@ class MenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource, MGSw
         
         // Do any additional setup after loading the view.
         
-        self.getRestaurant_ID(email: (Auth.auth().currentUser?.email)!)
+        pullControl.tintColor = UIColor.black
+        pullControl.addTarget(self, action: #selector(refreshListData(_:)), for: .valueChanged)
+        if #available(iOS 10.0, *) {
+            tableView.refreshControl = pullControl
+        } else {
+            tableView.addSubview(pullControl)
+        }
         
+     
     }
+    
+
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -52,6 +62,8 @@ class MenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource, MGSw
         presented = nil
         
         checkUpdate()
+        
+        self.getRestaurant_ID(email: (Auth.auth().currentUser?.email)!)
         
         
     }
@@ -69,6 +81,8 @@ class MenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource, MGSw
     }
     
     func getRestaurant_ID(email: String) {
+
+       
         
         let emails = process_email(email: email)
         
@@ -76,16 +90,15 @@ class MenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource, MGSw
             
             if err != nil {
             
-                SwiftLoader.hide()
+                
                 self.showErrorAlert("Opss !", msg: "Can't validate your menu")
                 return
             
             }
-            
-            
+
             if snap?.isEmpty == true {
                 
-                SwiftLoader.hide()
+                
                 self.showErrorAlert("Opss !", msg: "Your account isn't ready yet, please wait until getting an email from us or you can contact our support")
                           
             } else {
@@ -114,6 +127,9 @@ class MenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource, MGSw
     
     func loadMenu(id: String) {
         
+        
+        
+        
         DataService.instance.mainFireStoreRef.collection("Menu").whereField("restaurant_id", isEqualTo: id).getDocuments { (snap, err) in
             
             if err != nil {
@@ -124,6 +140,12 @@ class MenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource, MGSw
             }
             
             var count = 0
+            
+            self.vegan.removeAll()
+            self.Nonvegan.removeAll()
+            self.AddOn.removeAll()
+            self.menu.removeAll()
+            
             
             for item in snap!.documents {
                 
@@ -157,10 +179,23 @@ class MenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource, MGSw
             self.menu.append(self.AddOn)
             
             
+            if self.pullControl.isRefreshing == true {
+                self.pullControl.endRefreshing()
+            }
+            
             self.tableView.reloadData()
             
    
         }
+        
+    }
+    
+    
+    @objc private func refreshListData(_ sender: Any) {
+       // self.pullControl.endRefreshing() // You can stop after API Call
+        // Call API
+        
+        self.getRestaurant_ID(email: (Auth.auth().currentUser?.email)!)
         
     }
     
@@ -206,8 +241,20 @@ class MenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource, MGSw
     
     func numberOfSections(in tableView: UITableView) -> Int {
         
+        
+        if menu.isEmpty != true {
+            
+            tableView.restore()
+            return menu.count
+            
+        } else {
+            
+            tableView.setEmptyMessage("Loading menu !!!")
+            return menu.count
+            
+        }
     
-        return menu.count
+
         
     }
     
@@ -335,6 +382,7 @@ class MenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource, MGSw
                         
                         transitem = item
                         presented = image
+                       
                         self.performSegue(withIdentifier: "moveToDetail2VC", sender: nil)
                         
                         //try? imageStorage.setObject(image, forKey: url)
@@ -472,6 +520,7 @@ class MenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource, MGSw
         presented = nil
 
     }
+
     
     func processItem(item: ItemModel) {
         

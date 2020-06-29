@@ -28,6 +28,7 @@ target 'uEAT Manager' do
   pod 'Firebase/Core'
   pod 'Firebase/Firestore'
   pod 'SCLAlertView'
+  pod 'JSQMessagesViewController'
 
   use_frameworks!
 

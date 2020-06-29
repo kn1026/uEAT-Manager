@@ -28,8 +28,6 @@ class NotificationCell: UITableViewCell {
         
 
         name.text = info.title
-        
-        
         icon.image = UIImage(named: "\(info.type!)")
         
         if info.timeStamp != nil {
