@@ -90,7 +90,7 @@ class NotificationVC: UIViewController, UITableViewDelegate, UITableViewDataSour
 
         if let cell = tableView.dequeueReusableCell(withIdentifier: "NotificationCell") as? NotificationCell {
                       
-            //cell.addItemBtn.addTarget(self, action: #selector(MenuVC.addItemBtnPressed), for: .touchUpInside)
+            
             cell.configureCell(item)
             return cell
                                          
@@ -181,6 +181,8 @@ class NotificationVC: UIViewController, UITableViewDelegate, UITableViewDataSour
                 return
                 
             }
+            
+            self.notification.removeAll()
             
             if snap?.isEmpty == true {
                                                    

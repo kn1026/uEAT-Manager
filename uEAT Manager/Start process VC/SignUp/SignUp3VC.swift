@@ -17,6 +17,7 @@ import SafariServices
 import Firebase
 import FirebaseAuth
 import SCLAlertView
+import GeoFire
 
 class SignUp3VC: UIViewController, UITextFieldDelegate, ZSWTappableLabelTapDelegate {
 
@@ -336,10 +337,12 @@ class SignUp3VC: UIViewController, UITextFieldDelegate, ZSWTappableLabelTapDeleg
                                             let id = ref!.documentID
                                             
                                             let data = ["Restaurant_id": id] as [String : Any]
-                                            let check_List = ["Two-factor-authentication": false, "Menu": false, "Timestamp": FieldValue.serverTimestamp(), "Restaurant_id": id] as [String : Any]
+                                            
                                             
                                             DataService.instance.mainFireStoreRef.collection("Restaurant").document(id).updateData(data)
-                                            DataService.instance.mainFireStoreRef.collection("Restaurant_check_list").document(id).setData(check_List)
+                                            
+                                            self.create_location(loc: self.RestaurantLocation, key: id)
+                                            
                                             
                                             DataService.instance.checkResEmailUserRef.child(testEmails).setValue(["Timestamp": ServerValue.timestamp()])
                                             DataService.instance.checReskPhoneUserRef.child("+1\(Phone)").setValue(["Timestamp": ServerValue.timestamp()])
@@ -410,6 +413,24 @@ class SignUp3VC: UIViewController, UITextFieldDelegate, ZSWTappableLabelTapDeleg
     }
     
     
+    func create_location(loc: CLLocationCoordinate2D, key: String) {
+         
+         let rootRef = Database.database().reference()
+         let geoRef = GeoFire(firebaseRef: rootRef.child("Restaurant_coordinator"))
+         
+    
+         
+        geoRef.setLocation(CLLocation(latitude: loc.latitude, longitude: loc.longitude), forKey: key) { (error) in
+             if (error != nil) {
+                 debugPrint("An error occured: \(error)")
+             } else {
+                 print("Saved location successfully!")
+             }
+         }
+            
+         
+     }
+    
     
     
     // func show error alert
@@ -449,5 +470,8 @@ class SignUp3VC: UIViewController, UITextFieldDelegate, ZSWTappableLabelTapDeleg
            
        }
     
+
+    
+   
 
 }

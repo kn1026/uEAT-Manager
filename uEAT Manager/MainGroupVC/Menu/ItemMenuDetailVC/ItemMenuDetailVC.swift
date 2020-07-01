@@ -1,9 +1,10 @@
+
 //
-//  DetailVC.swift
+//  ItemMenuDetailVC.swift
 //  uEAT Manager
 //
-//  Created by Khoi Nguyen on 11/25/19.
-//  Copyright © 2019 Khoi Nguyen. All rights reserved.
+//  Created by Khoi Nguyen on 6/30/20.
+//  Copyright © 2020 Khoi Nguyen. All rights reserved.
 //
 
 import UIKit
@@ -12,8 +13,9 @@ import AVKit
 import AVFoundation
 import Firebase
 
-class DetailVC: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate {
-
+class ItemMenuDetailVC: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate {
+    
+    
     @IBOutlet weak var uploadProfileImg: borderAvatarView!
     @IBOutlet weak var categoryTxtField: UITextField!
     @IBOutlet weak var nameTxtField: UITextField!
@@ -26,20 +28,18 @@ class DetailVC: UIViewController, UITextFieldDelegate, UINavigationControllerDel
     @IBOutlet weak var addOnBtn: UIButton!
     @IBOutlet weak var addItem: UIButton!
     
-    var type = ""
-    var cuisineList = [Cuisine_model]()
-    
+
     @IBOutlet weak var totalLbl: UILabel!
     
     var img: UIImage!
-    
+    var type = ""
+    var cuisineList = [Cuisine_model]()
+    var ModifyItem: ItemModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        
-        
         categoryTxtField.attributedPlaceholder = NSAttributedString(string: "Category",
                                                                         attributes: [NSAttributedString.Key.foregroundColor: UIColor.darkGray])
                
@@ -68,26 +68,38 @@ class DetailVC: UIViewController, UITextFieldDelegate, UINavigationControllerDel
         
         loadCuisine()
         
-        if transitem != nil {
-            
-            categoryTxtField.placeholder = transitem.category
-            nameTxtField.placeholder = transitem.name
-            descriptionTxtField.placeholder = transitem.description
-            priceTxtField.placeholder = "\(transitem.price!)"
-            totalLbl.text = "$\(transitem.price!)"
-            uploadProfileImg.image = transitem.img
+        
+        if ModifyItem != nil {
             
             addItem.setTitle("Save", for: .normal)
             
-            if transitem.img == nil {
+            categoryTxtField.placeholder = ModifyItem.category
+            nameTxtField.placeholder = ModifyItem.name
+            descriptionTxtField.placeholder = ModifyItem.description
+            priceTxtField.placeholder = "\(ModifyItem.price!)"
+            totalLbl.text = "$\(ModifyItem.price!)"
+           
+            if let url = ModifyItem.url {
                 
-                if presented != nil {
-                    uploadProfileImg.image = presented
+                
+                imageStorage.async.object(forKey: url) { result in
+                    if case .value(let image) = result {
+                        
+                        DispatchQueue.main.async { // Make sure you're on the main thread here
+                            
+                            
+                            self.uploadProfileImg.image = image
+                            
+                            
+                        }
+                        
+                    }
+                    
                 }
                 
             }
         
-            if transitem.type == "Vegan"{
+            if ModifyItem.type == "Vegan"{
                 
                 NonVeganBtn.backgroundColor = UIColor.clear
                 VeganBtn.backgroundColor = UIColor.yellow
@@ -95,7 +107,7 @@ class DetailVC: UIViewController, UITextFieldDelegate, UINavigationControllerDel
                 
                 type = "Vegan"
                  
-            } else if transitem.type == "Non-Vegan" {
+            } else if ModifyItem.type == "Non-Vegan" {
                 
                 NonVeganBtn.backgroundColor = UIColor.yellow
                 VeganBtn.backgroundColor = UIColor.clear
@@ -113,28 +125,10 @@ class DetailVC: UIViewController, UITextFieldDelegate, UINavigationControllerDel
                 
             }
 
-            
-            
+     
             
         }
         
-    }
-    
-    
-    
-    
-    @objc func textFieldDidChange(_ textField: UITextField) {
-        if let text = textField.text {
-            totalLbl.text = "$\(text)"
-        }
-        
-    }
-    
-    
-    @IBAction func categoryBtnPressed(_ sender: Any) {
-        
-        
-        createDayPicker()
         
     }
     
@@ -149,6 +143,13 @@ class DetailVC: UIViewController, UITextFieldDelegate, UINavigationControllerDel
         
         categoryTxtField.inputView = dayPicker
         
+        
+    }
+    
+    @objc func textFieldDidChange(_ textField: UITextField) {
+        if let text = textField.text {
+            totalLbl.text = "$\(text)"
+        }
         
     }
     
@@ -195,107 +196,6 @@ class DetailVC: UIViewController, UITextFieldDelegate, UINavigationControllerDel
         self.dismiss(animated: true, completion: nil)
         
     }
-    
-    
-    @IBAction func addItemBtnPressed(_ sender: Any) {
-        
-        if let text = addItem.titleLabel?.text, text == "Save" {
-            
-            var name = ""
-            var description = ""
-            var price: Float!
-            var category = ""
-            
-            if nameTxtField.text == "" {
-                name = transitem.name
-            } else {
-                name = nameTxtField.text!
-            }
-            
-            if descriptionTxtField.text == "" {
-                description = transitem.description
-            } else {
-                description = descriptionTxtField.text!
-            }
-            
-            if priceTxtField.text == "" {
-                price = transitem.price
-            } else {
-                price = Float(priceTxtField.text!)
-            }
-            
-            if categoryTxtField.text == "" {
-                category = transitem.category
-            } else {
-                category = categoryTxtField.text!
-            }
-            
-           
-            if img != nil {
-                
-                
-                let dict = ["name": name, "description": description, "price": price as Any, "img": img as Any, "category": category, "type": type, "status": "Offline", "quanlity": "None", "restaurant_id": transitem.Restaurant_ID!] as [String : Any]
-                
-                
-                let item = ItemModel(postKey: "1234", Item_model: dict)
-                transitem = item
-                
-    
-            } else {
-                
-
-                
-                let dict = ["name": name, "description": description, "price": price as Any, "img": uploadProfileImg.image as Any, "category": category, "type": type, "status": "Offline", "quanlity": "None", "restaurant_id": transitem.Restaurant_ID!] as [String : Any]
-                
-    
-                let item = ItemModel(postKey: "1234", Item_model: dict)
-                transitem = item
-                
-        
-                
-            }
-            
-            isSave = true
-            
-            NotificationCenter.default.post(name: (NSNotification.Name(rawValue: "setItem")), object: nil)
-            
-            self.dismiss(animated: true, completion: nil)
-            
-            
-            
-        } else {
-            
-            if let name = nameTxtField.text, name != "", let description = descriptionTxtField.text, description != "", let price = priceTxtField.text, price != "", img != nil, let category = categoryTxtField.text, category != "", type != "" {
-                
-                let pri = Float(price)
-                
-                
-                let dict = ["name": name, "description": description, "price": pri as Any, "img": img as Any, "category": category, "type": type, "status": "Online", "quanlity": "None"] as [String : Any]
-                let item = ItemModel(postKey: "1234", Item_model: dict)
-                transitem = item
-                isSave = false
-                NotificationCenter.default.post(name: (NSNotification.Name(rawValue: "setItem")), object: nil)
-                
-                self.dismiss(animated: true, completion: nil)
-                
-                
-            } else {
-                
-                self.showErrorAlert("Ops !!!", msg: "Please fill all required fields to continue !!!")
-                
-                
-            }
-            
-            
-        }
-        
-        
-        
-        
-    }
-    
-    
-    
     
     func getMediaFrom(_ type: String) {
         let mediaPicker = UIImagePickerController()
@@ -416,6 +316,11 @@ class DetailVC: UIViewController, UITextFieldDelegate, UINavigationControllerDel
         
            
     }
+    @IBAction func categoryBtnPressed(_ sender: Any) {
+        
+        createDayPicker()
+        
+    }
     
     // Hide the keyboard when the return key pressed
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -461,9 +366,223 @@ class DetailVC: UIViewController, UITextFieldDelegate, UINavigationControllerDel
         
     }
     
+    
+    @IBAction func addItemBtnPressed(_ sender: Any) {
+        
+        if let text = addItem.titleLabel?.text, text == "Save" {
+            
+            var name = ""
+            var description = ""
+            var price: Float!
+            var category = ""
+            
+            if nameTxtField.text == "" {
+                name = ModifyItem.name
+            } else {
+                name = nameTxtField.text!
+            }
+            
+            if descriptionTxtField.text == "" {
+                description = ModifyItem.description
+            } else {
+                description = descriptionTxtField.text!
+            }
+            
+            if priceTxtField.text == "" {
+                price = ModifyItem.price
+            } else {
+                price = Float(priceTxtField.text!)
+            }
+            
+            if categoryTxtField.text == "" {
+                category = ModifyItem.category
+            } else {
+                category = categoryTxtField.text!
+            }
+            
+            swiftLoader()
+            
+            if img != nil {
+                
+                
+                print(type)
+                
+                print("Img change")
+                let dict = ["name": name, "description": description, "price": price as Any, "img": img as Any, "category": category, "type": type, "status": ModifyItem.status!, "quanlity": ModifyItem.quanlity!, "restaurant_id": ModifyItem.Restaurant_ID!] as [String : Any]
+                let saveItem = ItemModel(postKey: "1234", Item_model: dict)
+                
+                processItem(img: img, item: saveItem, restaurant_id: ModifyItem.Restaurant_ID, type: type)
+                
+            
+                
+                
+            } else {
+                
+                
+                print(type)
+                
+                print("Img not changing")
+                let dict = ["name": name, "description": description, "price": price as Any, "img": img as Any, "category": category, "type": type, "status": ModifyItem.status!, "quanlity": ModifyItem.quanlity!, "restaurant_id": ModifyItem.Restaurant_ID!] as [String : Any]
+                let saveItem = ItemModel(postKey: "1234", Item_model: dict)
+                
+                uploadData(item: saveItem, url: ModifyItem.url, originItem: ModifyItem)
+                
+            }
+            
+            
+        } else {
+            
+            if let name = nameTxtField.text, name != "", let description = descriptionTxtField.text, description != "", let price = priceTxtField.text, price != "", img != nil, let category = categoryTxtField.text, category != "", type != "" {
+                
+                let pri = Float(price)
+                
+                
+                let dict = ["name": name, "description": description, "price": pri as Any, "img": img as Any, "category": category, "type": type, "status": "Offline", "quanlity": "None"] as [String : Any]
+                let item = ItemModel(postKey: "1234", Item_model: dict)
+                transitem = item
+                
+                
+                NotificationCenter.default.post(name: (NSNotification.Name(rawValue: "setItem")), object: nil)
+                
+                self.dismiss(animated: true, completion: nil)
+                
+                
+            } else {
+                
+                self.showErrorAlert("Ops !!!", msg: "Please fill all required fields to continue !!!")
+                
+                
+            }
+            
+            
+        }
+        
+        
+    }
+    
+    func processItem(img: UIImage!, item: ItemModel, restaurant_id: String, type: String) {
+        
+         
+          let metaData = StorageMetadata()
+          let imageUID = UUID().uuidString
+          metaData.contentType = "image/jpeg"
+          var imgData = Data()
+          imgData = img.jpegData(compressionQuality: 1.0)!
+          
+
+            DataService.instance.mainStorageRef.child(item.type).child(imageUID).putData(imgData, metadata: metaData) { (meta, err) in
+              
+              if err != nil {
+                  
+                  SwiftLoader.hide()
+                  self.showErrorAlert("Oopss !!!", msg: "Error while saving your image, please try again")
+                  print(err?.localizedDescription as Any)
+                  
+              } else {
+                  
+                  DataService.instance.mainStorageRef.child(type).child(imageUID).downloadURL(completion: { (url, err) in
+                      
+                      
+                      guard let Url = url?.absoluteString else { return }
+                      
+                      let downUrl = Url as String
+                      let downloadUrl = downUrl as NSString
+                      let downloadedUrl = downloadUrl as String
+                     self.uploadData(item: item, url: downloadedUrl, originItem: self.ModifyItem)
+                  })
+                
+            }
+            
+        }
+        
+    }
+    
+    
+    func generateNotification(title: String, description: String, type: String, item: ItemModel) {
+        
+        let Notification = ["title": title as Any, "description": description as Any, "restaurant_id": item.Restaurant_ID!, "timeStamp": FieldValue.serverTimestamp(), "type": "Add"] as [String : Any]
+        let db = DataService.instance.mainFireStoreRef.collection("Restaurant_notification")
+        
+          db.addDocument(data: Notification) { err in
+          
+              if let err = err {
+                  
+                  
+                  self.showErrorAlert("Opss !", msg: err.localizedDescription)
+                  
+              } else {
+                
+                print("Updated")
+            }
+            
+            
+        }
+        
+        
+    }
+    
+    func uploadData(item: ItemModel, url: String, originItem: ItemModel) {
+        
+        
+        let dict = ["name": item.name as Any, "description": item.description as Any, "price": item.price as Any, "url": url as Any, "category": item.category as Any, "type": item.type!, "restaurant_id": item.Restaurant_ID!, "timeStamp": FieldValue.serverTimestamp()] as [String : Any]
+        
+        DataService.instance.mainFireStoreRef.collection("Menu").whereField("restaurant_id", isEqualTo: item.Restaurant_ID!).whereField("name", isEqualTo: originItem.name as Any).whereField("description", isEqualTo: originItem.description as Any).whereField("category", isEqualTo: originItem.category as Any).getDocuments { (snap, err) in
+        
+                if err != nil {
+                    
+                    SwiftLoader.hide()
+                    self.showErrorAlert("Opss !", msg: err!.localizedDescription)
+                    return
+                    
+                }
+                
+
+                for items in snap!.documents {
+                    
+                    let id = items.documentID
+                    DataService.instance.mainFireStoreRef.collection("Menu").document(id).updateData(dict)
+                    self.generateNotification(title: "Updated menu", description: "Updated items", type: "Add", item: item)
+                    
+     
+                    self.categoryTxtField.placeholder = item.category
+                    self.nameTxtField.placeholder = item.name
+                    self.descriptionTxtField.placeholder = item.description
+                    self.priceTxtField.placeholder = "\(item.price!)"
+                    self.totalLbl.text = "$\(item.price!)"
+                    
+                    if self.img == nil {
+                        self.uploadProfileImg.image = self.uploadProfileImg.image
+                    } else {
+                        self.uploadProfileImg.image = self.img
+                    }
+                    
+                    
+                    
+                    
+                    self.categoryTxtField.text = ""
+                    self.nameTxtField.text = ""
+                    self.descriptionTxtField.text = ""
+                    self.priceTxtField.text = ""
+                    self.img = nil
+                    
+                    SwiftLoader.hide()
+                    
+                    self.dismiss(animated: true, completion: nil)
+
+                    
+                    
+                    
+            }
+            
+        }
+        
+        
+    }
+    
+    
 }
 
-extension DetailVC: UIImagePickerControllerDelegate {
+extension ItemMenuDetailVC: UIImagePickerControllerDelegate {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
@@ -481,7 +600,7 @@ extension DetailVC: UIImagePickerControllerDelegate {
 }
 
 
-extension DetailVC: UIPickerViewDelegate, UIPickerViewDataSource {
+extension ItemMenuDetailVC: UIPickerViewDelegate, UIPickerViewDataSource {
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         
@@ -529,17 +648,5 @@ extension DetailVC: UIPickerViewDelegate, UIPickerViewDataSource {
         return label
 
         
-    }
-}
-
-
-extension UITextField{
-    @IBInspectable var placeHolderColor: UIColor? {
-        get {
-            return self.placeHolderColor
-        }
-        set {
-            self.attributedPlaceholder = NSAttributedString(string:self.placeholder != nil ? self.placeholder! : "", attributes:[NSAttributedString.Key.foregroundColor: newValue!])
-        }
     }
 }

@@ -55,10 +55,7 @@ class CreateMenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        transitem = nil
-        
-       
-        
+    
         
     }
     
@@ -217,7 +214,13 @@ class CreateMenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         
         
         let item = menu[indexPath.section][indexPath.row - 1]
+        NotificationCenter.default.addObserver(self, selector: #selector(CreateMenuVC.setItem), name: (NSNotification.Name(rawValue: "setItem")), object: nil)
+        
+        
         transitem = item
+        originItem = item
+        
+        print(transitem.name, originItem.name)
         
         self.performSegue(withIdentifier: "moveToDetailTemVC", sender: nil)
       
@@ -250,10 +253,183 @@ class CreateMenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     @objc func setItem() {
         
         NotificationCenter.default.removeObserver(self, name: (NSNotification.Name(rawValue: "setItem")), object: nil)
-        processItem(item: transitem)
+        
+        if isSave == false {
+            processItem(item: transitem)
+        } else {
+           
+            replaceAndProcessItem(item: transitem)
+            
+        }
+    
         transitem = nil
+        originItem = nil
 
     }
+    
+    func replaceAndProcessItem(item: ItemModel) {
+        
+        if let type = originItem.type {
+            
+            var index = 0
+           
+            
+            if type == "Vegan"{
+                
+                for i in vegan {
+                    
+    
+                    if i.category == originItem.category, i.name == originItem.name, i.type == originItem.type {
+                        
+                        
+                        
+                        if originItem.type != item.type {
+                            
+                            if item.type ==  "Non-Vegan" {
+                                
+                                self.Nonvegan.insert(item, at: 0)
+                                
+                                
+                            } else {
+                                
+                                self.AddOn.insert(item, at: 0)
+                                
+                            }
+                            
+                            
+                            self.vegan.remove(at: index)
+                            
+                            
+                        } else {
+                            
+                            self.vegan[index] = item
+                            
+                        }
+                        
+    
+                        
+                    
+
+                    } else {
+                        
+                        print("Can't find")
+                        
+                    }
+                    
+                    index += 1
+                    
+                }
+                
+                
+                
+            } else if type == "Non-Vegan" {
+                
+                
+                
+                
+                for i in Nonvegan {
+                    
+                    if i.category == originItem.category, i.name == originItem.name {
+                        
+                        if originItem.type != item.type {
+                            
+                            if item.type ==  "Vegan" {
+                                
+                                self.vegan.insert(item, at: 0)
+                                
+                                
+                            } else {
+                                
+                                self.AddOn.insert(item, at: 0)
+                                
+                            }
+                            
+                            
+                            self.Nonvegan.remove(at: index)
+                            
+                            
+                        } else {
+                            
+                            self.Nonvegan[index] = item
+                            
+                        }
+                        
+                       
+                        
+                        
+                      
+                    } else {
+                        
+                        print("Can't find")
+                        
+                    }
+                    
+                    index += 1
+                    
+                }
+                
+            } else {
+                
+                for i in AddOn {
+                                    
+                    
+                    if i.category == originItem.category, i.name == originItem.name {
+                        
+                        
+                       if originItem.type != item.type {
+                           
+                           if item.type ==  "Vegan" {
+                               
+                               self.vegan.insert(item, at: 0)
+                               
+                               
+                           } else {
+                               
+                               self.Nonvegan.insert(item, at: 0)
+                               
+                           }
+                           
+                           
+                           self.AddOn.remove(at: index)
+                           
+                           
+                       } else {
+                            
+                            self.AddOn[index] = item
+                            
+                        }
+                      
+               
+                        
+                       
+                    } else {
+                        
+                        print("Can't find")
+                        
+                    }
+                    
+                    index += 1
+                    
+                }
+                
+            }
+            
+            
+
+             self.menu.removeAll()
+             menu.append(Nonvegan)
+             menu.append(vegan)
+             menu.append(AddOn)
+             self.tableView.reloadData()
+          
+              
+            
+        } else {
+            print("Can't load type")
+        }
+    
+    }
+    
     
     func processItem(item: ItemModel) {
         
@@ -655,15 +831,14 @@ class CreateMenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource
               } else {
                   
                   DataService.instance.mainStorageRef.child(type).child(imageUID).downloadURL(completion: { (url, err) in
-                      
-                      
+                          
                       guard let Url = url?.absoluteString else { return }
                       
                       let downUrl = Url as String
                       let downloadUrl = downUrl as NSString
                       let downloadedUrl = downloadUrl as String
                     
-                      let dict = ["name": item.name as Any, "description": item.description as Any, "price": item.price as Any, "url": downloadedUrl as Any, "category": item.category as Any, "type": type, "restaurant_id": restaurant_id, "timeStamp": ServerValue.timestamp()] as [String : Any]
+                      let dict = ["name": item.name as Any, "description": item.description as Any, "price": item.price as Any, "url": downloadedUrl as Any, "category": item.category as Any, "type": type, "restaurant_id": restaurant_id, "timeStamp": ServerValue.timestamp(), "Quanlity": "None"] as [String : Any]
                       let db = DataService.instance.mainFireStoreRef.collection("Menu")
                     
                       db.addDocument(data: dict) { err in
@@ -675,8 +850,7 @@ class CreateMenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource
                               
                           } else {
                             
-                            
-                            
+             
                             self.counted += 1
                             
                             if self.counted == self.sum {

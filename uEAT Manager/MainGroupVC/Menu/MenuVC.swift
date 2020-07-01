@@ -16,6 +16,8 @@ class MenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource, MGSw
     @IBOutlet weak var tableView: UITableView!
     
     
+    var ModifyItem: ItemModel!
+    
     var section = ["Non-Vegan", "Vegan", "Add-Ons"]
     var menu = [[ItemModel]]()
     var vegan = [ItemModel]()
@@ -29,6 +31,8 @@ class MenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource, MGSw
     var counted = 0
     var sum = 0
     var restaurant_id = ""
+    
+    var MenuObserve: UInt!
     
     private var pullControl = UIRefreshControl()
     
@@ -61,7 +65,7 @@ class MenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource, MGSw
         transitem = nil
         presented = nil
         
-        checkUpdate()
+        
         
         self.getRestaurant_ID(email: (Auth.auth().currentUser?.email)!)
         
@@ -106,10 +110,31 @@ class MenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource, MGSw
                 
                 for item in snap!.documents {
                     
+                    
                     let id = item.documentID
                     self.restaurant_id = id
-                    self.loadMenu(id: id)
-            
+                    
+                    
+                    if self.MenuObserve != nil {
+                          
+                          DataService.instance.mainRealTimeDataBaseRef.removeObserver(withHandle: self.MenuObserve)
+                          
+                      }
+                    
+                 
+                    
+                    self.MenuObserve = DataService.instance.mainRealTimeDataBaseRef.child("Upcomming_menu").child(item.documentID).observe(.value, with: { (cancelData) in
+                          
+                        
+                        
+                        self.loadMenu(id: id)
+                          
+                         
+                          
+                      })
+                    
+                    
+                   
                     
                 }
                 
@@ -145,6 +170,10 @@ class MenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource, MGSw
             self.Nonvegan.removeAll()
             self.AddOn.removeAll()
             self.menu.removeAll()
+            
+            self.NewAddOn.removeAll()
+            self.Newvegan.removeAll()
+            self.NewNonvegan.removeAll()
             
             
             for item in snap!.documents {
@@ -183,6 +212,8 @@ class MenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource, MGSw
                 self.pullControl.endRefreshing()
             }
             
+            
+            SwiftLoader.hide()
             self.tableView.reloadData()
             
    
@@ -299,17 +330,21 @@ class MenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource, MGSw
                 
                 
                 if item.status != "Online" {
-                    cell.backgroundColor = UIColor.placeholderText
-                    cell.Quanlity.isHidden = true
-                } else {
-                    cell.backgroundColor = UIColor.clear
                     
-                    if item.quanlity != "None" {
-                        //
+                    cell.lock.isHidden = false
+                    cell.Quanlity.isHidden = true
+                    
+                } else {
+                    cell.lock.isHidden = true
+                    
+                    if item.quanlity == "0" {
+                        
                         cell.Quanlity.isHidden = false
-                    } else {
+                        cell.lim.text = "Limit"
+                    } else if item.quanlity == "None" {
                         cell.Quanlity.isHidden = true
-                        //cell.backgroundColor = UIColor.clear
+                         cell.lim.text = "No limit"
+                        
                     }
                 }
                  
@@ -371,32 +406,30 @@ class MenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource, MGSw
         let item = menu[indexPath.section][indexPath.row - 1]
         
         
-        if let url = item.url {
-            
-            
-            imageStorage.async.object(forKey: url) { result in
-                if case .value(let image) = result {
-                    
-                    DispatchQueue.main.async { // Make sure you're on the main thread here
-                        
-                        
-                        transitem = item
-                        presented = image
-                       
-                        self.performSegue(withIdentifier: "moveToDetail2VC", sender: nil)
-                        
-                        //try? imageStorage.setObject(image, forKey: url)
-                        
-                    }
-                    
-                }
-                
-            }
-            
-            
-        }
+        self.ModifyItem = item
+        
+        self.performSegue(withIdentifier: "moveToDetailMenu2", sender: nil)
+        
+        
+        
 
       
+        
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        
+        
+        if segue.identifier == "moveToDetailMenu2"{
+            if let destination = segue.destination as? ItemMenuDetailVC {
+                
+                destination.ModifyItem = self.ModifyItem
+            
+                
+            }
+        }
         
         
     }
@@ -507,7 +540,7 @@ class MenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource, MGSw
         
         NotificationCenter.default.addObserver(self, selector: #selector(MenuVC.setItem), name: (NSNotification.Name(rawValue: "setItem")), object: nil)
            
-        self.performSegue(withIdentifier: "moveToDetail2VC", sender: nil)
+        self.performSegue(withIdentifier: "moveToDetailMenu2", sender: nil)
     
            
     }
@@ -516,6 +549,7 @@ class MenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource, MGSw
         
         NotificationCenter.default.removeObserver(self, name: (NSNotification.Name(rawValue: "setItem")), object: nil)
         processItem(item: transitem)
+        checkUpdate()
         transitem = nil
         presented = nil
 
@@ -548,7 +582,7 @@ class MenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource, MGSw
             menu.append(Nonvegan)
             menu.append(vegan)
             menu.append(AddOn)
-            
+         
             
            self.tableView.reloadData()
             
@@ -842,8 +876,7 @@ class MenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource, MGSw
        func deleteAtIndexPath(_ path: IndexPath) {
         
            let item = menu[(path as NSIndexPath).section][(path as NSIndexPath).row - 1]
-
-           
+          
            if let type = item.type {
                     
                 if type == "Vegan"{
@@ -881,11 +914,34 @@ class MenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource, MGSw
             
             }
         
-              
-           self.menu[(path as NSIndexPath).section].remove(at: (path as NSIndexPath).row - 1)
-           self.generateNotification(title: "Removed item \(item.name!)", description: "Remove \(item.name!)", type: "Remove")
-           checkUpdate()
-           self.tableView.reloadData()
+        
+            DataService.instance.mainFireStoreRef.collection("Menu").whereField("restaurant_id", isEqualTo: self.restaurant_id).whereField("name", isEqualTo: item.name as Any).whereField("description", isEqualTo: item.description as Any).whereField("category", isEqualTo: item.category as Any).getDocuments { (snap, err) in
+            
+                    if err != nil {
+                        
+                        SwiftLoader.hide()
+                        self.showErrorAlert("Opss !", msg: err!.localizedDescription)
+                        return
+                        
+                    }
+                    
+
+                    for items in snap!.documents {
+                        
+                        let id = items.documentID
+                        DataService.instance.mainFireStoreRef.collection("Menu").document(id).delete()
+                        
+                        self.menu[(path as NSIndexPath).section].remove(at: (path as NSIndexPath).row - 1)
+                        self.generateNotification(title: "Removed item \(item.name!)", description: "Remove \(item.name!)", type: "Remove")
+                        self.checkUpdate()
+                        self.tableView.reloadData()
+                        
+                        
+                }
+                
+            }
+        
+    
            
        }
     
@@ -914,8 +970,7 @@ class MenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource, MGSw
                     self.uploadAddOn{
                         
                         
-                        
-                        
+            
                     }
                 }
             }
@@ -1002,7 +1057,7 @@ class MenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource, MGSw
                       let downloadUrl = downUrl as NSString
                       let downloadedUrl = downloadUrl as String
                     
-                      let dict = ["name": item.name as Any, "description": item.description as Any, "price": item.price as Any, "url": downloadedUrl as Any, "category": item.category as Any, "type": type, "restaurant_id": restaurant_id, "timeStamp": FieldValue.serverTimestamp()] as [String : Any]
+                    let dict = ["name": item.name as Any, "description": item.description as Any, "price": item.price as Any, "url": downloadedUrl as Any, "category": item.category as Any, "type": type, "restaurant_id": restaurant_id, "timeStamp": FieldValue.serverTimestamp(), "quanlity": "None", "status": "Offline"] as [String : Any]
                       let db = DataService.instance.mainFireStoreRef.collection("Menu")
                     
                       db.addDocument(data: dict) { err in
@@ -1017,11 +1072,13 @@ class MenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource, MGSw
                             
                             
                             self.counted += 1
+                            self.generateNotification(title: "Updated menu", description: "Updated \(self.counted) items", type: "Add")
                             
                             if self.counted == self.sum {
                                 
-                                self.generateNotification(title: "Updated menu", description: "Updated \(self.counted) items", type: "Add")
-                                SwiftLoader.hide()
+                                
+                                self.getRestaurant_ID(email: (Auth.auth().currentUser?.email)!)
+                                
                                 
                                 
                             }

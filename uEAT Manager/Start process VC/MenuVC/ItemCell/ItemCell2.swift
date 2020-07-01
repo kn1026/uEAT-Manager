@@ -16,9 +16,13 @@ class ItemCell2: MGSwipeTableCell {
     @IBOutlet weak var Quanlity: UIStackView!
 
     @IBOutlet var img: UIImageView!
+    @IBOutlet var lock: UIImageView!
+    @IBOutlet var lim: UILabel!
     @IBOutlet var name: UILabel!
     @IBOutlet var price: UILabel!
     @IBOutlet var count: UILabel!
+    
+    
     
     
     @IBOutlet weak var plusBtnPressed: UIButton!
