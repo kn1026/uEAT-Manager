@@ -22,7 +22,7 @@ class MessageDetailVC: JSQMessagesViewController, UINavigationControllerDelegate
     var chatOrderID = ""
     var chatKey = ""
     var displayName = ""
-    
+    var userUID = ""
     
     var handleObserve: UInt!
     
@@ -101,6 +101,24 @@ class MessageDetailVC: JSQMessagesViewController, UINavigationControllerDelegate
             observeMessages(FinalKey: chatKey)
             keysend = chatKey
         
+            setOnline()
+        
+        
+    }
+    
+    
+    func setOnline() {
+        
+        
+        
+        DataService.instance.mainRealTimeDataBaseRef.child("Order_Chat_Info").child(self.chatKey).updateChildValues([self.chatUID: 1])
+        
+        
+    }
+    
+    func setOffline() {
+        
+       DataService.instance.mainRealTimeDataBaseRef.child("Order_Chat_Info").child(self.chatKey).updateChildValues([self.chatUID: 0])
         
     }
     
@@ -174,6 +192,61 @@ class MessageDetailVC: JSQMessagesViewController, UINavigationControllerDelegate
                         
                         newMessage.setValue(messageData)
                         DataService.instance.mainFireStoreRef.collection("Chat_orders").document(self.chatKey).updateData(chatInformation)
+                        
+                        DataService.instance.mainRealTimeDataBaseRef.child("Order_Chat_Info").child(key).updateChildValues(["Last_message": text!])
+                        
+                        DataService.instance.mainRealTimeDataBaseRef.child("Order_Chat_Info").child(self.chatKey).observeSingleEvent(of: .value, with: { (snapInfo) in
+                        
+                        
+                            if snapInfo.exists() {
+                                
+                                if let postDict = snapInfo.value as? Dictionary<String, Any> {
+                                    
+                                    
+                                    if let status = postDict[self.userUID] as? Int {
+                                        
+                                        if status == 0 {
+                                            
+                                            DataService.instance.mainRealTimeDataBaseRef.child("userChatNoti").child(self.userUID).child(key).removeValue()
+                                            let values: Dictionary<String, AnyObject>  = [key: 1 as AnyObject]
+                                            DataService.instance.mainRealTimeDataBaseRef.child("userChatNoti").child(self.userUID).setValue(values)
+                                            
+                                        } else if status == 1 {
+                                            
+                                            print("Online")
+                                            
+                                        } else {
+                                            
+                                            DataService.instance.mainRealTimeDataBaseRef.child("userChatNoti").child(self.userUID).child(key).removeValue()
+                                            let values: Dictionary<String, AnyObject>  = [key: 1 as AnyObject]
+                                            DataService.instance.mainRealTimeDataBaseRef.child("userChatNoti").child(self.userUID).setValue(values)
+                                            
+                                        }
+                                        
+                                    } else {
+                                        
+                                        DataService.instance.mainRealTimeDataBaseRef.child("userChatNoti").child(self.userUID).child(key).removeValue()
+                                        let values: Dictionary<String, AnyObject>  = [key: 1 as AnyObject]
+                                        DataService.instance.mainRealTimeDataBaseRef.child("userChatNoti").child(self.userUID).setValue(values)
+                                        
+                                        
+                                    }
+                                    
+                                }
+                                
+                            } else {
+                                
+                                
+                                DataService.instance.mainRealTimeDataBaseRef.child("userChatNoti").child(self.userUID).child(key).removeValue()
+                                let values: Dictionary<String, AnyObject>  = [key: 1 as AnyObject]
+                                DataService.instance.mainRealTimeDataBaseRef.child("userChatNoti").child(self.userUID).setValue(values)
+                                
+                            }
+                            
+                            
+                        })
+                        
+                        
                         
                         
                     }
@@ -298,19 +371,13 @@ class MessageDetailVC: JSQMessagesViewController, UINavigationControllerDelegate
             }
         }
 
-        @IBAction func backBtnPressed(_ sender: Any) {
-            
 
-            let messageRef = DataService.instance.mainRealTimeDataBaseRef.child("Order_Chat").child(chatKey).child("message")
-            messageRef.removeObserver(withHandle: handleObserve)
-            
-            self.dismiss(animated: true, completion: nil)
-            
-        }
     @IBAction func back1BtnPressed(_ sender: Any) {
         
         let messageRef = DataService.instance.mainRealTimeDataBaseRef.child("Order_Chat").child(chatKey).child("message")
         messageRef.removeObserver(withHandle: handleObserve)
+        
+        setOffline()
         
         self.dismiss(animated: true, completion: nil)
         

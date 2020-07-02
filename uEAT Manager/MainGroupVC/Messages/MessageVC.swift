@@ -16,6 +16,10 @@ class MessageVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var chatOrderID = ""
     var chatKey = ""
     var displayName = ""
+    var userUID = ""
+   
+    
+    
     private var pullControl = UIRefreshControl()
 
     @IBOutlet weak var tableView: UITableView!
@@ -37,6 +41,15 @@ class MessageVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         } else {
             tableView.addSubview(pullControl)
         }
+        
+    }
+    
+    func setOnline() {
+        
+    }
+    
+    func setOffline() {
+        
         
     }
     
@@ -123,6 +136,8 @@ class MessageVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         self.chatUID = item.Restaurant_ID
         self.chatOrderID = item.order_id
         self.chatKey = item.chat_key!
+        self.userUID = item.userUID!
+        
         
         self.performSegue(withIdentifier: "moveToChatDetailVC", sender: nil)
         
@@ -146,6 +161,7 @@ class MessageVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             ChatController?.chatUID = chatUID
             ChatController?.chatOrderID = chatOrderID
             ChatController?.chatKey = chatKey
+            ChatController?.userUID = userUID
 
                   
         }

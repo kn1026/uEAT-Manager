@@ -14,7 +14,7 @@ import Stripe
 import UserNotifications
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUserNotificationCenterDelegate {
 
     private let baseURLString: String = "https://obscure-harbor-40524.herokuapp.com/"
     private let appleMerchantIdentifier: String = "merchant.campusConnectPay"
@@ -28,6 +28,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         GMSPlacesClient.provideAPIKey(googleMap_Key)
         STPPaymentConfiguration.shared().publishableKey = Stripe_key
         FirebaseApp.configure()
+        
+        attemptRegisterForNotifications(application: application)
         
         let userDefaults = UserDefaults.standard
         
@@ -57,6 +59,110 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
+    
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        print("Registered for notifications:", deviceToken)
+    }
+    
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
+        print("Registered with FCM with token:", fcmToken)
+    }
+    
+    // listen for user notifications
+     @available(iOS 10.0, *)
+     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+         completionHandler(.alert)
+         
+         
+         
+         
+         
+     }
+     
+     func application(_ application: UIApplication, didRegister notificationSettings: UIUserNotificationSettings) {
+         
+         
+     }
+     
+     
+    
+     
+     @available(iOS 10.0, *)
+     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+         
+         let userInfo = response.notification.request.content.userInfo
+
+         
+         if let followerId = userInfo["followerId"] as? String {
+             print(followerId)
+             
+             // I want to push the UserProfileController for followerId somehow
+             /*
+             let userProfileController = UserProfileController(collectionViewLayout: UICollectionViewFlowLayout())
+             userProfileController.userId = followerId
+             
+             // how do we access our main UI from AppDelegate?
+             if let mainTabBarController = window?.rootViewController as? MainTabBarController {
+                 
+                 mainTabBarController.selectedIndex = 0
+                 
+                 mainTabBarController.presentedViewController?.dismiss(animated: true, completion: nil)
+                 
+                 if let homeNavigationController = mainTabBarController.viewControllers?.first as? UINavigationController {
+                     
+                     homeNavigationController.pushViewController(userProfileController, animated: true)
+                     
+                 }
+                 
+             }
+             
+             */
+         }
+     }
+     
+     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+         
+         
+     }
+     
+     
+     
+     private func attemptRegisterForNotifications(application: UIApplication) {
+         print("Attempting to register APNS...")
+         
+         Messaging.messaging().delegate = self
+         
+         if #available(iOS 10.0, *) {
+             UNUserNotificationCenter.current().delegate = self
+             // user notifications auth
+             // all of this works for iOS 10+
+             let options: UNAuthorizationOptions = [.alert, .badge, .sound]
+             UNUserNotificationCenter.current().requestAuthorization(options: options) { (granted, err) in
+                 if let err = err {
+                     print("Failed to request auth:", err)
+                     return
+                 }
+                 
+                 if granted {
+                     print("Auth granted.")
+                 } else {
+                     print("Auth denied")
+                 }
+             }
+         } else {
+             
+             let notificationSettings = UIUserNotificationSettings(types: [.badge, .sound, .alert], categories: nil)
+             application.registerUserNotificationSettings(notificationSettings)
+             
+             
+         }
+         
+        
+         
+         application.registerForRemoteNotifications()
+        
+        
+     }
 
   
 

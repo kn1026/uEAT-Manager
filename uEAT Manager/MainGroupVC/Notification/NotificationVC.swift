@@ -23,13 +23,6 @@ class NotificationVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         tableView.delegate = self
         tableView.dataSource = self
         
-        /*
-        let geoFireUrl = DataService.instance.mainRealTimeDataBaseRef.child("Restaurant_coordinator")
-        let GameIDCheck = "gC1dQHQ44vdSQu103CeH"
-        let geofireRef = geoFireUrl
-        let geoFire = GeoFire(firebaseRef: geofireRef)
-        geoFire.setLocation(CLLocation(latitude: 43.1349243, longitude: -70.9261436), forKey: "gC1dQHQ44vdSQu103CeH")
-        */
         
         pullControl.tintColor = UIColor.black
         pullControl.addTarget(self, action: #selector(refreshListData(_:)), for: .valueChanged)
@@ -38,6 +31,60 @@ class NotificationVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         } else {
             tableView.addSubview(pullControl)
         }
+        
+        
+        
+    }
+    
+    
+    func setupFCMToken(id: String) {
+        
+        
+        guard let fcmToken = Messaging.messaging().fcmToken else { return }
+        
+        DataService.instance.fcmTokenUserRef.child(id).observeSingleEvent(of: .value, with: { (snapInfo) in
+        
+        
+            if snapInfo.exists() {
+                
+                
+                if let snap = snapInfo.children.allObjects as? [DataSnapshot] {
+     
+                var final = false
+                    
+                for item in snap {
+                    
+                    if item.key == fcmToken {
+                        
+                        final = true
+                        
+                    }
+                    
+                }
+                    
+                    if final == false {
+                        
+                        let profile = [fcmToken: 0 as AnyObject]
+                        DataService.instance.fcmTokenUserRef.child(id).updateChildValues(profile)
+                        
+                    }
+               
+                
+            } else {
+                
+                let profile = [fcmToken: 0 as AnyObject]
+                DataService.instance.fcmTokenUserRef.child(id).updateChildValues(profile)
+                
+                
+            }
+   
+                
+        }
+            
+        })
+        
+      
+        
         
     }
     
@@ -162,6 +209,7 @@ class NotificationVC: UIViewController, UITableViewDelegate, UITableViewDataSour
                     
                     let id = item.documentID
                     self.restaurant_id = id
+                    self.setupFCMToken(id: id)
                     self.loadNotifcation(id: id)
                     
                 }

@@ -400,6 +400,7 @@ class OrderDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
                         self.actionBtn.setTitle("Ready for pick up", for: .normal)
                         NotificationCenter.default.post(name: (NSNotification.Name(rawValue: "refreshOrder")), object: nil)
                         self.order_status = "Started"
+                        self.userStartNoti()
                         SwiftLoader.hide()
                         
                     } else if self.order_status == "Started" {
@@ -408,6 +409,7 @@ class OrderDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
                         self.sendSmsNoti(Phone: phone, text: "Your uEAT order CC - \(self.order_ID) is ready for pick up")
                         self.actionBtn.setTitle("Picked up", for: .normal)
                         NotificationCenter.default.post(name: (NSNotification.Name(rawValue: "refreshOrder")), object: nil)
+                        self.userReadyNoti()
                         self.capturePayment()
                         
                     } else if self.order_status == "Cooked" {
@@ -463,6 +465,22 @@ class OrderDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
             }
               
         }
+        
+    }
+    
+    func userStartNoti() {
+        
+        DataService.instance.mainRealTimeDataBaseRef.child("userStartNoti").child(self.order_userUID).child(self.order_ID).removeValue()
+        let values: Dictionary<String, AnyObject>  = [self.order_ID: 1 as AnyObject]
+        DataService.instance.mainRealTimeDataBaseRef.child("userStartNoti").child(self.order_userUID).setValue(values)
+        
+    }
+    
+    func userReadyNoti() {
+        
+        DataService.instance.mainRealTimeDataBaseRef.child("userReadyNoti").child(self.order_userUID).child(self.order_ID).removeValue()
+        let values: Dictionary<String, AnyObject>  = [self.order_ID: 1 as AnyObject]
+        DataService.instance.mainRealTimeDataBaseRef.child("userReadyNoti").child(self.order_userUID).setValue(values)
         
     }
     

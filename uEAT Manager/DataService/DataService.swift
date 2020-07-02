@@ -47,6 +47,10 @@ class DataService {
         return mainRealTimeDataBaseRef.child("Res_Phone")
     }
     
+    var fcmTokenUserRef: DatabaseReference {
+        return mainRealTimeDataBaseRef.child("fcmToken")
+    }
+    
     var checkResEmailUserRef: DatabaseReference {
         return mainRealTimeDataBaseRef.child("Res_Email")
     }
