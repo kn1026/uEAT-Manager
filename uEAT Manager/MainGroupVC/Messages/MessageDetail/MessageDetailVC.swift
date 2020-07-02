@@ -35,7 +35,7 @@ class MessageDetailVC: JSQMessagesViewController, UINavigationControllerDelegate
 
         // Do any additional setup after loading the view.
         
-        self.inputToolbar.contentView.textView.becomeFirstResponder()
+       // self.inputToolbar.contentView.textView.becomeFirstResponder()
 
             // Do any additional setup after loading the view.
 
