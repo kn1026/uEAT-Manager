@@ -105,7 +105,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="150" y="116"/>
+            <point key="canvasLocation" x="149.59999999999999" y="115.59220389805098"/>
         </scene>
         <!--Sign Up1VC-->
         <scene sceneID="gRO-MV-CGr">
@@ -1244,7 +1244,7 @@
             <objects>
                 <viewController modalPresentationStyle="fullScreen" id="q7M-Px-A4a" customClass="MenuVC" customModule="uEAT_Manager" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="HwT-19-e9U">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Menu" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OH9-mQ-6xV">
@@ -1257,7 +1257,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3dV-1K-PXx">
-                                <rect key="frame" x="23" y="104" width="329" height="429"/>
+                                <rect key="frame" x="23" y="104" width="329" height="409"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="addNewItemCell" rowHeight="70" id="E46-B9-3Cb" customClass="addNewItemCell" customModule="uEAT_Manager" customModuleProvider="target">
@@ -1428,7 +1428,7 @@
                                 </prototypes>
                             </tableView>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lAC-n9-Ua7">
-                                <rect key="frame" x="23" y="541" width="329" height="45"/>
+                                <rect key="frame" x="23" y="521" width="329" height="45"/>
                                 <color key="backgroundColor" red="0.88733142610000004" green="0.86754173040000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="9P6-Lr-oik"/>

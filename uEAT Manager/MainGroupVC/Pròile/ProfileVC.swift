@@ -19,7 +19,7 @@ class ProfileVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
     var res_key = ""
 
     @IBOutlet weak var isOpened: UISwitch!
-    var feature = ["Open hours", "Payment", "Security", "Vouchers", "Contact Info", "Help & Support", "Log out"]
+    var feature = ["Payment", "Security", "Vouchers", "Contact Info", "Help & Support", "Log out"]
     @IBOutlet weak var tableView: UITableView!
     
     
@@ -251,7 +251,7 @@ class ProfileVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         }
         else if item == "Open hours" {
             
-            self.performSegue(withIdentifier: "moveTohoursVC", sender: nil)
+            //self.performSegue(withIdentifier: "moveTohoursVC", sender: nil)
             
         }
         else {

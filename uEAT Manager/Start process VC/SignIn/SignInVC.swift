@@ -203,6 +203,9 @@ class SignInVC: UIViewController, UITextFieldDelegate {
             
         } else if let email = emailTxtField.text, email != "", let password = passwordTxtField.text, password != "" {
             
+            
+            swiftLoader()
+            
             Auth.auth().signIn(withEmail: "Manager-\(email)", password: password) { (data, err) in
                 
                 if err != nil {
