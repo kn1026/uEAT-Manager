@@ -304,7 +304,7 @@ class ProfileVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
             
             if self.res_key != "" {
                 
-                DataService.instance.mainFireStoreRef.collection("Restaurant").document(self.res_key).updateData(["Open": true])
+                DataService.instance.mainFireStoreRef.collection("Restaurant").document(self.res_key).updateData(["Open": true, "Status_time_updated": FieldValue.serverTimestamp()])
                 
             }
             
@@ -313,7 +313,7 @@ class ProfileVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
             
             if self.res_key != "" {
                 
-                DataService.instance.mainFireStoreRef.collection("Restaurant").document(self.res_key).updateData(["Open": false])
+                DataService.instance.mainFireStoreRef.collection("Restaurant").document(self.res_key).updateData(["Open": false, "Status_time_updated": FieldValue.serverTimestamp()])
                 
             }
             

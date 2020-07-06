@@ -42,36 +42,18 @@ class NotificationVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         guard let fcmToken = Messaging.messaging().fcmToken else { return }
         
-        DataService.instance.fcmTokenUserRef.child(id).observeSingleEvent(of: .value, with: { (snapInfo) in
+        DataService.instance.fcmTokenUserRef.child(id).child(fcmToken).observeSingleEvent(of: .value, with: { (snapInfo) in
         
         
             if snapInfo.exists() {
                 
                 
-                if let snap = snapInfo.children.allObjects as? [DataSnapshot] {
-     
-                var final = false
-                    
-                for item in snap {
-                    
-                    if item.key == fcmToken {
-                        
-                        final = true
-                        
-                    }
-                    
-                }
-                    
-                    if final == false {
-                        
-                        let profile = [fcmToken: 0 as AnyObject]
-                        DataService.instance.fcmTokenUserRef.child(id).updateChildValues(profile)
-                        
-                    }
+               print("Found")
                
                 
             } else {
                 
+                print("Not found")
                 let profile = [fcmToken: 0 as AnyObject]
                 DataService.instance.fcmTokenUserRef.child(id).updateChildValues(profile)
                 
@@ -79,7 +61,7 @@ class NotificationVC: UIViewController, UITableViewDelegate, UITableViewDataSour
             }
    
                 
-        }
+        
             
         })
         
