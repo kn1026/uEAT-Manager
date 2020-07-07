@@ -72,9 +72,6 @@ class orderVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         super.viewDidAppear(animated)
         
-        
-        
-        
     }
     
     

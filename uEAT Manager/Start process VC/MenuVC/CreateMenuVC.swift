@@ -220,8 +220,7 @@ class CreateMenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         transitem = item
         originItem = item
         
-        print(transitem.name, originItem.name)
-        
+     
         self.performSegue(withIdentifier: "moveToDetailTemVC", sender: nil)
       
         
@@ -855,6 +854,8 @@ class CreateMenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource
                             
                             if self.counted == self.sum {
                                 
+                                
+                                DataService.instance.mainFireStoreRef.collection("Restaurant_check_list").document(restaurant_id).updateData(["Menu": true])
                                 SwiftLoader.hide()
                                 self.processStripe()
                                 

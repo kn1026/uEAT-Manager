@@ -123,6 +123,15 @@ class OrderCell: UITableViewCell {
         }
         
         
+        var subtotal: Float!
+        var Tax: Float!
+        var total: Float!
+        
+        subtotal = 0.0
+        Tax = 0.0
+        total = 0.0
+
+        
         DataService.instance.mainFireStoreRef.collection("Orders_detail").whereField("userUID", isEqualTo: info.UID!).whereField("Order_id", isEqualTo: Int(info.Order_id)!).getDocuments { (snaps, err) in
         
         if err != nil {
@@ -138,32 +147,30 @@ class OrderCell: UITableViewCell {
                 
             }
             
-            let limit = snaps?.count
-            var prices: Float!
-            var Tax: Float!
-            prices = 0.0
-            Tax = 0.0
+            
         
             for item in snaps!.documents {
                 
                
                 if let p = item.data()["price"] as? Float {
                     
-                    prices = p
+                    if let q = item.data()["quanlity"] as? Int {
+                        
+                        let price = p * Float(q)
+                        
+                        subtotal += price
+                        
+                        
+                    }
                     
                 }
                 
             }
-            
-            let new = prices * Float(limit!)
-            Tax = prices * 9 / 100
-            let total = new + Tax
+            Tax = subtotal * 9 / 100
+            total = subtotal + Tax
             self.price.text = "$\(String(format:"%.2f", total))"
             
-            
-            
-            
-            
+   
             
         }
 
