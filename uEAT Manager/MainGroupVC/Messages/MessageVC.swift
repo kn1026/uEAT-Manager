@@ -44,14 +44,7 @@ class MessageVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
     }
     
-    func setOnline() {
-        
-    }
-    
-    func setOffline() {
-        
-        
-    }
+
     
     @objc private func refreshListData(_ sender: Any) {
        // self.pullControl.endRefreshing() // You can stop after API Call
@@ -151,9 +144,7 @@ class MessageVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "moveToChatDetailVC") {
             
-            
-            
-            
+
             let navigationView = segue.destination as! UINavigationController
             let ChatController = navigationView.topViewController as? MessageDetailVC
             

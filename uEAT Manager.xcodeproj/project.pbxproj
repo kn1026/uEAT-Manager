@@ -36,6 +36,8 @@
 		6A1FECFC235DA2DB00198533 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6A1FECFA235DA2DB00198533 /* LaunchScreen.storyboard */; };
 		6A1FED07235DA2DC00198533 /* uEAT_ManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A1FED06235DA2DC00198533 /* uEAT_ManagerTests.swift */; };
 		6A1FED12235DA2DC00198533 /* uEAT_ManagerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A1FED11235DA2DC00198533 /* uEAT_ManagerUITests.swift */; };
+		6A6EFBAD24C19750007B051F /* HelpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A6EFBAC24C19750007B051F /* HelpVC.swift */; };
+		6A6EFBB024C1A5D8007B051F /* HelpMessageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A6EFBAF24C1A5D8007B051F /* HelpMessageVC.swift */; };
 		6A7167E524A0BF51003672BC /* MessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7167E424A0BF51003672BC /* MessageModel.swift */; };
 		6A7167E724A0BFAB003672BC /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7167E624A0BFAB003672BC /* MessageCell.swift */; };
 		6A7167EA24A0CAD8003672BC /* MessageDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7167E924A0CAD8003672BC /* MessageDetailVC.swift */; };
@@ -140,6 +142,8 @@
 		6A1FED0D235DA2DC00198533 /* uEAT ManagerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "uEAT ManagerUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A1FED11235DA2DC00198533 /* uEAT_ManagerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = uEAT_ManagerUITests.swift; sourceTree = "<group>"; };
 		6A1FED13235DA2DC00198533 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6A6EFBAC24C19750007B051F /* HelpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpVC.swift; sourceTree = "<group>"; };
+		6A6EFBAF24C1A5D8007B051F /* HelpMessageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpMessageVC.swift; sourceTree = "<group>"; };
 		6A7167E424A0BF51003672BC /* MessageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageModel.swift; sourceTree = "<group>"; };
 		6A7167E624A0BFAB003672BC /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		6A7167E924A0CAD8003672BC /* MessageDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageDetailVC.swift; sourceTree = "<group>"; };
@@ -289,6 +293,7 @@
 		6A197C0E239ADD620013EDCC /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				6A6EFBAB24C19739007B051F /* HelpVC */,
 				6A197C33239F0C760013EDCC /* ContactVC */,
 				6A197C29239ED6C80013EDCC /* VoucherVC */,
 				6A197C24239ED0280013EDCC /* Security */,
@@ -420,6 +425,23 @@
 				6A1FED13235DA2DC00198533 /* Info.plist */,
 			);
 			path = "uEAT ManagerUITests";
+			sourceTree = "<group>";
+		};
+		6A6EFBAB24C19739007B051F /* HelpVC */ = {
+			isa = PBXGroup;
+			children = (
+				6A6EFBAE24C1A5C2007B051F /* HelpMessageVC */,
+				6A6EFBAC24C19750007B051F /* HelpVC.swift */,
+			);
+			path = HelpVC;
+			sourceTree = "<group>";
+		};
+		6A6EFBAE24C1A5C2007B051F /* HelpMessageVC */ = {
+			isa = PBXGroup;
+			children = (
+				6A6EFBAF24C1A5D8007B051F /* HelpMessageVC.swift */,
+			);
+			path = HelpMessageVC;
 			sourceTree = "<group>";
 		};
 		6A7167E224A0BF1E003672BC /* MessageCell */ = {
@@ -1009,12 +1031,14 @@
 				6A8F0FE223862FCD003E87BE /* circleView.swift in Sources */,
 				6A197C23239EAE490013EDCC /* NotificationModel.swift in Sources */,
 				6A8F0FEE23862FE6003E87BE /* modifiedChooseCarView.swift in Sources */,
+				6A6EFBB024C1A5D8007B051F /* HelpMessageVC.swift in Sources */,
 				6A8F0FEC23862FE3003E87BE /* fancyBtn.swift in Sources */,
 				6A197C1B239E029C0013EDCC /* ProfileCell.swift in Sources */,
 				6A197C26239ED0460013EDCC /* SecurityVC.swift in Sources */,
 				6A8F1013238A25D7003E87BE /* SignInVC.swift in Sources */,
 				6A8F101B238B6C40003E87BE /* addNewItemCell.swift in Sources */,
 				6A7167F724A1ED84003672BC /* OrderCell.swift in Sources */,
+				6A6EFBAD24C19750007B051F /* HelpVC.swift in Sources */,
 				6A8F0FF623862FF5003E87BE /* RoundedLabel.swift in Sources */,
 				6A197C20239EAAB30013EDCC /* NotificationCell.swift in Sources */,
 				6A8F10002387897F003E87BE /* SignUp1VC.swift in Sources */,

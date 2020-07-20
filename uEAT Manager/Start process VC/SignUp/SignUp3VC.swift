@@ -347,6 +347,13 @@ class SignUp3VC: UIViewController, UITextFieldDelegate, ZSWTappableLabelTapDeleg
                                             DataService.instance.checkResEmailUserRef.child(testEmails).setValue(["Timestamp": ServerValue.timestamp()])
                                             DataService.instance.checReskPhoneUserRef.child("+1\(Phone)").setValue(["Timestamp": ServerValue.timestamp()])
                                             
+                                            
+                                            DataService.instance.mainRealTimeDataBaseRef.child("newApplicationNoti").child("Admin").child(self.businessName).removeValue()
+                                            let values: Dictionary<String, AnyObject>  = [self.businessName: 1 as AnyObject]
+                                            DataService.instance.mainRealTimeDataBaseRef.child("newApplicationNoti").child("Admin").setValue(values)
+                                            
+                                       
+                                            
                                             SwiftLoader.hide()
                                             
                                             let appearance = SCLAlertView.SCLAppearance(
@@ -422,7 +429,7 @@ class SignUp3VC: UIViewController, UITextFieldDelegate, ZSWTappableLabelTapDeleg
          
         geoRef.setLocation(CLLocation(latitude: loc.latitude, longitude: loc.longitude), forKey: key) { (error) in
              if (error != nil) {
-                 debugPrint("An error occured: \(error)")
+                debugPrint("An error occured: \(error!.localizedDescription)")
              } else {
                  print("Saved location successfully!")
              }

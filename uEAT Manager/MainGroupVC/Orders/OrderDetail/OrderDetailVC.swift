@@ -34,7 +34,6 @@ class OrderDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     override func viewDidLoad() {
         super.viewDidLoad()
         
-       
 
         // Do any additional setup after loading the view.
         if order_status == "Processed" {
