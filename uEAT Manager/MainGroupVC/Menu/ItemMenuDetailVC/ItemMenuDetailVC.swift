@@ -79,7 +79,7 @@ class ItemMenuDetailVC: UIViewController, UITextFieldDelegate, UINavigationContr
             priceTxtField.placeholder = "\(ModifyItem.price!)"
             totalLbl.text = "$\(ModifyItem.price!)"
            
-            if let url = ModifyItem.url {
+            if let url = ModifyItem.url, url != "" {
                 
                 
                 imageStorage.async.object(forKey: url) { result in
@@ -96,6 +96,10 @@ class ItemMenuDetailVC: UIViewController, UITextFieldDelegate, UINavigationContr
                     }
                     
                 }
+                
+            } else if ModifyItem.img != nil {
+                
+                self.uploadProfileImg.image = ModifyItem.img
                 
             }
         
@@ -437,7 +441,7 @@ class ItemMenuDetailVC: UIViewController, UITextFieldDelegate, UINavigationContr
                 let pri = Float(price)
                 
                 
-                let dict = ["name": name, "description": description, "price": pri as Any, "img": img as Any, "category": category, "type": type, "status": "Offline", "quanlity": "None"] as [String : Any]
+                let dict = ["name": name, "description": description, "price": pri as Any, "img": img as Any, "category": category, "type": type, "status": "Offline", "quanlity": "None", "Updated": false] as [String : Any]
                 let item = ItemModel(postKey: "1234", Item_model: dict)
                 transitem = item
                 

@@ -539,6 +539,9 @@ class MenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource, MGSw
     @objc func addItemBtnPressed() {
         
         NotificationCenter.default.addObserver(self, selector: #selector(MenuVC.setItem), name: (NSNotification.Name(rawValue: "setItem")), object: nil)
+        
+        self.ModifyItem = nil
+        
            
         self.performSegue(withIdentifier: "moveToDetailMenu2", sender: nil)
     
@@ -711,6 +714,14 @@ class MenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource, MGSw
         
         let item = menu[(path as NSIndexPath).section][(path as NSIndexPath).row - 1]
         
+        if item.Updated == false {
+            
+            SwiftLoader.hide()
+            self.showErrorAlert("Oops !!!", msg: "This item isn't up, please tap update to make it available to modify.")
+            return
+            
+        }
+        
         var update = ""
         
         var i: ItemModel!
@@ -792,6 +803,13 @@ class MenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource, MGSw
     func QuanlityAt(_ path: IndexPath) {
         
         let item = menu[(path as NSIndexPath).section][(path as NSIndexPath).row - 1]
+        
+        if item.Updated == false{
+            
+            SwiftLoader.hide()
+            self.showErrorAlert("Oops !!!", msg: "This item isn't up, please tap update to make it available to modify.")
+            return
+        }
         
         var update = ""
         
@@ -912,6 +930,19 @@ class MenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource, MGSw
                 }
             
             
+            }
+        
+   
+        
+            if item.Updated == false {
+                
+                
+                self.menu[(path as NSIndexPath).section].remove(at: (path as NSIndexPath).row - 1)
+                self.checkUpdate()
+                self.tableView.reloadData()
+                SwiftLoader.hide()
+                return
+                
             }
         
         
@@ -1057,7 +1088,7 @@ class MenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource, MGSw
                       let downloadUrl = downUrl as NSString
                       let downloadedUrl = downloadUrl as String
                     
-                    let dict = ["name": item.name as Any, "description": item.description as Any, "price": item.price as Any, "url": downloadedUrl as Any, "category": item.category as Any, "type": type, "restaurant_id": restaurant_id, "timeStamp": FieldValue.serverTimestamp(), "quanlity": "None", "status": "Offline"] as [String : Any]
+                    let dict = ["name": item.name as Any, "description": item.description as Any, "price": item.price as Any, "url": downloadedUrl as Any, "category": item.category as Any, "type": type, "restaurant_id": restaurant_id, "timeStamp": FieldValue.serverTimestamp(), "quanlity": "None", "status": "Offline", "Updated": true] as [String : Any]
                       let db = DataService.instance.mainFireStoreRef.collection("Menu")
                     
                       db.addDocument(data: dict) { err in

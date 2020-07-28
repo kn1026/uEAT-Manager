@@ -837,7 +837,7 @@ class CreateMenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource
                       let downloadUrl = downUrl as NSString
                       let downloadedUrl = downloadUrl as String
                     
-                      let dict = ["name": item.name as Any, "description": item.description as Any, "price": item.price as Any, "url": downloadedUrl as Any, "category": item.category as Any, "type": type, "restaurant_id": restaurant_id, "timeStamp": ServerValue.timestamp(), "Quanlity": "None"] as [String : Any]
+                      let dict = ["name": item.name as Any, "description": item.description as Any, "price": item.price as Any, "url": downloadedUrl as Any, "category": item.category as Any, "type": type, "restaurant_id": restaurant_id, "timeStamp": ServerValue.timestamp(), "Quanlity": "None", "Updated": true] as [String : Any]
                       let db = DataService.instance.mainFireStoreRef.collection("Menu")
                     
                       db.addDocument(data: dict) { err in

@@ -23,9 +23,20 @@ class ItemModel {
     fileprivate var _Restaurant_ID: String!
     fileprivate var _price: Float!
     fileprivate var _img: UIImage!
+    fileprivate var _Updated: Bool!
     fileprivate var _timeStamp: Any!
     
     
+    
+    var Updated: Bool! {
+        get {
+            if _Updated == nil {
+                _Updated = false
+            }
+            return _Updated
+        }
+        
+    }
     
     
     var status: String! {
@@ -135,9 +146,16 @@ class ItemModel {
     
     init(postKey: String, Item_model: Dictionary<String, Any>) {
         
-    
+        
+        //self._Status = true
+      
         if let name = Item_model["name"] as? String {
             self._name = name
+            
+        }
+        
+        if let Updated = Item_model["Updated"] as? Bool {
+            self._Updated = Updated
             
         }
         

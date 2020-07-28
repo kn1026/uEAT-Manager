@@ -270,7 +270,7 @@ class DetailVC: UIViewController, UITextFieldDelegate, UINavigationControllerDel
                 let pri = Float(price)
                 
                 
-                let dict = ["name": name, "description": description, "price": pri as Any, "img": img as Any, "category": category, "type": type, "status": "Online", "quanlity": "None"] as [String : Any]
+                let dict = ["name": name, "description": description, "price": pri as Any, "img": img as Any, "category": category, "type": type, "status": "Online", "quanlity": "None", "Updated": false] as [String : Any]
                 let item = ItemModel(postKey: "1234", Item_model: dict)
                 transitem = item
                 isSave = false
