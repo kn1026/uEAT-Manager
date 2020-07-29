@@ -412,7 +412,7 @@ class ItemMenuDetailVC: UIViewController, UITextFieldDelegate, UINavigationContr
                 print(type)
                 
                 print("Img change")
-                let dict = ["name": name, "description": description, "price": price as Any, "img": img as Any, "category": category, "type": type, "status": ModifyItem.status!, "quanlity": ModifyItem.quanlity!, "restaurant_id": ModifyItem.Restaurant_ID!] as [String : Any]
+                let dict = ["name": name, "description": description, "price": price as Any, "img": img as Any, "category": category, "type": type, "status": ModifyItem.status!, "quanlity": ModifyItem.quanlity!, "restaurant_id": ModifyItem.Restaurant_ID!, "Updated": true] as [String : Any]
                 let saveItem = ItemModel(postKey: "1234", Item_model: dict)
                 
                 processItem(img: img, item: saveItem, restaurant_id: ModifyItem.Restaurant_ID, type: type)
@@ -426,7 +426,7 @@ class ItemMenuDetailVC: UIViewController, UITextFieldDelegate, UINavigationContr
                 print(type)
                 
                 print("Img not changing")
-                let dict = ["name": name, "description": description, "price": price as Any, "img": img as Any, "category": category, "type": type, "status": ModifyItem.status!, "quanlity": ModifyItem.quanlity!, "restaurant_id": ModifyItem.Restaurant_ID!] as [String : Any]
+                let dict = ["name": name, "description": description, "price": price as Any, "img": img as Any, "category": category, "type": type, "status": ModifyItem.status!, "quanlity": ModifyItem.quanlity!, "restaurant_id": ModifyItem.Restaurant_ID!, "Updated": true] as [String : Any]
                 let saveItem = ItemModel(postKey: "1234", Item_model: dict)
                 
                 uploadData(item: saveItem, url: ModifyItem.url, originItem: ModifyItem)
@@ -528,7 +528,7 @@ class ItemMenuDetailVC: UIViewController, UITextFieldDelegate, UINavigationContr
     func uploadData(item: ItemModel, url: String, originItem: ItemModel) {
         
         
-        let dict = ["name": item.name as Any, "description": item.description as Any, "price": item.price as Any, "url": url as Any, "category": item.category as Any, "type": item.type!, "restaurant_id": item.Restaurant_ID!, "timeStamp": FieldValue.serverTimestamp()] as [String : Any]
+        let dict = ["name": item.name as Any, "description": item.description as Any, "price": item.price as Any, "url": url as Any, "category": item.category as Any, "type": item.type!, "restaurant_id": item.Restaurant_ID!, "timeStamp": FieldValue.serverTimestamp(), "Updated": true] as [String : Any]
         
         DataService.instance.mainFireStoreRef.collection("Menu").whereField("restaurant_id", isEqualTo: item.Restaurant_ID!).whereField("name", isEqualTo: originItem.name as Any).whereField("description", isEqualTo: originItem.description as Any).whereField("category", isEqualTo: originItem.category as Any).getDocuments { (snap, err) in
         
