@@ -439,6 +439,14 @@ class MenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource, MGSw
         
         let item = menu[(path as NSIndexPath).section][(path as NSIndexPath).row - 1]
         
+        if item.Updated == false {
+            
+            SwiftLoader.hide()
+            self.showErrorAlert("Oops !!!", msg: "This item isn't up, please tap update to make it available to modify.")
+            return
+            
+        }
+        
         
         DataService.instance.mainFireStoreRef.collection("Menu").whereField("name", isEqualTo:  item.name as Any).whereField("description", isEqualTo:  item.description as Any).whereField("category", isEqualTo:  item.category as Any).getDocuments { (snap, err) in
         
@@ -469,7 +477,7 @@ class MenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource, MGSw
                             let id = items.documentID
                             DataService.instance.mainFireStoreRef.collection("Menu").document(id).updateData(["status": "Offline"])
                             
-                            let dict = ["name": item.name as Any, "description": item.description as Any, "price": item.price as Any, "url": item.url as Any, "category": item.category as Any, "type": item.type as Any, "status": "Offline", "quanlity": item.quanlity as Any] as [String : Any]
+                            let dict = ["name": item.name as Any, "description": item.description as Any, "price": item.price as Any, "url": item.url as Any, "category": item.category as Any, "type": item.type as Any, "status": "Offline", "quanlity": item.quanlity as Any, "Updated": true] as [String : Any]
                             i = ItemModel(postKey: "Updated", Item_model: dict)
                             
                             if let type = item.type {
