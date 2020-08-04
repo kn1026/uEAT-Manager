@@ -985,6 +985,9 @@ class MenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource, MGSw
         var start = 0
         
         
+        self.counted = 0
+        self.sum = 0
+        
         
         while count < 3 {
             
@@ -1028,6 +1031,7 @@ class MenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource, MGSw
             }
         }
         
+        Newvegan.removeAll()
         completed()
         
     }
@@ -1041,6 +1045,7 @@ class MenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource, MGSw
             }
         }
         
+        NewNonvegan.removeAll()
         completed()
         
     }
@@ -1053,6 +1058,9 @@ class MenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource, MGSw
                processItem(img: img, item: i, restaurant_id: restaurant_id, type: i.type)
             }
         }
+        
+        
+        NewAddOn.removeAll()
         
         completed()
         
@@ -1108,7 +1116,7 @@ class MenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource, MGSw
                             
                             if self.counted == self.sum {
                                 
-                                
+                                self.checkUpdate()
                                 self.getRestaurant_ID(email: (Auth.auth().currentUser?.email)!)
                                 
                                 
