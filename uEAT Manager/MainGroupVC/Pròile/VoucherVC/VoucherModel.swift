@@ -14,12 +14,55 @@ class VoucherModel {
     fileprivate var _title: String!
     fileprivate var _description: String!
     fileprivate var _category: String!
+    fileprivate var _category_url: String!
     fileprivate var _type: String!
     fileprivate var _value: Any!
+    fileprivate var _fromDate: Any!
+    fileprivate var _untilDate: Any!
+    fileprivate var _timeStamp: Any!
     fileprivate var _restaurant_id: String!
     fileprivate var _status: String!
     
     
+    var timeStamp: Any! {
+        get {
+            if _timeStamp == nil {
+                _timeStamp = 0
+            }
+            return _timeStamp
+        }
+        
+    }
+    
+    var fromDate: Any! {
+        get {
+            if _fromDate == nil {
+                _fromDate = 0
+            }
+            return _fromDate
+        }
+        
+    }
+    
+    var untilDate: Any! {
+        get {
+            if _untilDate == nil {
+                _untilDate = 0
+            }
+            return _untilDate
+        }
+        
+    }
+    
+    var category_url: String! {
+           get {
+               if _category_url == nil {
+                   _category_url = ""
+               }
+               return _category_url
+           }
+           
+       }
     
     var status: String! {
         get {
@@ -89,7 +132,25 @@ class VoucherModel {
     
     init(postKey: String, Voucher_model: Dictionary<String, Any>) {
         
-    
+        
+        
+        
+        
+        if let untilDate = Voucher_model["untilDate"] {
+            self._untilDate = untilDate
+            
+        }
+        
+        if let fromDate = Voucher_model["fromDate"] {
+            self._fromDate = fromDate
+            
+        }
+        
+        if let category_url = Voucher_model["category_url"] as? String {
+            self._category_url = category_url
+            
+        }
+        
         if let title = Voucher_model["title"] as? String {
             self._title = title
             
@@ -124,7 +185,12 @@ class VoucherModel {
             self._status = status
             
         }
-
+        
+        if let value = Voucher_model["timeStamp"] {
+            self._timeStamp = timeStamp
+            
+        }
+        
     }
     
     

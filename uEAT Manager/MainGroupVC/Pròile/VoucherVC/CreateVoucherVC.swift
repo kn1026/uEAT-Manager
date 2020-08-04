@@ -18,8 +18,12 @@ class CreateVoucherVC: UIViewController, UITextFieldDelegate {
      
     }
     
+    var itemarr = [ItemModel]()
+    
     var pickerViewController = pickView.type
 
+    @IBOutlet weak var validLimitTxtField: UITextField!
+    @IBOutlet weak var validUntilTxtField: UITextField!
     @IBOutlet weak var titleTxtField: UITextField!
     @IBOutlet weak var DescriptionTxrField: UITextField!
     @IBOutlet weak var TypeTxtField: UITextField!
@@ -27,9 +31,9 @@ class CreateVoucherVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var categoryTxtField: UITextField!
     
     var type = ["$", "%"]
-    var category = ["All", "First order", "Every 10 orders"]
     var restaurant_id = ""
-    
+    var fromDate: Date!
+    var untilDate: Date!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,7 +67,15 @@ class CreateVoucherVC: UIViewController, UITextFieldDelegate {
                // Do any additional setup after loading the view.
         
         
+        validUntilTxtField.attributedPlaceholder = NSAttributedString(string: "Valid from",
+                                                                               attributes: [NSAttributedString.Key.foregroundColor: UIColor.darkGray])
+                      
+        validUntilTxtField.delegate = self
         
+        validLimitTxtField.attributedPlaceholder = NSAttributedString(string: "Valid until",
+                                                                               attributes: [NSAttributedString.Key.foregroundColor: UIColor.darkGray])
+                      
+        validLimitTxtField.delegate = self
         
                
         ValueTxtField.keyboardType = .numberPad
@@ -78,6 +90,8 @@ class CreateVoucherVC: UIViewController, UITextFieldDelegate {
         titleTxtField.becomeFirstResponder()
         
     }
+    
+    
     
     func process_email(email: String) -> String {
         
@@ -132,7 +146,7 @@ class CreateVoucherVC: UIViewController, UITextFieldDelegate {
                     let id = item.documentID
                     self.restaurant_id = id
                     
-                    
+                    self.loadMenu(id: id)
                     
                 }
                 
@@ -149,6 +163,49 @@ class CreateVoucherVC: UIViewController, UITextFieldDelegate {
         
 
     }
+    
+    func loadMenu(id: String) {
+               
+         
+         DataService.instance.mainFireStoreRef.collection("Menu").whereField("restaurant_id", isEqualTo: id).getDocuments { (snap, err) in
+             
+             if err != nil {
+                 
+                 self.showErrorAlert("Opss !", msg: err!.localizedDescription)
+                 return
+                 
+             }
+             
+            self.itemarr.removeAll()
+            
+            let dicts = ["name": "All menu" as Any, "description": "All menu" as Any, "price": 0 as Any, "url": "" as Any, "category": "" as Any, "type": "", "restaurant_id": id, "timeStamp": "", "quanlity": "None", "status": "Offline", "Updated": true] as [String : Any]
+            let dict = ItemModel(postKey: "All", Item_model: dicts)
+            self.itemarr.append(dict)
+    
+             for item in snap!.documents {
+                 
+
+                 
+                 let dictss = ItemModel(postKey: item.documentID, Item_model: item.data())
+                 
+
+                 if let type = item["type"] as? String {
+                     
+                     if type != "Add-onn" {
+                         
+                         self.itemarr.append(dictss)
+                         
+                     }
+                 }
+                 
+    
+             }
+    
+             
+    
+         }
+         
+     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
@@ -171,11 +228,36 @@ class CreateVoucherVC: UIViewController, UITextFieldDelegate {
     
     @IBAction func createBtnPressed(_ sender: Any) {
         
-        if let title = titleTxtField.text, let description = DescriptionTxrField.text, let category = categoryTxtField.text, category != "", let type = TypeTxtField.text, type != "", let value = ValueTxtField.text, value != "", restaurant_id != "" {
+        if let title = titleTxtField.text, let description = DescriptionTxrField.text, let category = categoryTxtField.text, category != "", let type = TypeTxtField.text, type != "", let value = ValueTxtField.text, value != "", restaurant_id != "", let startTime = validUntilTxtField.text, startTime != "", let untilTime = validLimitTxtField.text, untilTime != "" {
             
+            if type == "%" {
+                if Int(value)! > 100 {
+                    
+                    
+                    self.showErrorAlert("Oops !!!", msg: "Because the type is %, so the value can't be higher than 100%, please fix and re-submit")
+                    
+                    return
+                    
+                }
+                    
+                
+            }
+            
+            var dict = [String : Any]()
+            
+            if category == "All menu" {
+                
+                dict = ["title": title, "description": description, "category": category, "type": type, "value": value, "restaurant_id": restaurant_id, "timeStamp": FieldValue.serverTimestamp(), "status": "Online", "category_url": "All", "fromDate": fromDate!, "untilDate": untilDate!] as [String : Any]
+                
+            } else {
+                
+                dict = ["title": title, "description": description, "category": category, "type": type, "value": value, "restaurant_id": restaurant_id, "timeStamp": FieldValue.serverTimestamp(), "status": "Online", "category_url": get_categoryID(category: category), "fromDate": fromDate!, "untilDate": untilDate! ] as [String : Any]
+                
+            }
+            
+          
             swiftLoader()
-            
-            let dict = ["title": title, "description": description, "category": category, "type": type, "value": value, "restaurant_id": restaurant_id, "timeStamp": FieldValue.serverTimestamp(), "status": "Online"] as [String : Any]
+
             
             let db = DataService.instance.mainFireStoreRef.collection("Voucher")
             
@@ -198,8 +280,6 @@ class CreateVoucherVC: UIViewController, UITextFieldDelegate {
                 
             }
             
-            
-            
         } else {
             
             self.showErrorAlert("Oops !!!", msg: "Please fill all required field to continue")
@@ -209,6 +289,26 @@ class CreateVoucherVC: UIViewController, UITextFieldDelegate {
         }
         
     }
+    
+    
+    func get_categoryID(category: String) -> String {
+        
+        for i in itemarr {
+            
+            if i.name == category {
+                
+                return i.url
+                
+            }
+            
+        }
+        
+        return "All"
+        
+    
+    }
+    
+    
     @IBAction func CategoryBtnPressed(_ sender: Any) {
         
         pickerViewController = pickView.category
@@ -243,6 +343,54 @@ class CreateVoucherVC: UIViewController, UITextFieldDelegate {
         
     }
     
+    @IBAction func TimeChoooseBtn(_ sender: Any) {
+        
+        let datePickerView: UIDatePicker = UIDatePicker()
+        datePickerView.datePickerMode = UIDatePicker.Mode.dateAndTime
+        datePickerView.minimumDate = Date().addingTimeInterval(60 * 60 * 2)
+        validUntilTxtField.inputView = datePickerView
+        datePickerView.addTarget(self, action: #selector(CreateVoucherVC.dateFromValueChanged(_:)), for: UIControl.Event.valueChanged)
+        
+    }
+   
+  
+    @IBAction func createLimit(_ sender: Any) {
+        
+        let datePickerView: UIDatePicker = UIDatePicker()
+        datePickerView.datePickerMode = UIDatePicker.Mode.dateAndTime
+        datePickerView.minimumDate = Date().addingTimeInterval(60 * 60 * 24)
+        validLimitTxtField.inputView = datePickerView
+        datePickerView.addTarget(self, action: #selector(CreateVoucherVC.dateUntilValueChanged(_:)), for: UIControl.Event.valueChanged)
+        
+    }
+    
+    
+    @objc func dateFromValueChanged(_ sender: UIDatePicker) {
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US")
+        dateFormatter.dateStyle = DateFormatter.Style.medium
+        dateFormatter.timeStyle = DateFormatter.Style.short
+        //dateFormatter.dateFormat = "MM-dd-yyyy"
+        validUntilTxtField.text = dateFormatter.string(from: sender.date)
+
+        
+        fromDate = sender.date
+    }
+    
+    @objc func dateUntilValueChanged(_ sender: UIDatePicker) {
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US")
+        dateFormatter.dateStyle = DateFormatter.Style.medium
+        dateFormatter.timeStyle = DateFormatter.Style.short
+        //dateFormatter.dateFormat = "MM-dd-yyyy"
+        validLimitTxtField.text = dateFormatter.string(from: sender.date)
+        
+        untilDate = sender.date
+       
+
+    }
     // func show error alert
     
     func showErrorAlert(_ title: String, msg: String) {
@@ -324,7 +472,7 @@ extension CreateVoucherVC: UIPickerViewDelegate, UIPickerViewDataSource {
             case .type:
                 return type.count
             case .category:
-                return category.count
+                return itemarr.count
             
         }
         
@@ -339,7 +487,7 @@ extension CreateVoucherVC: UIPickerViewDelegate, UIPickerViewDataSource {
             case .type:
                 return type[row]
             case .category:
-                return category[row]
+                return itemarr[row].name
             
         }
      
@@ -355,7 +503,7 @@ extension CreateVoucherVC: UIPickerViewDelegate, UIPickerViewDataSource {
             case .type:
                 TypeTxtField.text = type[row]
             case .category:
-                categoryTxtField.text = category[row]
+                categoryTxtField.text = itemarr[row].name
             
         }
 
@@ -377,7 +525,7 @@ extension CreateVoucherVC: UIPickerViewDelegate, UIPickerViewDataSource {
             case .type:
                 label.text = type[row]
             case .category:
-                label.text = category[row]
+                label.text = itemarr[row].name
             
         }
 

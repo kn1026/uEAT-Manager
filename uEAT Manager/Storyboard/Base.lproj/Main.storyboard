@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Kmk-Ay-DW3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Kmk-Ay-DW3">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -2279,20 +2279,45 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" textContentType="name"/>
                             </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Valid from" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4Zs-gq-i9j">
+                                <rect key="frame" x="23" y="413" width="329" height="34"/>
+                                <color key="backgroundColor" red="0.97280305619999996" green="0.97291952370000001" blue="0.97276359800000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" textContentType="name"/>
+                                <connections>
+                                    <action selector="TimeChoooseBtn:" destination="sRu-cx-VKt" eventType="editingDidBegin" id="QKi-2a-Dkp"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Valid until" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SPp-o1-8kj">
+                                <rect key="frame" x="23" y="463" width="329" height="34"/>
+                                <color key="backgroundColor" red="0.97280305619999996" green="0.97291952370000001" blue="0.97276359800000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" textContentType="name"/>
+                                <connections>
+                                    <action selector="createLimit:" destination="sRu-cx-VKt" eventType="editingDidBegin" id="hSk-SS-3d8"/>
+                                </connections>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="5qD-RL-RFJ" firstAttribute="leading" secondItem="pRK-We-3Ax" secondAttribute="leading" constant="23" id="1gs-YQ-zEb"/>
                             <constraint firstItem="KxG-fb-eWK" firstAttribute="top" secondItem="9ZA-mg-aVp" secondAttribute="bottom" constant="8" id="7WS-HC-4Ye"/>
+                            <constraint firstItem="SPp-o1-8kj" firstAttribute="top" secondItem="4Zs-gq-i9j" secondAttribute="bottom" constant="16" id="8i1-VZ-fzI"/>
                             <constraint firstItem="pRK-We-3Ax" firstAttribute="trailing" secondItem="pee-AT-nR5" secondAttribute="trailing" constant="23" id="9De-MH-ueK"/>
                             <constraint firstItem="4bQ-nX-Jhc" firstAttribute="leading" secondItem="pRK-We-3Ax" secondAttribute="leading" constant="23" id="CEr-rS-B6u"/>
+                            <constraint firstItem="pRK-We-3Ax" firstAttribute="trailing" secondItem="4Zs-gq-i9j" secondAttribute="trailing" constant="23" id="FLa-ai-AiD"/>
                             <constraint firstItem="9ZA-mg-aVp" firstAttribute="leading" secondItem="pRK-We-3Ax" secondAttribute="leading" constant="23" id="Hef-6c-1bh"/>
                             <constraint firstItem="wrI-QL-bPU" firstAttribute="leading" secondItem="pRK-We-3Ax" secondAttribute="leading" constant="23" id="L3i-qf-Y4b"/>
+                            <constraint firstItem="SPp-o1-8kj" firstAttribute="leading" secondItem="pRK-We-3Ax" secondAttribute="leading" constant="23" id="LME-rn-fFU"/>
                             <constraint firstItem="wrI-QL-bPU" firstAttribute="top" secondItem="pRK-We-3Ax" secondAttribute="top" constant="41" id="NLG-u5-a1f"/>
                             <constraint firstItem="pRK-We-3Ax" firstAttribute="trailing" secondItem="5qD-RL-RFJ" secondAttribute="trailing" constant="23" id="Nkb-cr-F54"/>
                             <constraint firstItem="pRK-We-3Ax" firstAttribute="trailing" secondItem="4bQ-nX-Jhc" secondAttribute="trailing" constant="23" id="PUw-pU-wzx"/>
                             <constraint firstItem="Ysr-WE-lo6" firstAttribute="top" secondItem="Vgz-3i-XJC" secondAttribute="bottom" constant="16" id="SpL-R8-vLY"/>
                             <constraint firstItem="pRK-We-3Ax" firstAttribute="trailing" secondItem="itk-f9-TXc" secondAttribute="trailing" constant="23" id="TDV-o2-8Nh"/>
+                            <constraint firstItem="4Zs-gq-i9j" firstAttribute="top" secondItem="5qD-RL-RFJ" secondAttribute="bottom" constant="16" id="TEY-Va-38w"/>
+                            <constraint firstItem="4Zs-gq-i9j" firstAttribute="leading" secondItem="pRK-We-3Ax" secondAttribute="leading" constant="23" id="UUZ-7V-hX1"/>
                             <constraint firstItem="pee-AT-nR5" firstAttribute="top" secondItem="GaM-Yr-43A" secondAttribute="bottom" constant="16" id="Ury-na-C8k"/>
                             <constraint firstItem="4bQ-nX-Jhc" firstAttribute="top" secondItem="Ysr-WE-lo6" secondAttribute="bottom" constant="16" id="Y5R-nW-aEW"/>
                             <constraint firstItem="Ysr-WE-lo6" firstAttribute="leading" secondItem="pRK-We-3Ax" secondAttribute="leading" constant="23" id="YD8-hl-ILZ"/>
@@ -2300,6 +2325,7 @@
                             <constraint firstItem="pRK-We-3Ax" firstAttribute="trailing" secondItem="Ysr-WE-lo6" secondAttribute="trailing" constant="23" id="bBX-eB-jv2"/>
                             <constraint firstItem="itk-f9-TXc" firstAttribute="leading" secondItem="pRK-We-3Ax" secondAttribute="leading" constant="23" id="fhw-fh-7gk"/>
                             <constraint firstItem="KxG-fb-eWK" firstAttribute="leading" secondItem="pRK-We-3Ax" secondAttribute="leading" constant="23" id="flF-o2-bco"/>
+                            <constraint firstItem="pRK-We-3Ax" firstAttribute="trailing" secondItem="SPp-o1-8kj" secondAttribute="trailing" constant="23" id="gRR-pT-VD5"/>
                             <constraint firstItem="9ZA-mg-aVp" firstAttribute="top" secondItem="pRK-We-3Ax" secondAttribute="top" constant="12" id="o9g-8P-9Hr"/>
                             <constraint firstItem="GaM-Yr-43A" firstAttribute="leading" secondItem="pRK-We-3Ax" secondAttribute="leading" constant="23" id="pAS-Y6-u4D"/>
                             <constraint firstItem="pee-AT-nR5" firstAttribute="leading" secondItem="pRK-We-3Ax" secondAttribute="leading" constant="23" id="pkw-SP-hln"/>
@@ -2318,6 +2344,8 @@
                         <outlet property="ValueTxtField" destination="5qD-RL-RFJ" id="GoR-BW-eNe"/>
                         <outlet property="categoryTxtField" destination="GaM-Yr-43A" id="67r-yH-Wed"/>
                         <outlet property="titleTxtField" destination="Ysr-WE-lo6" id="LbG-Y8-DiH"/>
+                        <outlet property="validLimitTxtField" destination="SPp-o1-8kj" id="5tx-TY-qkU"/>
+                        <outlet property="validUntilTxtField" destination="4Zs-gq-i9j" id="Cue-QB-Lib"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C81-yj-il9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -3179,24 +3207,33 @@
                                                         <constraint firstAttribute="height" constant="45" id="cQ7-XN-cGN"/>
                                                     </constraints>
                                                 </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="moP-Js-Vrs">
+                                                    <rect key="frame" x="284" y="19" width="30" height="25"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="25" id="w7y-dH-ZeZ"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="UIi-gk-xti">
                                                     <rect key="frame" x="76" y="18" width="230" height="77"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="abcd" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xRk-Pa-gqm">
-                                                            <rect key="frame" x="0.0" y="0.0" width="38" height="36"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="40.5" height="36"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="36" id="Hp4-FZ-gnv"/>
                                                             </constraints>
-                                                            <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="16"/>
+                                                            <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
                                                             <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="abcd" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rwy-2g-4ed">
-                                                            <rect key="frame" x="0.0" y="41" width="34.5" height="36"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Valid since" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rwy-2g-4ed">
+                                                            <rect key="frame" x="0.0" y="41" width="67" height="36"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="36" id="BoD-6f-6ib"/>
                                                             </constraints>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                                             <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
@@ -3205,16 +3242,19 @@
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
+                                                <constraint firstItem="moP-Js-Vrs" firstAttribute="top" secondItem="au2-f7-lhd" secondAttribute="topMargin" constant="8" id="70f-b4-gU0"/>
                                                 <constraint firstItem="UIi-gk-xti" firstAttribute="leading" secondItem="GHQ-B9-Zoa" secondAttribute="trailing" constant="16" id="7pp-ZL-zgF"/>
                                                 <constraint firstItem="UIi-gk-xti" firstAttribute="centerY" secondItem="GHQ-B9-Zoa" secondAttribute="centerY" id="EOn-7h-pdQ"/>
                                                 <constraint firstItem="UIi-gk-xti" firstAttribute="centerY" secondItem="au2-f7-lhd" secondAttribute="centerY" id="GfY-cr-pOX"/>
                                                 <constraint firstItem="GHQ-B9-Zoa" firstAttribute="centerY" secondItem="au2-f7-lhd" secondAttribute="centerY" id="JFT-E7-X2M"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="UIi-gk-xti" secondAttribute="trailing" constant="8" id="Kak-NO-83H"/>
+                                                <constraint firstItem="moP-Js-Vrs" firstAttribute="trailing" secondItem="au2-f7-lhd" secondAttribute="trailingMargin" id="y8p-4Z-oW1"/>
                                                 <constraint firstItem="GHQ-B9-Zoa" firstAttribute="leading" secondItem="au2-f7-lhd" secondAttribute="leadingMargin" id="yNr-mB-ace"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
+                                            <outlet property="created" destination="moP-Js-Vrs" id="Z43-xH-yhV"/>
                                             <outlet property="descriptionLbl" destination="Rwy-2g-4ed" id="CPC-ay-MOg"/>
                                             <outlet property="name" destination="xRk-Pa-gqm" id="JDh-eC-tBm"/>
                                         </connections>
@@ -3485,7 +3525,7 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="kgu-jx-54l">
                                 <rect key="frame" x="23" y="133" width="329" height="412"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <mutableString key="text">FAQs
+                                <string key="text">FAQs
 What is UberEATS?
 UberEATS is our new food delivery platform, which makes getting great food from your favourite local restaurants as easy as requesting a ride.
 
@@ -3539,7 +3579,7 @@ Does the discount apply in other cities?
 The discount is valid in UberEATS cities that have the same currency. If you travel to a country with a different currency, the discount will not apply.
 
 I’m a restaurant and am interested in partnering with UberEATS. How do I get more information?
-Thanks for your interest! We’re always looking to deliver great new dishes. Please start by filling out this form.</mutableString>
+Thanks for your interest! We’re always looking to deliver great new dishes. Please start by filling out this form.</string>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
