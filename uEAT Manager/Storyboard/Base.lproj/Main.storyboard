@@ -3208,7 +3208,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="moP-Js-Vrs">
-                                                    <rect key="frame" x="284" y="19" width="30" height="25"/>
+                                                    <rect key="frame" x="284" y="11" width="30" height="25"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="25" id="w7y-dH-ZeZ"/>
                                                     </constraints>
@@ -3242,7 +3242,7 @@
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
-                                                <constraint firstItem="moP-Js-Vrs" firstAttribute="top" secondItem="au2-f7-lhd" secondAttribute="topMargin" constant="8" id="70f-b4-gU0"/>
+                                                <constraint firstItem="moP-Js-Vrs" firstAttribute="top" secondItem="au2-f7-lhd" secondAttribute="topMargin" id="70f-b4-gU0"/>
                                                 <constraint firstItem="UIi-gk-xti" firstAttribute="leading" secondItem="GHQ-B9-Zoa" secondAttribute="trailing" constant="16" id="7pp-ZL-zgF"/>
                                                 <constraint firstItem="UIi-gk-xti" firstAttribute="centerY" secondItem="GHQ-B9-Zoa" secondAttribute="centerY" id="EOn-7h-pdQ"/>
                                                 <constraint firstItem="UIi-gk-xti" firstAttribute="centerY" secondItem="au2-f7-lhd" secondAttribute="centerY" id="GfY-cr-pOX"/>

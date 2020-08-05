@@ -247,11 +247,11 @@ class CreateVoucherVC: UIViewController, UITextFieldDelegate {
             
             if category == "All menu" {
                 
-                dict = ["title": title, "description": description, "category": category, "type": type, "value": value, "restaurant_id": restaurant_id, "timeStamp": FieldValue.serverTimestamp(), "status": "Online", "category_url": "All", "fromDate": fromDate!, "untilDate": untilDate!] as [String : Any]
+                dict = ["title": title, "description": description, "category": category, "type": type, "value": value, "restaurant_id": restaurant_id, "timeStamp": FieldValue.serverTimestamp(), "status": "Online", "category_url": "All", "fromDate": fromDate!, "untilDate": untilDate!, "Created by": "Restaurant"] as [String : Any]
                 
             } else {
                 
-                dict = ["title": title, "description": description, "category": category, "type": type, "value": value, "restaurant_id": restaurant_id, "timeStamp": FieldValue.serverTimestamp(), "status": "Online", "category_url": get_categoryID(category: category), "fromDate": fromDate!, "untilDate": untilDate! ] as [String : Any]
+                dict = ["title": title, "description": description, "category": category, "type": type, "value": value, "restaurant_id": restaurant_id, "timeStamp": FieldValue.serverTimestamp(), "status": "Online", "category_url": get_categoryID(category: category), "fromDate": fromDate!, "untilDate": untilDate!, "Created by": "Restaurant" ] as [String : Any]
                 
             }
             

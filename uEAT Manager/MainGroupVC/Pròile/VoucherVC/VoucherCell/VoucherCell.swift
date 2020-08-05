@@ -8,6 +8,8 @@
 
 import UIKit
 import MGSwipeTableCell
+
+
 class VoucherCell: MGSwipeTableCell {
     
     

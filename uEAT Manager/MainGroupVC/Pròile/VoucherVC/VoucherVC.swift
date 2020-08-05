@@ -230,7 +230,7 @@ class VoucherVC: UIViewController, UITableViewDelegate, UITableViewDataSource, M
         if item.status != "Online" || item.status == "" {
             
             update = "Online"
-            let dict = ["title": item.title!, "description": item.description!, "category": item.category!, "type": item.type!, "value": item.value!, "restaurant_id": item.restaurant_id!, "timeStamp": FieldValue.serverTimestamp(),  "status": "Online"] as [String : Any]
+            let dict = ["title": item.title!, "description": item.description!, "category": item.category!, "type": item.type!, "value": item.value!, "restaurant_id": item.restaurant_id!, "timeStamp": FieldValue.serverTimestamp(), "status": "Online", "category_url": item.category_url!, "fromDate": item.fromDate!, "untilDate": item.untilDate!, "Created by": item.Created_by!] as [String : Any]
             i = VoucherModel(postKey: "Updated", Voucher_model: dict)
             
            
@@ -239,7 +239,7 @@ class VoucherVC: UIViewController, UITableViewDelegate, UITableViewDataSource, M
         } else {
             
             update = "Offline"
-            let dict = ["title": item.title!, "description": item.description!, "category": item.category!, "type": item.type!, "value": item.value!, "restaurant_id": item.restaurant_id!, "timeStamp": FieldValue.serverTimestamp(),  "status": "Offline"] as [String : Any]
+            let dict = ["title": item.title!, "description": item.description!, "category": item.category!, "type": item.type!, "value": item.value!, "restaurant_id": item.restaurant_id!, "timeStamp": FieldValue.serverTimestamp(), "status": "Offline", "category_url": item.category_url!, "fromDate": item.fromDate!, "untilDate": item.untilDate!, "Created by": item.Created_by!] as [String : Any]
             i = VoucherModel(postKey: "Updated", Voucher_model: dict)
             
            

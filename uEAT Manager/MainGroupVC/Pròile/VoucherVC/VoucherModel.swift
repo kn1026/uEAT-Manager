@@ -11,6 +11,7 @@ import Foundation
 
 class VoucherModel {
    
+    fileprivate var _Created_by: String!
     fileprivate var _title: String!
     fileprivate var _description: String!
     fileprivate var _category: String!
@@ -23,6 +24,17 @@ class VoucherModel {
     fileprivate var _restaurant_id: String!
     fileprivate var _status: String!
     
+    
+    
+    var Created_by: String! {
+        get {
+            if _Created_by == nil {
+                _Created_by = ""
+            }
+            return _Created_by
+        }
+        
+    }
     
     var timeStamp: Any! {
         get {
@@ -186,10 +198,17 @@ class VoucherModel {
             
         }
         
-        if let value = Voucher_model["timeStamp"] {
+        if let timeStamp = Voucher_model["timeStamp"] {
             self._timeStamp = timeStamp
             
         }
+        
+        if let Created_by = Voucher_model["Created by"] as? String {
+            self._Created_by = Created_by
+            
+        }
+        
+        
         
     }
     
