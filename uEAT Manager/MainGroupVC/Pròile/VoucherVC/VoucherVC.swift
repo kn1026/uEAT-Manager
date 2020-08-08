@@ -371,8 +371,9 @@ class VoucherVC: UIViewController, UITableViewDelegate, UITableViewDataSource, M
     func loadVoucher(id: String) {
         
 
+        let date = Date()
         
-        DataService.instance.mainFireStoreRef.collection("Voucher").whereField("restaurant_id", isEqualTo: id).order(by: "timeStamp", descending: true).getDocuments { (snap, err) in
+        DataService.instance.mainFireStoreRef.collection("Voucher").whereField("restaurant_id", isEqualTo: id).whereField("untilDate", isGreaterThan: date).getDocuments { (snap, err) in
         
         if err != nil {
             

@@ -208,3 +208,4 @@ let imageStorage = dataStorage.transformImage()
 var keysend = ""
 var frNotiUID = ""
 var frNotiType = ""
+var load_id = ""

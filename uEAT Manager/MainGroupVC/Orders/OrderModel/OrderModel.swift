@@ -11,17 +11,30 @@ import Foundation
 
 class OrderModel {
     
-    fileprivate var _Order_id: String!
-       fileprivate var _Restaurant_id: String!
-       fileprivate var _Restaurant_name: String!
-       fileprivate var _UID: String!
-       fileprivate var _url: String!
-       fileprivate var _Status: String!
-       fileprivate var _Order_key: String!
-       fileprivate var _Order_time: Any!
-       
     
-       var Order_key: String! {
+    
+    fileprivate var _Promo_id: String!
+    fileprivate var _Order_id: String!
+    fileprivate var _Restaurant_id: String!
+    fileprivate var _Restaurant_name: String!
+    fileprivate var _UID: String!
+    fileprivate var _url: String!
+    fileprivate var _Status: String!
+    fileprivate var _Order_key: String!
+    fileprivate var _Order_time: Any!
+
+    
+    var Promo_id: String! {
+        get {
+            if _Promo_id == nil {
+                _Promo_id = "Nil"
+            }
+            return _Promo_id
+        }
+        
+    }
+    
+    var Order_key: String! {
            get {
                if _Order_key == nil {
                    _Order_key = ""
@@ -125,6 +138,11 @@ class OrderModel {
                
            }
 
+        
+           if let Promo_id = Order_model["Promo_id"] as? String {
+               self._Promo_id = Promo_id
+               
+           }
            
            if let Order_time = Order_model["Order_time"] {
                self._Order_time = Order_time
@@ -132,6 +150,8 @@ class OrderModel {
            }
            
            
+        
+        
 
        }
     

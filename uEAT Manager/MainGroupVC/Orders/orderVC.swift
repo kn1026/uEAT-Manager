@@ -27,6 +27,7 @@ class orderVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var order_status = ""
     var Order_key = ""
     var res_id = ""
+    var promo_id = ""
     private var pullControl = UIRefreshControl()
     
     
@@ -176,6 +177,7 @@ class orderVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 for item in snap!.documents {
                     
                     let res_id = item.documentID
+                    load_id = res_id
                     
                     if self.orderObserve != nil {
                         
@@ -280,6 +282,7 @@ class orderVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         order_status = item.Status
         Order_key = item.Order_key
         res_id = item.Restaurant_id
+        promo_id = item.Promo_id
 
         
         NotificationCenter.default.addObserver(self, selector: #selector(orderVC.refreshOrder), name: (NSNotification.Name(rawValue: "refreshOrder")), object: nil)
@@ -305,6 +308,7 @@ class orderVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 destination.order_status = self.order_status
                 destination.Order_key = Order_key
                 destination.res_id = res_id
+                destination.promo_id = promo_id
                 
             }
         }

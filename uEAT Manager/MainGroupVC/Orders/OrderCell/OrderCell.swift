@@ -122,7 +122,13 @@ class OrderCell: UITableViewCell {
             
         }
         
-        
+        loadPrice(id: info.UID, order_id: info.Order_id, Promo_id: info.Promo_id)
+            
+    }
+
+    
+    func loadPrice(id: String, order_id: String, Promo_id: String) {
+    
         var subtotal: Float!
         var Tax: Float!
         var total: Float!
@@ -132,7 +138,7 @@ class OrderCell: UITableViewCell {
         total = 0.0
 
         
-        DataService.instance.mainFireStoreRef.collection("Orders_detail").whereField("userUID", isEqualTo: info.UID!).whereField("Order_id", isEqualTo: Int(info.Order_id)!).getDocuments { (snaps, err) in
+    DataService.instance.mainFireStoreRef.collection("Orders_detail").whereField("userUID", isEqualTo:id).whereField("Order_id", isEqualTo: Int(order_id)!).getDocuments { (snaps, err) in
         
         if err != nil {
             
@@ -147,8 +153,7 @@ class OrderCell: UITableViewCell {
                 
             }
             
-            
-        
+
             for item in snaps!.documents {
                 
                
@@ -165,17 +170,154 @@ class OrderCell: UITableViewCell {
                     
                 }
                 
-            }
+        }
+        
+            
+        if Promo_id != "Nil" {
+            
+            
+            self.checkPromoAndLoadFinalPrice(Promo_id: Promo_id, subtotal: subtotal)
+            
+        } else {
+            
             Tax = subtotal * 9 / 100
             total = subtotal + Tax
             self.price.text = "$\(String(format:"%.2f", total))"
             
-   
+        }
+        
+        
+            
+    
+    }
+        
+    }
+    
+    func checkPromoAndLoadFinalPrice(Promo_id: String, subtotal: Float) {
+        
+
+        DataService.instance.mainFireStoreRef.collection("Voucher").whereField("Created by", isEqualTo: "Restaurant").whereField("restaurant_id", isEqualTo: load_id).getDocuments { (snap, err) in
+        
+            
+        if err != nil {
+            
+            let Tax = subtotal * 9 / 100
+            let total = subtotal + Tax
+            self.price.text = "$\(String(format:"%.2f", total))"
+            
+            return
             
         }
-
+            
+            if snap?.isEmpty == true {
+                
+                let Tax = subtotal * 9 / 100
+                let total = subtotal + Tax
+                self.price.text = "$\(String(format:"%.2f", total))"
+                
+                return
+                
+                
+            } else {
+               
+                
+                var count = 0
+                var found = false
+                let limit = snap?.count
+              
+                for item in snap!.documents {
+                    
+                    count += 1
+                    if item.documentID == Promo_id {
+                        
+                        
+                        found = true
+                        
+                        let data = VoucherModel(postKey: item.documentID, Voucher_model: item.data())
+                        
+                       
+                        
+                        if data.type == "%" {
+                                        
+                                        if let percentage = data.value as? String {
+                                        
+                                            let new = Float(percentage)
+                                            let promo = subtotal*new!/100
+                                            
+                                            
+                                            let AdjustSubtotal = subtotal - promo
+                                            let Tax = AdjustSubtotal * 9 / 100
+                                            let total = AdjustSubtotal + Tax
+                                            self.price.text = "$\(String(format:"%.2f", total))"
+                                                                                            
+                                        }
+                                            else {
+                                                            
+                                            print("Can't convert \(data.value!)")
+                                            
+                                        }
+                                        
+                                      
+                                    } else if data.type == "$" {
+                                    
+                                        
+                                        if let minus = data.value as? String {
+                        
+                                            let new = Float(minus)
+                                            var AdjustSubtotal = subtotal - new!
+                                            
+                                            if AdjustSubtotal <= 0 {
+                                                AdjustSubtotal = 0.0
+                                            }
+                                            
+                                          let Tax = AdjustSubtotal * 9 / 100
+                                          let total = AdjustSubtotal + Tax
+                                          self.price.text = "$\(String(format:"%.2f", total))"
+                                            
+                                        }
+                                        else {
+                                            
+                                            print("Can't convert \(data.value!)")
+                                        }
+                               
+                                        
+                                        
+                                    } else {
+                                        print("Unknown \(data.type!)")
+                                    }
+                        
+                        
+                    }
+                    
+                }
+                
+                
+                if count == limit!, found == false {
+                    
+                    let Tax = subtotal * 9 / 100
+                    let total = subtotal + Tax
+                    self.price.text = "$\(String(format:"%.2f", total))"
+                    
+                  
+                    
+                }
+                
+                
+                
+                
+            }
+ 
+        
+            
+            
+            
+        }
         
         
     }
-
+    
+    
 }
+
+  
+
