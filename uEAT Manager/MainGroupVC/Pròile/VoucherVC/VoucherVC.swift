@@ -181,6 +181,25 @@ class VoucherVC: UIViewController, UITableViewDelegate, UITableViewDataSource, M
                  
               
        }
+    
+    func checkDuplicate(item: VoucherModel) -> Bool {
+
+        
+        for i in voucher {
+            
+            if i.category == item.category, i.category_url == item.category_url, i.description == item.description, i.title == item.title, i.type == item.type {
+                
+                return true
+                
+            }
+            
+        }
+        
+        
+        return false
+        
+    }
+    
     func deleteAtIndexPath(_ path: IndexPath) {
      
         swiftLoader()
@@ -387,8 +406,17 @@ class VoucherVC: UIViewController, UITableViewDelegate, UITableViewDataSource, M
             
             let dict = VoucherModel(postKey: item.documentID, Voucher_model: item.data())
             
-            self.voucher.append(dict)
+                if self.checkDuplicate(item: dict) == false {
+                
+                    self.voucher.append(dict)
+                
+                } else {
+                    
+                    print("Found duplication")
+                    
+            }
             
+    
             }
             
             self.tableView.reloadData()

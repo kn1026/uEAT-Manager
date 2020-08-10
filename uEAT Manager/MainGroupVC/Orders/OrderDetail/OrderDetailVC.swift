@@ -450,7 +450,7 @@ class OrderDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
                                                    
                                                    
                                                    self.SubtotalPrice.text = "$\(String(format:"%.2f", subtotal))"
-                                                   self.ApplicationFee.text = "- $\(String(format:"%.2f", promo))"
+                                                   self.ApplicationFee.text = "-$\(String(format:"%.2f", promo))"
                                                    self.TaxFee.text = "$\(String(format:"%.2f", Tax))"
                                                    self.TotalFee.text = "$\(String(format:"%.2f", total))"
                                                                                                    
@@ -483,7 +483,7 @@ class OrderDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
                                                  
                                                  
                                                  self.SubtotalPrice.text = "$\(String(format:"%.2f", subtotal))"
-                                                 self.ApplicationFee.text = "- $\(String(format:"%.2f", promo))"
+                                                 self.ApplicationFee.text = "-$\(String(format:"%.2f", promo))"
                                                  self.TaxFee.text = "$\(String(format:"%.2f", Tax))"
                                                  self.TotalFee.text = "$\(String(format:"%.2f", total))"
                                                    

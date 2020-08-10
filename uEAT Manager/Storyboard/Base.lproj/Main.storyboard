@@ -1148,7 +1148,7 @@
             <objects>
                 <viewController modalPresentationStyle="fullScreen" id="gKy-Dq-Ze9" customClass="NotificationVC" customModule="uEAT_Manager" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="lEa-lx-war">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notification" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nx9-ic-ZYE">
@@ -1161,7 +1161,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="I1a-tH-sdK">
-                                <rect key="frame" x="23" y="104" width="329" height="502"/>
+                                <rect key="frame" x="23" y="104" width="329" height="522"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="NotificationCell" rowHeight="90" id="vvG-ps-fDJ" customClass="NotificationCell" customModule="uEAT_Manager" customModuleProvider="target">
@@ -1244,7 +1244,7 @@
             <objects>
                 <viewController modalPresentationStyle="fullScreen" id="q7M-Px-A4a" customClass="MenuVC" customModule="uEAT_Manager" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="HwT-19-e9U">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Menu" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OH9-mQ-6xV">
@@ -1257,7 +1257,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3dV-1K-PXx">
-                                <rect key="frame" x="23" y="104" width="329" height="409"/>
+                                <rect key="frame" x="23" y="104" width="329" height="429"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="addNewItemCell" rowHeight="70" id="E46-B9-3Cb" customClass="addNewItemCell" customModule="uEAT_Manager" customModuleProvider="target">
@@ -1428,7 +1428,7 @@
                                 </prototypes>
                             </tableView>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lAC-n9-Ua7">
-                                <rect key="frame" x="23" y="521" width="329" height="45"/>
+                                <rect key="frame" x="23" y="541" width="329" height="45"/>
                                 <color key="backgroundColor" red="0.88733142610000004" green="0.86754173040000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="9P6-Lr-oik"/>
@@ -1476,7 +1476,7 @@
             <objects>
                 <viewController modalPresentationStyle="fullScreen" id="dKV-vG-EmV" customClass="orderVC" customModule="uEAT_Manager" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="aRY-Vg-2TW">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Orders" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="clc-5Z-RYR">
@@ -1489,7 +1489,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="wOb-eU-VgM">
-                                <rect key="frame" x="23" y="150" width="329" height="433"/>
+                                <rect key="frame" x="23" y="150" width="329" height="453"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="OrderCell" rowHeight="92" id="seo-7Z-0CH" customClass="OrderCell" customModule="uEAT_Manager" customModuleProvider="target">
@@ -1676,7 +1676,7 @@
             <objects>
                 <viewController modalPresentationStyle="fullScreen" id="Yfm-ja-uL6" customClass="MessageVC" customModule="uEAT_Manager" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="s9z-Oy-von">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gMi-nm-tWI">
@@ -1689,7 +1689,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="KqI-Du-yO7">
-                                <rect key="frame" x="23" y="104" width="329" height="486"/>
+                                <rect key="frame" x="23" y="104" width="329" height="506"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MessageCell" rowHeight="100" id="SWd-wO-LzP" customClass="MessageCell" customModule="uEAT_Manager" customModuleProvider="target">
@@ -1782,7 +1782,7 @@
             <objects>
                 <viewController autoresizesArchivedViewToFullSize="NO" modalPresentationStyle="fullScreen" id="FZW-do-36Y" customClass="ProfileVC" customModule="uEAT_Manager" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8Sk-Pf-2MJ">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Profile" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KbE-S2-BHT">
@@ -1795,7 +1795,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="pw7-P5-P1H">
-                                <rect key="frame" x="23" y="150.5" width="329" height="508.5"/>
+                                <rect key="frame" x="23" y="150.5" width="329" height="488.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="separatorColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                 <prototypes>
@@ -2299,6 +2299,13 @@
                                     <action selector="createLimit:" destination="sRu-cx-VKt" eventType="editingDidBegin" id="hSk-SS-3d8"/>
                                 </connections>
                             </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Number of use" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="f7h-Nh-XR1">
+                                <rect key="frame" x="23" y="513" width="329" height="34"/>
+                                <color key="backgroundColor" red="0.97280305619999996" green="0.97291952370000001" blue="0.97276359800000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" textContentType="name"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -2306,6 +2313,7 @@
                             <constraint firstItem="KxG-fb-eWK" firstAttribute="top" secondItem="9ZA-mg-aVp" secondAttribute="bottom" constant="8" id="7WS-HC-4Ye"/>
                             <constraint firstItem="SPp-o1-8kj" firstAttribute="top" secondItem="4Zs-gq-i9j" secondAttribute="bottom" constant="16" id="8i1-VZ-fzI"/>
                             <constraint firstItem="pRK-We-3Ax" firstAttribute="trailing" secondItem="pee-AT-nR5" secondAttribute="trailing" constant="23" id="9De-MH-ueK"/>
+                            <constraint firstItem="f7h-Nh-XR1" firstAttribute="leading" secondItem="pRK-We-3Ax" secondAttribute="leading" constant="23" id="BMb-Gy-9MT"/>
                             <constraint firstItem="4bQ-nX-Jhc" firstAttribute="leading" secondItem="pRK-We-3Ax" secondAttribute="leading" constant="23" id="CEr-rS-B6u"/>
                             <constraint firstItem="pRK-We-3Ax" firstAttribute="trailing" secondItem="4Zs-gq-i9j" secondAttribute="trailing" constant="23" id="FLa-ai-AiD"/>
                             <constraint firstItem="9ZA-mg-aVp" firstAttribute="leading" secondItem="pRK-We-3Ax" secondAttribute="leading" constant="23" id="Hef-6c-1bh"/>
@@ -2323,9 +2331,11 @@
                             <constraint firstItem="Ysr-WE-lo6" firstAttribute="leading" secondItem="pRK-We-3Ax" secondAttribute="leading" constant="23" id="YD8-hl-ILZ"/>
                             <constraint firstItem="pRK-We-3Ax" firstAttribute="trailing" secondItem="GaM-Yr-43A" secondAttribute="trailing" constant="23" id="bAM-P8-Yja"/>
                             <constraint firstItem="pRK-We-3Ax" firstAttribute="trailing" secondItem="Ysr-WE-lo6" secondAttribute="trailing" constant="23" id="bBX-eB-jv2"/>
+                            <constraint firstItem="pRK-We-3Ax" firstAttribute="trailing" secondItem="f7h-Nh-XR1" secondAttribute="trailing" constant="23" id="cyF-va-y3q"/>
                             <constraint firstItem="itk-f9-TXc" firstAttribute="leading" secondItem="pRK-We-3Ax" secondAttribute="leading" constant="23" id="fhw-fh-7gk"/>
                             <constraint firstItem="KxG-fb-eWK" firstAttribute="leading" secondItem="pRK-We-3Ax" secondAttribute="leading" constant="23" id="flF-o2-bco"/>
                             <constraint firstItem="pRK-We-3Ax" firstAttribute="trailing" secondItem="SPp-o1-8kj" secondAttribute="trailing" constant="23" id="gRR-pT-VD5"/>
+                            <constraint firstItem="f7h-Nh-XR1" firstAttribute="top" secondItem="SPp-o1-8kj" secondAttribute="bottom" constant="16" id="keT-Mm-xBC"/>
                             <constraint firstItem="9ZA-mg-aVp" firstAttribute="top" secondItem="pRK-We-3Ax" secondAttribute="top" constant="12" id="o9g-8P-9Hr"/>
                             <constraint firstItem="GaM-Yr-43A" firstAttribute="leading" secondItem="pRK-We-3Ax" secondAttribute="leading" constant="23" id="pAS-Y6-u4D"/>
                             <constraint firstItem="pee-AT-nR5" firstAttribute="leading" secondItem="pRK-We-3Ax" secondAttribute="leading" constant="23" id="pkw-SP-hln"/>
@@ -2343,6 +2353,7 @@
                         <outlet property="TypeTxtField" destination="pee-AT-nR5" id="EEZ-az-Fwg"/>
                         <outlet property="ValueTxtField" destination="5qD-RL-RFJ" id="GoR-BW-eNe"/>
                         <outlet property="categoryTxtField" destination="GaM-Yr-43A" id="67r-yH-Wed"/>
+                        <outlet property="numberOfUseTxtField" destination="f7h-Nh-XR1" id="t5w-hW-Lcr"/>
                         <outlet property="titleTxtField" destination="Ysr-WE-lo6" id="LbG-Y8-DiH"/>
                         <outlet property="validLimitTxtField" destination="SPp-o1-8kj" id="5tx-TY-qkU"/>
                         <outlet property="validUntilTxtField" destination="4Zs-gq-i9j" id="Cue-QB-Lib"/>
@@ -3050,7 +3061,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="JhY-FE-Kgw">
                                         <rect key="frame" x="343.5" y="8" width="11.5" height="98"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aKG-m0-FUS">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aKG-m0-FUS">
                                                 <rect key="frame" x="0.0" y="0.0" width="11.5" height="22"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="22" id="6Dt-Ar-mr4"/>
@@ -3059,19 +3070,19 @@
                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="haM-9O-guj">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="haM-9O-guj">
                                                 <rect key="frame" x="0.0" y="26" width="11.5" height="20"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bns-w4-xCh">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bns-w4-xCh">
                                                 <rect key="frame" x="0.0" y="50" width="11.5" height="20"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kES-n9-wDf">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kES-n9-wDf">
                                                 <rect key="frame" x="0.0" y="74" width="11.5" height="24"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

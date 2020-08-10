@@ -29,6 +29,7 @@ class CreateVoucherVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var TypeTxtField: UITextField!
     @IBOutlet weak var ValueTxtField: UITextField!
     @IBOutlet weak var categoryTxtField: UITextField!
+    @IBOutlet weak var numberOfUseTxtField: UITextField!
     
     var type = ["$", "%"]
     var restaurant_id = ""
@@ -77,8 +78,15 @@ class CreateVoucherVC: UIViewController, UITextFieldDelegate {
                       
         validLimitTxtField.delegate = self
         
-               
+        
+        
+        numberOfUseTxtField.attributedPlaceholder = NSAttributedString(string: "Number of use",
+                                                                                      attributes: [NSAttributedString.Key.foregroundColor: UIColor.darkGray])
+                             
+               numberOfUseTxtField.delegate = self
+        
         ValueTxtField.keyboardType = .numberPad
+        numberOfUseTxtField.keyboardType = .numberPad
         
     }
     
@@ -228,6 +236,9 @@ class CreateVoucherVC: UIViewController, UITextFieldDelegate {
     
     @IBAction func createBtnPressed(_ sender: Any) {
         
+        
+        var count = 0
+        var limit = 0
         if let title = titleTxtField.text, let description = DescriptionTxrField.text, let category = categoryTxtField.text, category != "", let type = TypeTxtField.text, type != "", let value = ValueTxtField.text, value != "", restaurant_id != "", let startTime = validUntilTxtField.text, startTime != "", let untilTime = validLimitTxtField.text, untilTime != "" {
             
             if type == "%" {
@@ -261,24 +272,43 @@ class CreateVoucherVC: UIViewController, UITextFieldDelegate {
             
             let db = DataService.instance.mainFireStoreRef.collection("Voucher")
             
-              db.addDocument(data: dict) { err in
-              
-                  if let err = err {
-                      
-                      SwiftLoader.hide()
-                      self.showErrorAlert("Opss !", msg: err.localizedDescription)
-                      
-                  } else {
-                    
-                    self.generateNotification(title: "Added \(title) voucher", description: description, type: "voucher")
-                    
-                    SwiftLoader.hide()
-                    self.dismiss(animated: true, completion: nil)
+            
+            if let nums = numberOfUseTxtField.text  {
                 
+                let num = Int(nums)
+                while count < num! {
+                    
+                    count += 1
+                    
+                    db.addDocument(data: dict) { err in
+                      
+                          if let err = err {
+                              
+                              SwiftLoader.hide()
+                              self.showErrorAlert("Opss !", msg: err.localizedDescription)
+                              
+                          } else {
+                            
+                            limit += 1
+                            if num == limit {
+                                
+                                self.generateNotification(title: "Added \(title) voucher", description: description, type: "voucher")
+                                SwiftLoader.hide()
+                                self.dismiss(animated: true, completion: nil)
+                                
+                            }
+                        
+                        }
+                        
+                        
+                    }
+                    
                 }
                 
                 
+                
             }
+
             
         } else {
             
