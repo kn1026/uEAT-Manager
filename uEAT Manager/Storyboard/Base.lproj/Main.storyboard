@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Kmk-Ay-DW3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Kmk-Ay-DW3">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -775,6 +775,7 @@
                     <connections>
                         <outlet property="tableView" destination="2ae-ga-06a" id="Ksz-zo-ghC"/>
                         <segue destination="fHI-ic-9yl" kind="show" identifier="moveToDetailTemVC" id="8jq-Hf-WZT"/>
+                        <segue destination="Kmk-Ay-DW3" kind="show" identifier="moveToMain3VC" id="QfY-46-fGe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hgL-kj-OmK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1244,7 +1245,7 @@
             <objects>
                 <viewController modalPresentationStyle="fullScreen" id="q7M-Px-A4a" customClass="MenuVC" customModule="uEAT_Manager" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="HwT-19-e9U">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Menu" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OH9-mQ-6xV">
@@ -1257,7 +1258,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3dV-1K-PXx">
-                                <rect key="frame" x="23" y="104" width="329" height="429"/>
+                                <rect key="frame" x="23" y="104" width="329" height="409"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="addNewItemCell" rowHeight="70" id="E46-B9-3Cb" customClass="addNewItemCell" customModule="uEAT_Manager" customModuleProvider="target">
@@ -1428,7 +1429,7 @@
                                 </prototypes>
                             </tableView>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lAC-n9-Ua7">
-                                <rect key="frame" x="23" y="541" width="329" height="45"/>
+                                <rect key="frame" x="23" y="521" width="329" height="45"/>
                                 <color key="backgroundColor" red="0.88733142610000004" green="0.86754173040000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="9P6-Lr-oik"/>
@@ -1476,7 +1477,7 @@
             <objects>
                 <viewController modalPresentationStyle="fullScreen" id="dKV-vG-EmV" customClass="orderVC" customModule="uEAT_Manager" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="aRY-Vg-2TW">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Orders" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="clc-5Z-RYR">
@@ -1489,7 +1490,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="wOb-eU-VgM">
-                                <rect key="frame" x="23" y="150" width="329" height="453"/>
+                                <rect key="frame" x="23" y="150" width="329" height="433"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="OrderCell" rowHeight="92" id="seo-7Z-0CH" customClass="OrderCell" customModule="uEAT_Manager" customModuleProvider="target">
@@ -1676,7 +1677,7 @@
             <objects>
                 <viewController modalPresentationStyle="fullScreen" id="Yfm-ja-uL6" customClass="MessageVC" customModule="uEAT_Manager" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="s9z-Oy-von">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gMi-nm-tWI">
@@ -1689,7 +1690,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="KqI-Du-yO7">
-                                <rect key="frame" x="23" y="104" width="329" height="506"/>
+                                <rect key="frame" x="23" y="104" width="329" height="486"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MessageCell" rowHeight="100" id="SWd-wO-LzP" customClass="MessageCell" customModule="uEAT_Manager" customModuleProvider="target">
@@ -4038,6 +4039,7 @@ Thanks for your interest! We’re always looking to deliver great new dishes. Pl
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="QfY-46-fGe"/>
         <segue reference="8NR-nR-XhH"/>
     </inferredMetricsTieBreakers>
     <resources>

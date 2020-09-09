@@ -12,6 +12,8 @@ target 'uEAT Manager' do
   pod ‘Firebase/Database’
   pod ‘Firebase/Storage’
   pod 'Firebase/Messaging'
+  pod ‘Firebase/Firestore’
+  pod 'Firebase/Core'
   pod 'GoogleMaps'
   pod 'GooglePlaces'
   pod 'Alamofire'
@@ -24,9 +26,6 @@ target 'uEAT Manager' do
   pod 'MGSwipeTableCell'
   pod "ZSWTappableLabel", "~> 2.0"
   pod "ZSWTaggedString/Swift", "~> 4.0"
-  pod 'FireStore'
-  pod 'Firebase/Core'
-  pod 'Firebase/Firestore'
   pod 'SCLAlertView'
   pod 'JSQMessagesViewController'
 

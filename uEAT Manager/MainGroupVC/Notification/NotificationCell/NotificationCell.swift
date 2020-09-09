@@ -30,9 +30,13 @@ class NotificationCell: UITableViewCell {
         name.text = info.title
         icon.image = UIImage(named: "\(info.type!)")
         
-        if info.timeStamp != nil {
+        if let times = info.timeStamp as? Date {
             
-            timeLbl.text = timeAgoSinceDate(info!.timeStamp as! Date, numericDates: true)
+            timeLbl.text = timeAgoSinceDate(times, numericDates: true)
+            
+        } else {
+            
+            print("Can't convert \(info.timeStamp!)")
             
         }
 

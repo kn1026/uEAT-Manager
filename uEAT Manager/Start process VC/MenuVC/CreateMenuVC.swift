@@ -706,7 +706,7 @@ class CreateMenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource
                               
                             SwiftLoader.hide()
                               
-    
+                            self.performSegue(withIdentifier: "moveToMain3VC", sender: nil)
                              
                              
                          }

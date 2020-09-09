@@ -1,6 +1,0 @@
-framework module SwiftXtend {
-  umbrella header "SwiftXtend-umbrella.h"
-
-  export *
-  module * { export * }
-}
