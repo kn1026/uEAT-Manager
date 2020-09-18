@@ -341,6 +341,8 @@ class SignUp3VC: UIViewController, UITextFieldDelegate, ZSWTappableLabelTapDeleg
                                             
                                             DataService.instance.mainFireStoreRef.collection("Restaurant").document(id).updateData(data)
                                             
+                                            DataService.instance.mainFireStoreRef.collection("Restaurant_check_list").document(id).setData(["Menu": false, "Two-factor-authentication": false, "Timestamp": FieldValue.serverTimestamp()])
+                                            
                                             self.create_location(loc: self.RestaurantLocation, key: id)
                                             
                                             

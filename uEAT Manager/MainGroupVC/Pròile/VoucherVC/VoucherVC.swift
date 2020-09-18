@@ -66,7 +66,12 @@ class VoucherVC: UIViewController, UITableViewDelegate, UITableViewDataSource, M
           
             
             if item.status != "Online" {
-                cell.contentView.backgroundColor = UIColor.placeholderText
+                if #available(iOS 13.0, *) {
+                    cell.contentView.backgroundColor = UIColor.placeholderText
+                } else {
+                    // Fallback on earlier versions
+                    cell.contentView.backgroundColor = UIColor.groupTableViewBackground
+                }
                 
             } else {
                 cell.contentView.backgroundColor = UIColor.clear
