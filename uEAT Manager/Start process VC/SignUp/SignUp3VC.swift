@@ -318,9 +318,7 @@ class SignUp3VC: UIViewController, UITextFieldDelegate, ZSWTappableLabelTapDeleg
                                     
                                     let data = ["Phone": Phone, "Lat": self.RestaurantLocation
                                         .latitude, "Lon": self.RestaurantLocation.longitude, "businessAddress": self.businessAddress, "businessName": self.businessName, "Email": email, "Status" : "Pending", "LogoUrl": downloadedUrl, "Timestamp": FieldValue.serverTimestamp(), "Cuisine": self.itemList] as [String : Any]
-                                    
-                                
-                                           
+                                             
                                     let db = DataService.instance.mainFireStoreRef.collection("Restaurant")
                                     
                                     ref = db.addDocument(data: data) { err in
